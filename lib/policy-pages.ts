@@ -22,66 +22,72 @@ export const POLICY_PAGES: PolicyPageDef[] = [
   {
     slug: "shipping-policy",
     title: "Shipping & Delivery",
-    description: "Free standard shipping, processing times, and delivery estimates for DROVIIA.",
+    description:
+      "At Lunaavo, we understand how important it is to receive your kitchen appliances and dining essentials safely and within the expected delivery timeframe.",
     intro:
-      "Eligible domestic orders receive free standard shipping, with no minimum purchase requirement.",
+      "This Shipping & Delivery Policy explains how orders are processed, where we deliver, how shipping charges are calculated, and what to do if you experience a delivery issue.",
     groupTitles: ["Shipping and delivery"],
   },
   {
     slug: "return-and-refund-policy",
     title: "Returns & Refunds",
-    description: "How to return an eligible product and how refunds are issued.",
+    description:
+      "Our Returns & Refunds Policy explains how to request a return, which products may be eligible, how refunds are processed, and what to do if you receive a damaged, defective, or incorrect item.",
     intro:
-      "We offer a 30-calendar-day return window for eligible products and a $0 restocking fee on approved returns.",
+      "At Lunaavo, customer satisfaction is important to us. Review this policy before placing an order.",
     groupTitles: ["Returns and exchanges", "Refunds"],
   },
   {
     slug: "cancellation-policy",
-    title: "Order Cancellations",
-    description: "How to request a cancellation before fulfillment begins.",
+    title: "Order Cancellation",
+    description:
+      "This Order Cancellation Policy explains how to request a cancellation, when an order may be canceled, how refunds are handled, and what happens if your order has already been shipped.",
     intro:
-      "You may request cancellation before fulfillment begins. The cancellation fee is $0.00.",
+      "At Lunaavo, we understand that plans can change. Contact us as soon as you need to cancel or change an order.",
     groupTitles: ["Placing and managing orders"],
   },
   {
     slug: "payment-policy",
-    title: "Payment Options",
-    description: "Checkout methods, currency, tax, and payment security at DROVIIA.",
+    title: "Payment Methods",
+    description:
+      "This Payment Policy explains how payments are handled, which payment methods may be available, how billing information is processed, and what to do if you encounter a payment-related issue.",
     intro:
-      "Prices and checkout payments are displayed in United States Dollars (USD). The methods shown at checkout are the options available for your purchase.",
+      "All prices on Lunaavo are displayed in United States Dollars (USD) unless otherwise indicated. The methods shown at checkout are the options available for your purchase.",
     groupTitles: ["Payments and checkout"],
   },
   {
     slug: "buy-now-pay-later",
     title: "Buy Now, Pay Later",
-    description: "Afterpay, Affirm, and other installment options that may appear at checkout.",
+    description:
+      "Installment or deferred-payment services are available only when expressly displayed and offered through checkout.",
     intro:
-      "Afterpay is one of our primary payment options, subject to availability and provider approval.",
+      "Any such payment method is subject to its provider's eligibility criteria, terms, and approval requirements. Lunaavo does not guarantee a specific payment method unless it is shown during checkout.",
     groupTitles: ["Buy Now, Pay Later (BNPL)"],
   },
   {
     slug: "warranty",
-    title: "Warranty & Support",
-    description: "Manufacturer warranty coverage and what to do if a product has an issue.",
+    title: "Warranty & Product Support",
+    description:
+      "This page explains how product warranties work, how to request assistance, and what to do if your purchase develops a problem.",
     intro:
-      "Warranty availability varies by product and manufacturer. We do not promise a blanket one-year warranty on all products.",
+      "Warranty coverage and available remedies depend on the product, its applicable warranty terms, and relevant consumer protection laws.",
     groupTitles: ["Warranty and product support"],
   },
   {
     slug: "privacy-policy",
     title: "Privacy Policy",
     description:
-      "How DROVIIA collects, uses, and shares information when you shop with us.",
+      "How Lunaavo collects, uses, and shares information when you shop with us.",
     intro:
-      "This policy explains how DROVIIA, operated by Modern Closet Spaces LLC, handles information when you browse the store, place an order, or contact support.",
+      "This policy explains how Lunaavo, operated by San Rafael Luggage Center, Inc, handles information when you browse the store, place an order, or contact support.",
     groupTitles: [],
     designed: true,
     sections: [
       {
         title: "Who we are",
         paragraphs: [
-          "DROVIIA is an online store operated by Modern Closet Spaces LLC. Our business correspondence address is 1320 W El Segundo Blvd Ste E, Gardena, CA 90247, United States. That address is not a retail showroom or an authorized return location.",
-          "Questions about this policy can be sent to info@droviia.us or +1 (424) 329-0223. Live chat is available 24/7. Phone support hours are Monday-Friday, 9:00 AM-5:00 PM Pacific Time.",
+          "Lunaavo is an online store operated by San Rafael Luggage Center, Inc. Our business correspondence address is 2221 Shattuck Ave., Berkeley, CA 94704, United States. That address is not a retail showroom or an authorized return location.",
+          "Questions about this policy can be sent to info@lunaavo.us or +1 (510) 345-2632. Live chat is available 24/7. Phone support hours are Monday-Friday, 9:00 AM-5:00 PM Pacific Time.",
         ],
       },
       {
@@ -131,7 +137,7 @@ export const POLICY_PAGES: PolicyPageDef[] = [
       {
         title: "Your privacy choices",
         paragraphs: [
-          "You may contact info@droviia.us with a privacy-related request, including access, correction, or deletion where applicable law provides those rights. We will review the request and respond according to the laws that apply to your situation.",
+          "You may contact info@lunaavo.us with a privacy-related request, including access, correction, or deletion where applicable law provides those rights. We will review the request and respond according to the laws that apply to your situation.",
           "California residents and other US shoppers can also visit the Your Privacy Choices page on this site.",
         ],
       },
@@ -141,7 +147,7 @@ export const POLICY_PAGES: PolicyPageDef[] = [
     slug: "terms-of-service",
     title: "Terms of Service",
     description:
-      "The purchasing, shipping, return, and payment terms that apply when you shop at DROVIIA.",
+      "The purchasing, shipping, return, and payment terms that apply when you shop at Lunaavo.",
     intro:
       "By browsing this store or placing an order you agree to the terms published here, together with our shipping, return, payment, and privacy pages.",
     groupTitles: [],
@@ -150,35 +156,35 @@ export const POLICY_PAGES: PolicyPageDef[] = [
       {
         title: "The store",
         paragraphs: [
-          "DROVIIA is a US-focused online electronics store operated by Modern Closet Spaces LLC. We currently fulfill eligible orders to addresses within the United States. We do not operate a public retail showroom.",
+          "Lunaavo is an online retail store for kitchen appliances and dining essentials, operated by San Rafael Luggage Center, Inc in Berkeley, California. The business address is for identification and correspondence. Contact support before visiting or mailing a return.",
         ],
       },
       {
         title: "Orders",
         paragraphs: [
           "An order is an offer to buy the products listed in your cart at the prices shown at checkout. We may decline or cancel an order if an item is unavailable, a payment cannot be completed, or the order appears fraudulent or incomplete.",
-          "You may request cancellation before fulfillment begins. There is no cancellation fee. Once an order has entered fulfillment, our return policy applies instead.",
+          "You may request a cancellation. Whether it can be completed depends on fulfillment status and the Order Cancellation Policy. Once an order has shipped, the return policy may apply instead.",
         ],
       },
       {
         title: "Pricing and payment",
         paragraphs: [
           "Prices are shown in United States Dollars (USD). Applicable tax and the final order total appear at checkout. The payment methods displayed for your purchase are the options available at that time.",
-          "Afterpay is one of our primary payment options, subject to availability and provider approval. Affirm, PayPal, or card payments may also appear. Financing approval, installments, interest, and fees are set by the payment provider.",
+          "Installment or deferred-payment services are available only when they are displayed at checkout. Approval, installments, interest, and fees are set by the payment provider.",
         ],
       },
       {
         title: "Shipping",
         paragraphs: [
-          "Eligible domestic orders receive free standard shipping, with no minimum purchase requirement. Typical processing is 1-2 business days, followed by an estimated 3-7 business days in transit, for a total of about 4-9 business days. The order cut-off is 4:00 PM Pacific Time.",
+          "Shipping charges, processing times, and delivery estimates are disclosed during checkout and in the Shipping & Delivery Policy.",
           "Delivery estimates can change because of carrier conditions, holidays, weather, or other events outside our control.",
         ],
       },
       {
         title: "Returns and refunds",
         paragraphs: [
-          "Eligible products may be returned within 30 calendar days. Approved returns have a $0 restocking fee. For change-of-mind returns, customers generally cover return shipping and must meet the product-condition requirements described on our returns page.",
-          "Do not send products to our Madison business address unless our team specifically authorizes that destination. Contact support first so we can provide the correct return instructions. Approved refunds are typically processed within 10 business days after receipt, inspection, and approval, using the original payment method.",
+          "Return eligibility, timing, shipping responsibility, and any restocking fee are described in the Returns & Refunds Policy.",
+          "Do not send products to the Berkeley business address unless customer support specifically authorizes that destination.",
         ],
       },
       {
@@ -191,13 +197,13 @@ export const POLICY_PAGES: PolicyPageDef[] = [
       {
         title: "Limitation of liability",
         paragraphs: [
-          "To the fullest extent permitted by law, Modern Closet Spaces LLC and DROVIIA are not liable for indirect, incidental, or consequential damages arising from your use of the site or from products purchased through it. Nothing in these terms limits rights you have under applicable consumer law.",
+          "To the fullest extent permitted by law, San Rafael Luggage Center, Inc and Lunaavo are not liable for indirect, incidental, or consequential damages arising from your use of the site or from products purchased through it. Nothing in these terms limits rights you have under applicable consumer law.",
         ],
       },
       {
         title: "Contact",
         paragraphs: [
-          "Email info@droviia.us, call +1 (424) 329-0223, or use live chat, available 24/7. Business hours are Monday-Friday, 9:00 AM-5:00 PM Pacific Time.",
+          "Email info@lunaavo.us, call +1 (510) 345-2632, or use live chat, available 24/7. Business hours are Monday-Friday, 9:00 AM-5:00 PM Pacific Time.",
         ],
       },
     ],
@@ -205,7 +211,7 @@ export const POLICY_PAGES: PolicyPageDef[] = [
   {
     slug: "cookie-policy",
     title: "Cookie Policy",
-    description: "How cookies are used on the DROVIIA storefront.",
+    description: "How cookies are used on the Lunaavo storefront.",
     intro:
       "Essential cookies may support shopping carts, checkout, security, and other website functions. Additional cookies depend on the services enabled.",
     groupTitles: ["Accounts, privacy, and security"],
@@ -213,20 +219,20 @@ export const POLICY_PAGES: PolicyPageDef[] = [
   {
     slug: "legal-notice",
     title: "Legal Notice",
-    description: "Business identity and correspondence address for DROVIIA.",
+    description: "Business identity and correspondence address for Lunaavo.",
     intro:
-      "DROVIIA is operated by Modern Closet Spaces LLC.",
+      "Lunaavo is operated by San Rafael Luggage Center, Inc.",
     groupTitles: ["General questions"],
     paragraphs: [
-      "Business address: 1320 W El Segundo Blvd Ste E, Gardena, CA 90247, United States. This address is for business correspondence and is not a retail showroom or an authorized return location.",
-      "Website: https://droviia.us. Email: info@droviia.us. Phone: +1 (424) 329-0223.",
+      "Business address: 2221 Shattuck Ave., Berkeley, CA 94704, United States. This address is for business correspondence and is not a retail showroom or an authorized return location.",
+      "Website: https://lunaavo.us. Email: info@lunaavo.us. Phone: +1 (510) 345-2632.",
     ],
   },
   {
     slug: "accessibility-statement",
     title: "Accessibility Statement",
     description:
-      "How we aim to keep the DROVIIA store easier to navigate, and how to ask for help.",
+      "How we aim to keep the Lunaavo store easier to navigate, and how to ask for help.",
     intro:
       "We want our website and shopping information to be easier for customers to navigate and understand. This statement describes that aim and how to reach us if a page, listing, or checkout step is difficult to use.",
     groupTitles: [],
@@ -235,7 +241,7 @@ export const POLICY_PAGES: PolicyPageDef[] = [
       {
         title: "Our commitment",
         paragraphs: [
-          "DROVIIA, operated by Modern Closet Spaces LLC, is working to keep product information, policies, and checkout steps clearer over time. We treat accessibility as an ongoing effort, not a one-time audit claim.",
+          "Lunaavo, operated by San Rafael Luggage Center, Inc, is working to keep product information, policies, and checkout steps clearer over time. We treat accessibility as an ongoing effort, not a one-time audit claim.",
         ],
       },
       {
@@ -259,8 +265,8 @@ export const POLICY_PAGES: PolicyPageDef[] = [
       {
         title: "Request assistance",
         paragraphs: [
-          "If you have trouble using a page, product listing, or checkout step, email info@droviia.us or call +1 (424) 329-0223. Tell us the page you were on and what you were trying to do. We will help you complete your request.",
-          "Live chat is available 24/7. Phone support hours are Monday-Friday, 9:00 AM-5:00 PM Pacific Time. Our business address is 1320 W El Segundo Blvd Ste E, Gardena, CA 90247, United States, for correspondence only.",
+          "If you have trouble using a page, product listing, or checkout step, email info@lunaavo.us or call +1 (510) 345-2632. Tell us the page you were on and what you were trying to do. We will help you complete your request.",
+          "Live chat is available 24/7. Phone support hours are Monday-Friday, 9:00 AM-5:00 PM Pacific Time. Our business address is 2221 Shattuck Ave., Berkeley, CA 94704, United States, for correspondence only.",
         ],
       },
     ],
@@ -268,9 +274,9 @@ export const POLICY_PAGES: PolicyPageDef[] = [
   {
     slug: "your-privacy-choices",
     title: "Your Privacy Choices",
-    description: "How to ask about personal data used for your DROVIIA orders.",
+    description: "How to ask about personal data used for your Lunaavo orders.",
     intro:
-      "You may contact info@droviia.us with a privacy-related request. Applicable rights depend on relevant privacy laws.",
+      "You may contact info@lunaavo.us with a privacy-related request. Applicable rights depend on relevant privacy laws.",
     groupTitles: ["Accounts, privacy, and security"],
   },
 ];

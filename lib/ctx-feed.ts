@@ -1,4 +1,4 @@
-export const PUBLIC_STORE_ORIGIN = "https://www.droviia.us";
+export const PUBLIC_STORE_ORIGIN = "https://lunaavo.us";
 
 function originOf(value: string) {
   try {
@@ -14,7 +14,13 @@ export function feedStoreOrigin(wpOrigin: string, configured?: string) {
   if (!site || site === wpOrigin) return PUBLIC_STORE_ORIGIN;
   try {
     const host = new URL(site).hostname.toLowerCase();
-    if (host === "droviia.us" || host === "wp.droviia.us") return PUBLIC_STORE_ORIGIN;
+    if (
+      host === "droviia.us" ||
+      host === "www.droviia.us" ||
+      host === "wp.droviia.us"
+    ) {
+      return PUBLIC_STORE_ORIGIN;
+    }
   } catch {
     return PUBLIC_STORE_ORIGIN;
   }

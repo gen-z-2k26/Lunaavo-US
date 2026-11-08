@@ -49,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
       creator: settings.name,
       keywords: settings.seo.keywords.length
         ? settings.seo.keywords
-        : [settings.name, "home appliances", "personal care"],
+        : [settings.name, "kitchen appliances", "dining essentials"],
       openGraph: {
         type: "website",
         siteName: settings.name,

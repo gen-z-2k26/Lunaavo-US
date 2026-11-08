@@ -60,17 +60,17 @@
   --card-foreground: var(--light-card-foreground, #0a0a0a);
   --popover: var(--light-popover, #ffffff);
   --popover-foreground: var(--light-popover-foreground, #0a0a0a);
-  --primary: var(--light-primary, #8ec8ea);
-  --primary-foreground: var(--light-primary-foreground, #0a0a0a);
+  --primary: var(--light-primary, #111d2d);
+  --primary-foreground: var(--light-primary-foreground, #ffffff);
   --secondary: var(--light-secondary, #eef6fb);
   --secondary-foreground: var(--light-secondary-foreground, #0a0a0a);
   --muted: var(--light-muted, #eef6fb);
   --muted-foreground: var(--light-muted-foreground, #4b5563);
-  --accent: var(--light-accent, #b7d9f2);
+  --accent: var(--light-accent, #1e3f66);
   --accent-foreground: var(--light-accent-foreground, #0a0a0a);
   --border: var(--light-border, rgba(10, 10, 10, 0.12));
   --input: var(--light-input, rgba(10, 10, 10, 0.12));
-  --ring: var(--light-ring, #8ec8ea);
+  --ring: var(--light-ring, #111d2d);
   --destructive: #c2410c;
   --success: #3f7a5a;
 
@@ -95,23 +95,23 @@
 
 .dark {
   color-scheme: dark;
-  --background: var(--dark-background, #000000);
+  --background: var(--dark-background, #111d2d);
   --foreground: var(--dark-foreground, #ffffff);
   --card: var(--dark-card, #111111);
   --card-foreground: var(--dark-card-foreground, #ffffff);
   --popover: var(--dark-popover, #111111);
   --popover-foreground: var(--dark-popover-foreground, #ffffff);
-  --primary: var(--dark-primary, #8ec8ea);
+  --primary: var(--dark-primary, #e7edf4);
   --primary-foreground: var(--dark-primary-foreground, #0a0a0a);
   --secondary: var(--dark-secondary, #1a1f24);
   --secondary-foreground: var(--dark-secondary-foreground, #ffffff);
   --muted: var(--dark-muted, #1a1f24);
   --muted-foreground: var(--dark-muted-foreground, #a8b0b8);
-  --accent: var(--dark-accent, #b7d9f2);
+  --accent: var(--dark-accent, #e7edf4);
   --accent-foreground: var(--dark-accent-foreground, #0a0a0a);
   --border: var(--dark-border, rgba(255, 255, 255, 0.14));
   --input: var(--dark-input, rgba(255, 255, 255, 0.14));
-  --ring: var(--dark-ring, #8ec8ea);
+  --ring: var(--dark-ring, #e7edf4);
   --destructive: #f87171;
   --success: #7dba96;
 

@@ -64,60 +64,58 @@ const FIRST = [
 const LAST = "ABCDEFGHJKLMNPRSTW".split("");
 
 const PRODUCTS = [
-  "refrigerator",
-  "wine fridge",
-  "range hood",
-  "washer",
-  "portable air conditioner",
-  "space heater",
-  "humidifier",
-  "hair dryer",
-  "straightener",
-  "garage door opener",
+  "coffee maker",
+  "blender",
+  "toaster oven",
+  "cookware set",
+  "knife set",
+  "food processor",
+  "kettle",
+  "dinnerware set",
 ];
 
 const TITLES_5 = [
-  "Droviia packed it carefully",
-  "Would order from Droviia again",
-  "Exactly the Droviia listing",
-  "Smooth Droviia checkout",
+  "Lunaavo packed it carefully",
+  "Would order from Lunaavo again",
+  "Exactly the Lunaavo listing",
+  "Smooth Lunaavo checkout",
   "Arrived ready to use",
-  "Clear tracking from Droviia",
+  "Clear tracking from Lunaavo",
   "Well made and well packed",
   "Easy order from our state",
-  "Photos matched the Droviia page",
-  "Glad we chose Droviia",
+  "Photos matched the Lunaavo page",
+  "Glad we chose Lunaavo",
 ];
 
 const TITLES_4 = [
-  "Good Droviia order",
-  "Happy with Droviia overall",
-  "Solid buy from Droviia",
-  "Worth ordering from Droviia",
+  "Good Lunaavo order",
+  "Happy with Lunaavo overall",
+  "Solid buy from Lunaavo",
+  "Worth ordering from Lunaavo",
   "Quality was there",
-  "Would recommend Droviia",
+  "Would recommend Lunaavo",
 ];
 
 function fiveStarNote(product: string, city: string, state: string, index: number) {
   const notes = [
-    `Bought a ${product} from Droviia for our home in ${city}, ${state}. It was packed carefully and matched the listing.`,
-    `Droviia shipped my ${product} to ${city} on time. Checkout was clear and the box arrived in good shape.`,
-    `Needed a ${product} here in ${state} and ordered it from Droviia. Tracking was easy to follow and it was ready to use.`,
-    `Our ${product} from Droviia showed up in ${city} exactly as described. I would order from them again.`,
-    `Placed a Droviia order for a ${product} while in ${state}. The price was fair and the shipping updates were useful.`,
-    `The ${product} I ordered from Droviia for ${city} feels well made. Support answered a question the same day.`,
-    `Shopping Droviia from ${state} was straightforward. The ${product} was packed securely and the photos were accurate.`,
-    `Gave a ${product} from Droviia as a gift in ${city}. The packaging looked neat and the order was simple to place.`,
+    `Bought a ${product} from Lunaavo for our home in ${city}, ${state}. It was packed carefully and matched the listing.`,
+    `Lunaavo shipped my ${product} to ${city} on time. Checkout was clear and the box arrived in good shape.`,
+    `Needed a ${product} here in ${state} and ordered it from Lunaavo. Tracking was easy to follow and it was ready to use.`,
+    `Our ${product} from Lunaavo showed up in ${city} exactly as described. I would order from them again.`,
+    `Placed a Lunaavo order for a ${product} while in ${state}. The price was fair and the shipping updates were useful.`,
+    `The ${product} I ordered from Lunaavo for ${city} feels well made. Support answered a question the same day.`,
+    `Shopping Lunaavo from ${state} was straightforward. The ${product} was packed securely and the photos were accurate.`,
+    `Gave a ${product} from Lunaavo as a gift in ${city}. The packaging looked neat and the order was simple to place.`,
   ];
   return notes[index % notes.length];
 }
 
 function fourStarNote(product: string, city: string, state: string, index: number) {
   const notes = [
-    `The ${product} from Droviia is good quality. Delivery to ${city}, ${state} took a day longer than the first estimate.`,
-    `Happy with my Droviia order in ${state}. The ${product} does the job. Shipping to ${city} was a little slower than I hoped.`,
-    `Solid ${product} for the price. Droviia kept me updated on the way to ${city}.`,
-    `I would recommend Droviia to someone in ${state}. The ${product} arrived safely, just not on the first promised day.`,
+    `The ${product} from Lunaavo is good quality. Delivery to ${city}, ${state} took a day longer than the first estimate.`,
+    `Happy with my Lunaavo order in ${state}. The ${product} does the job. Shipping to ${city} was a little slower than I hoped.`,
+    `Solid ${product} for the price. Lunaavo kept me updated on the way to ${city}.`,
+    `I would recommend Lunaavo to someone in ${state}. The ${product} arrived safely, just not on the first promised day.`,
   ];
   return notes[index % notes.length];
 }

@@ -10,7 +10,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Customer reviews",
   description:
-    "110 Droviia reviews from shoppers across all 50 U.S. states, covering orders, packing, and delivery.",
+    "110 Lunaavo reviews from shoppers across all 50 U.S. states, covering kitchen and dining orders, packing, and delivery.",
 };
 
 export default async function ReviewsPage() {

@@ -17,8 +17,8 @@ export function SupportSection({ settings }: { settings: StoreSettings }) {
       className={cn("border-b border-border", sectionYClass)}
     >
       <div className={pageContainer()}>
-        <div className="rounded-lg bg-[#101613] px-6 py-10 text-[#F3F7F2] sm:px-10">
-          <p className="text-sm font-medium tracking-[0.16em] text-[#9DCFB0] uppercase">
+        <div className="dark rounded-lg bg-background px-6 py-10 text-foreground sm:px-10">
+          <p className="text-sm font-medium tracking-[0.16em] text-accent uppercase">
             Customer support
           </p>
           <h2
@@ -27,18 +27,18 @@ export function SupportSection({ settings }: { settings: StoreSettings }) {
           >
             Phone on weekdays. Live chat any time.
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/70">
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
             {settings.contact.address}
           </p>
           <dl className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {facts.map((fact) => (
               <div key={fact.label}>
-                <dt className="text-xs tracking-[0.14em] text-white/50 uppercase">
+                <dt className="text-xs tracking-[0.14em] text-foreground/50 uppercase">
                   {fact.label}
                 </dt>
                 <dd className="mt-2 text-sm">
                   {fact.href && fact.value ? (
-                    <a href={fact.href} className="hover:text-[#9DCFB0]">
+                    <a href={fact.href} className="hover:text-accent">
                       {fact.value}
                     </a>
                   ) : (

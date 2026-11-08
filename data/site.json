@@ -1,8 +1,8 @@
 {
-  "id": "droviia",
-  "name": "DROVIIA",
-  "tagline": "Everyday essentials for better living",
-  "logo": "/brand/droviia-logo-dark.png",
+  "id": "lunaavo",
+  "name": "Lunaavo",
+  "tagline": "Kitchen & Dining Essentials for Everyday Living.",
+  "logo": "/brand/lunaavo-logo-dark.png",
   "currency": "",
   "currencySymbol": "",
   "currencyPrefix": "",
@@ -12,88 +12,162 @@
   "decimalSeparator": ".",
   "locale": "en-US",
   "contact": {
-    "email": "info@droviia.us",
-    "phone": "+1 (424) 329-0223",
-    "address": "1320 W El Segundo Blvd Ste E, Gardena, CA 90247, United States",
-    "openingHours": "Mon-Fri, 9:00 AM-5:00 PM PT",
-    "legalName": "Modern Closet Spaces LLC",
+    "email": "info@lunaavo.us",
+    "phone": "+1 (510) 345-2632",
+    "address": "2221 Shattuck Ave., Berkeley, CA 94704, United States",
+    "openingHours": "Monday–Friday, 9:00 AM–5:00 PM",
+    "legalName": "San Rafael Luggage Center, Inc",
     "vatNumber": ""
   },
   "promoBanner": "",
   "promoId": "",
   "promoCoupon": "",
   "hero": {
-    "headline": "Comfort, convenience, and the essentials for home",
-    "support": "Kitchen appliances, climate control, and personal care, with prices, shipping, and support you can review before you buy."
+    "headline": "Making everyday living better",
+    "support": "A well-equipped kitchen can make everyday life easier, more enjoyable, and more inspiring. Shop kitchen and dining essentials, then review the price and shipping before you buy."
   },
   "navigation": {
     "header": [
-      { "label": "Home", "href": "/" },
-      { "label": "Shop", "href": "/products" },
-      { "label": "About", "href": "/about-us" },
-      { "label": "FAQs", "href": "/faqs" },
-      { "label": "Contact", "href": "/contact-us" }
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Shop",
+        "href": "/products"
+      },
+      {
+        "label": "About",
+        "href": "/about-us"
+      },
+      {
+        "label": "FAQs",
+        "href": "/faqs"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact-us"
+      }
     ],
     "footerColumns": [
       {
         "title": "Quick Links",
         "slug": "footer-discover",
         "links": [
-          { "label": "Home", "href": "/" },
-          { "label": "Shop All", "href": "/products" },
-          { "label": "Reviews", "href": "/reviews" },
-          { "label": "Categories", "href": "/products" },
-          { "label": "About Us", "href": "/about-us" },
-          { "label": "Our Commitment", "href": "/our-commitment" },
-          { "label": "Contact Us", "href": "/contact-us" }
+          {
+            "label": "Home",
+            "href": "/"
+          },
+          {
+            "label": "Shop All",
+            "href": "/products"
+          },
+          {
+            "label": "Kitchen & Dining",
+            "href": "/products"
+          },
+          {
+            "label": "About Us",
+            "href": "/about-us"
+          },
+          {
+            "label": "Our Commitment",
+            "href": "/our-commitment"
+          },
+          {
+            "label": "Contact Us",
+            "href": "/contact-us"
+          }
         ]
       },
       {
         "title": "Customer Care",
         "slug": "footer-customer-care",
         "links": [
-          { "label": "FAQs", "href": "/faqs" },
-          { "label": "Shipping", "href": "/shipping-policy" },
-          { "label": "Returns", "href": "/return-and-refund-policy" },
-          { "label": "Cancellations", "href": "/cancellation-policy" },
-          { "label": "Order Tracking", "href": "/track-your-order" },
-          { "label": "Payments", "href": "/payment-policy" },
-          { "label": "Warranty", "href": "/warranty" },
-          { "label": "Order Help", "href": "/order-help-center" }
+          {
+            "label": "FAQs",
+            "href": "/faqs"
+          },
+          {
+            "label": "Shipping & Delivery",
+            "href": "/shipping-policy"
+          },
+          {
+            "label": "Returns & Refunds",
+            "href": "/return-and-refund-policy"
+          },
+          {
+            "label": "Order Cancellation",
+            "href": "/cancellation-policy"
+          },
+          {
+            "label": "Track Your Order",
+            "href": "/track-your-order"
+          },
+          {
+            "label": "Payment Methods",
+            "href": "/payment-policy"
+          },
+          {
+            "label": "Warranty & Product Support",
+            "href": "/warranty"
+          },
+          {
+            "label": "Order Help Center",
+            "href": "/order-help-center"
+          }
         ]
       },
       {
         "title": "Legal & Policies",
         "slug": "footer-trust",
         "links": [
-          { "label": "Privacy", "href": "/privacy-policy" },
-          { "label": "Terms", "href": "/terms-of-service" },
-          { "label": "Cookies", "href": "/cookie-policy" },
-          { "label": "Legal Notice", "href": "/legal-notice" },
-          { "label": "Accessibility", "href": "/accessibility-statement" },
-          { "label": "Privacy Choices", "href": "/your-privacy-choices" }
+          {
+            "label": "Privacy Policy",
+            "href": "/privacy-policy"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "/terms-of-service"
+          },
+          {
+            "label": "Cookie Policy",
+            "href": "/cookie-policy"
+          },
+          {
+            "label": "Legal Notice",
+            "href": "/legal-notice"
+          },
+          {
+            "label": "Accessibility Statement",
+            "href": "/accessibility-statement"
+          },
+          {
+            "label": "Your Privacy Choices",
+            "href": "/your-privacy-choices"
+          }
         ]
       }
     ]
   },
   "footer": {
-    "blurb": "Everyday essentials for a more comfortable home.",
-    "trustLine": "",
-    "contactTitle": "Customer Support",
-    "chatLine": "24/7 Live Chat"
+    "blurb": "Kitchen & Dining Essentials for Everyday Living.",
+    "trustLine": "Review shipping, returns, and the total before you pay.",
+    "contactTitle": "Contact Information",
+    "chatLine": "Live Chat: 24/7"
   },
   "seo": {
-    "title": "DROVIIA | Home appliances and everyday essentials",
-    "description": "Shop home appliances, heating and cooling, and personal care at DROVIIA. Operated by Modern Closet Spaces LLC in Gardena, California.",
+    "title": "Lunaavo | Kitchen and dining essentials",
+    "description": "Shop kitchen appliances and dining essentials at Lunaavo. Operated by San Rafael Luggage Center, Inc in Berkeley, California.",
     "keywords": [
-      "DROVIIA",
-      "home appliances",
+      "Lunaavo",
       "kitchen appliances",
-      "air conditioners",
-      "personal care"
+      "dining essentials",
+      "cooking equipment",
+      "coffee makers"
     ],
-    "ogImage": "/brand/droviia-logo-dark.png",
-    "siteUrl": "https://www.droviia.us"
+    "ogImage": "/brand/lunaavo-logo-dark.png",
+    "siteUrl": "https://lunaavo.us"
   },
   "theme": {
     "font": "var(--font-figtree)",
@@ -102,24 +176,24 @@
     "defaultMode": "system",
     "motion": "subtle",
     "light": {
-      "primary": "#9DCFB0",
-      "accent": "#3E6B52",
+      "primary": "#111D2D",
+      "accent": "#1E3F66",
       "background": "#FFFFFF",
-      "foreground": "#1C2420",
-      "card": "#F4F7F2",
-      "muted": "#E7F0EA",
-      "mutedForeground": "#5C6B62",
-      "border": "rgba(28, 36, 32, 0.12)"
+      "foreground": "#111D2D",
+      "card": "#F4F7FA",
+      "muted": "#E8EDF3",
+      "mutedForeground": "#5C6B7C",
+      "border": "rgba(17, 29, 45, 0.12)"
     },
     "dark": {
-      "primary": "#9DCFB0",
-      "accent": "#B7DCC4",
-      "background": "#101613",
-      "foreground": "#F3F7F2",
-      "card": "#1A2420",
-      "muted": "#24302A",
-      "mutedForeground": "#A8B7AE",
-      "border": "rgba(243, 247, 242, 0.12)"
+      "primary": "#E7EDF4",
+      "accent": "#E7EDF4",
+      "background": "#111D2D",
+      "foreground": "#F7F8FA",
+      "card": "#1A2838",
+      "muted": "#243044",
+      "mutedForeground": "#B7C3D1",
+      "border": "rgba(247, 248, 250, 0.14)"
     }
   },
   "productPage": {
@@ -141,7 +215,7 @@
         "reviewer": "Amina K.",
         "rating": 5,
         "title": "Better than the photos",
-        "content": "Packaging was careful and the item looked even better in person. Checkout was quick and tracking updates were clear.",
+        "content": "Packaging was careful and the appliance looked even better in the kitchen. Checkout was quick and tracking updates were clear.",
         "date": "2026-09-18",
         "verified": true,
         "location": "California, USA"
@@ -150,7 +224,7 @@
         "reviewer": "James R.",
         "rating": 5,
         "title": "Would order again",
-        "content": "Arrived on time and matched the description. The whole process from cart to delivery felt straightforward.",
+        "content": "Arrived on time and matched the listing. The path from cart to delivery was straightforward.",
         "date": "2026-09-02",
         "verified": true,
         "location": "Texas, USA"
@@ -159,7 +233,7 @@
         "reviewer": "Sofia M.",
         "rating": 4,
         "title": "Great value",
-        "content": "Solid quality for the price. Support answered my question the same day, which made the purchase easy.",
+        "content": "Solid quality for the price. Support answered my question about the appliance the same day.",
         "date": "2026-08-21",
         "verified": true,
         "location": "New York, USA"
@@ -168,7 +242,7 @@
         "reviewer": "Daniel P.",
         "rating": 5,
         "title": "Well made and well packed",
-        "content": "Easy to buy, clear tracking, and the product feels well made. I would shop here again without hesitation.",
+        "content": "Easy to buy, clear tracking, and the piece feels well made. I would shop here again.",
         "date": "2026-08-09",
         "verified": true,
         "location": "Florida, USA"
@@ -177,7 +251,7 @@
         "reviewer": "Priya S.",
         "rating": 5,
         "title": "Exactly as described",
-        "content": "Exactly what I needed. The photos were accurate and shipping was smooth from start to finish.",
+        "content": "Exactly the kitchen tool I needed. The photos were accurate and shipping was smooth.",
         "date": "2026-07-28",
         "verified": true,
         "location": "Illinois, USA"
@@ -186,7 +260,7 @@
         "reviewer": "Noah L.",
         "rating": 4,
         "title": "Happy overall",
-        "content": "Happy with the purchase. Quality is good. Delivery took a little longer than I hoped, but the item was worth the wait.",
+        "content": "Happy with the purchase. Quality is good. Delivery took a little longer than I hoped, and the item was worth the wait.",
         "date": "2026-07-14",
         "verified": true,
         "location": "Washington, USA"
@@ -195,7 +269,7 @@
         "reviewer": "Elena V.",
         "rating": 5,
         "title": "Perfect as a gift",
-        "content": "Gifted this and they loved it. Simple process from cart to door, and the packaging looked ready to give.",
+        "content": "Gave this as a housewarming gift and they loved it. The packaging looked ready to hand over.",
         "date": "2026-06-30",
         "verified": true,
         "location": "Colorado, USA"
@@ -204,7 +278,7 @@
         "reviewer": "Omar H.",
         "rating": 5,
         "title": "Clean store, fair prices",
-        "content": "Clean store, fair prices, and the item was packed securely. No surprises, which is what I want from an online order.",
+        "content": "Fair prices and the item was packed securely. No surprises at checkout.",
         "date": "2026-06-11",
         "verified": true,
         "location": "Georgia, USA"
@@ -213,7 +287,7 @@
         "reviewer": "Maya T.",
         "rating": 5,
         "title": "Fast and careful shipping",
-        "content": "Ordered in the evening and had tracking the next morning. Everything arrived undamaged and ready to use.",
+        "content": "Ordered in the evening and had tracking the next morning. Everything arrived undamaged.",
         "date": "2026-05-22",
         "verified": true,
         "location": "Arizona, USA"
@@ -231,7 +305,7 @@
         "reviewer": "Lina W.",
         "rating": 3,
         "title": "Fine, not perfect",
-        "content": "The item is fine and does the job. Sizing notes on the page could be a bit clearer, but support helped quickly.",
+        "content": "The item does the job. A measurement note on the page could be clearer, and support helped quickly.",
         "date": "2026-04-16",
         "verified": true,
         "location": "Massachusetts, USA"

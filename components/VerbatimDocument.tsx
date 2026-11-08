@@ -213,25 +213,25 @@ export function VerbatimDocument({ lines }: { lines: string[] }) {
 
   return (
     <article>
-      <header className="relative overflow-hidden bg-[#101613] text-white">
+      <header className="dark relative overflow-hidden bg-background text-foreground">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(157,207,176,0.35),transparent_52%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(231,237,244,0.16),transparent_52%)]"
         />
         <div className={pageContainer("relative py-14 sm:py-20")}>
-          <p className="text-xs font-semibold tracking-[0.2em] text-[#9DCFB0] uppercase">
+          <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
             {eyebrowFor(title)}
           </p>
-          <h1 className="font-display mt-4 max-w-4xl text-balance text-4xl leading-[1.05] text-white sm:text-6xl">
+          <h1 className="font-display mt-4 max-w-4xl text-balance text-4xl leading-[1.05] text-foreground sm:text-6xl">
             {title}
           </h1>
           {dek ? (
-            <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-white/80">
+            <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-foreground/80">
               {dek}
             </p>
           ) : null}
           {meta ? (
-            <p className="mt-6 inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-sm text-white">
+            <p className="mt-6 inline-flex rounded-full border border-foreground/20 bg-foreground/10 px-3 py-1.5 text-sm text-foreground">
               {meta}
             </p>
           ) : null}

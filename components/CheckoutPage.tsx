@@ -1202,13 +1202,13 @@ function PromiseCard() {
   const items = [
     {
       icon: ShieldCheck,
-      title: "Returns with conditions",
-      body: "Eligible items can be requested within 30 days. Return shipping and a $5 restocking fee may apply.",
+      title: "Returns with a policy",
+      body: "Eligibility, timing, and any fees are in the returns policy. Contact us before sending an item back.",
     },
     {
       icon: Truck,
-      title: "Shipping from $5",
-      body: "Free standard shipping at $100 or more. Under $100, standard shipping is $5. Freight for large appliances is shown at checkout.",
+      title: "Shipping at checkout",
+      body: "Shipping charges and delivery estimates are shown before you pay.",
     },
     {
       icon: Award,
@@ -1223,7 +1223,7 @@ function PromiseCard() {
   ];
   return (
     <div className="mt-6 border-t border-border pt-5">
-      <h3 className="text-base font-semibold">The DROVIIA promise</h3>
+      <h3 className="text-base font-semibold">The Lunaavo promise</h3>
       <p className="mt-1 text-xs text-muted-foreground">
         Every order, every time.
       </p>

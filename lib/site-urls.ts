@@ -1,4 +1,4 @@
-/** Public storefront paths, matching https://droviia.us/ */
+/** Public storefront paths, matching https://lunaavo.us/ */
 
 export const CONTENT_PAGES = [
   { slug: "about-us", title: "About Us" },
@@ -9,10 +9,10 @@ export const CONTENT_PAGES = [
   { slug: "track-your-order", title: "Track Your Order" },
   { slug: "shipping-policy", title: "Shipping & Delivery" },
   { slug: "return-and-refund-policy", title: "Returns & Refunds" },
-  { slug: "cancellation-policy", title: "Order Cancellations" },
-  { slug: "payment-policy", title: "Payment Options" },
+  { slug: "cancellation-policy", title: "Order Cancellation" },
+  { slug: "payment-policy", title: "Payment Methods" },
   { slug: "buy-now-pay-later", title: "Buy Now, Pay Later" },
-  { slug: "warranty", title: "Warranty & Support" },
+  { slug: "warranty", title: "Warranty & Product Support" },
   { slug: "privacy-policy", title: "Privacy Policy" },
   { slug: "terms-of-service", title: "Terms of Service" },
   { slug: "cookie-policy", title: "Cookie Policy" },
@@ -42,6 +42,8 @@ const PATH_ALIASES: Record<string, string> = {
 };
 
 const STORE_HOSTS = new Set([
+  "lunaavo.us",
+  "www.lunaavo.us",
   "droviia.us",
   "www.droviia.us",
   "orvexo.us",

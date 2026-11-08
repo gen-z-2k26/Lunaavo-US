@@ -39,6 +39,9 @@ const nextConfig: NextConfig = {
       { source: "/faq", destination: "/faqs", permanent: true },
       { source: "/commitment", destination: "/our-commitment", permanent: true },
       { source: "/track-order", destination: "/track-your-order", permanent: true },
+      { source: "/shop", destination: "/products", permanent: false },
+      { source: "/shop/", destination: "/products", permanent: false },
+      { source: "/product-category/:path*", destination: "/products", permanent: false },
     ];
   },
   images: {

@@ -186,7 +186,7 @@ export function CartDrawer() {
             ) : null}
             <p className="w-full text-xs text-muted-foreground">
               {settings.footer?.trustLine ||
-                "Free shipping · 30-day returns · Secure checkout"}
+                "Review shipping and returns before you pay."}
             </p>
             {items.length ? (
               <Link

@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const pillars = [
   {
     title: "Clear product information",
-    text: "Listings aim to show the features and specifications you need before you compare.",
+    text: "Listings aim to show the features and specifications you need before you compare kitchen equipment.",
   },
   {
     title: "Transparent pricing",
@@ -16,11 +16,11 @@ const pillars = [
   },
   {
     title: "Shipping you can review",
-    text: "Standard shipping is $5 under $100 and free at $100 or more. Freight for large appliances is shown at checkout.",
+    text: "Shipping charges and delivery timing are explained in our shipping policy and shown at checkout.",
   },
   {
-    title: "Straightforward returns",
-    text: "Eligible items have a 30-day window. Conditions apply, return shipping is paid by the customer, and a $5 restocking fee applies to standard non-defective returns.",
+    title: "Returns you can look up",
+    text: "Eligibility, timing, and any fees are described in the returns policy. Contact us before sending an item back.",
   },
 ];
 
@@ -34,7 +34,7 @@ export function CommitmentSection() {
         <SectionHeader
           eyebrow="Our commitment"
           title="Clear information, then support when you need it"
-          subtitle="The same standards apply whether the order is a styling tool or a major appliance."
+          subtitle="The same standards apply whether the order is a coffee maker or a larger kitchen appliance."
           titleId="commitment-heading"
           action={
             <Link

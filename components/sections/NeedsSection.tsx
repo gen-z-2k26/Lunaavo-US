@@ -7,35 +7,35 @@ import { cn } from "@/lib/utils";
 
 const needs = [
   {
-    title: "Kitchen and laundry",
-    text: "Refrigerators, wine fridges, range hoods, and laundry appliances for everyday household needs.",
+    title: "Kitchen appliances",
+    text: "Equipment for different cooking spaces and household requirements, with specifications you can review before you buy.",
     image: "/brand/collection-kitchen.jpg",
-    alt: "Kitchen with a refrigerator, range hood, and stacked laundry",
+    alt: "Kitchen set up for everyday cooking",
     imageClass: "object-[62%_center]",
     tile: "feature" as const,
   },
   {
-    title: "Heating and air",
-    text: "Air conditioners, furnaces, boilers, humidifiers, and space heaters.",
-    image: "/brand/collection-climate.jpg",
-    alt: "Living room with a wall-mounted air conditioner",
-    imageClass: "object-[center_22%]",
+    title: "Cooking and food preparation",
+    text: "Appliances that help with everyday meals and more specialized recipes.",
+    image: "/brand/home-hero.jpg",
+    alt: "Counter prepared for cooking and food preparation",
+    imageClass: "object-[center_40%]",
     tile: "wide" as const,
   },
   {
-    title: "Hair and personal care",
-    text: "Dryers, straighteners, curling irons, and styling sets.",
-    image: "/brand/collection-care.jpg",
-    alt: "Hair dryer and straightener on a bathroom vanity",
-    imageClass: "object-[center_58%]",
+    title: "Coffee and beverage",
+    text: "Equipment for coffee, espresso, tea, and other drinks, in different sizes and features.",
+    image: "/brand/collection-kitchen.jpg",
+    alt: "Kitchen counter for coffee and beverages",
+    imageClass: "object-[20%_center]",
     tile: "compact" as const,
   },
   {
-    title: "Home and commercial",
-    text: "Garage door openers and hand dryers for practical spaces.",
-    image: "/brand/collection-home.jpg",
-    alt: "Garage with a sectional door and opener rail",
-    imageClass: "object-[24%_42%]",
+    title: "Specialized equipment",
+    text: "Tools for particular recipes and techniques, gathered in one kitchen and dining shop.",
+    image: "/brand/home-hero.jpg",
+    alt: "Specialized kitchen equipment in a home kitchen",
+    imageClass: "object-[78%_center]",
     tile: "compact" as const,
   },
 ];
@@ -68,7 +68,7 @@ export function NeedsSection() {
       <div className={pageContainer(sectionStackClass)}>
         <SectionHeader
           eyebrow="Collections"
-          title="Shop by what your home needs"
+          title="Shop the kitchen and dining collection"
           subtitle="Four places to start. The products themselves come from the live catalog."
           titleId="needs-heading"
         />
@@ -78,7 +78,7 @@ export function NeedsSection() {
               key={item.title}
               href="/products"
               className={cn(
-                "group relative isolate flex overflow-hidden rounded-2xl bg-[#101613] text-white",
+                "dark group relative isolate flex overflow-hidden rounded-2xl bg-background text-foreground",
                 tileClass[item.tile],
               )}
             >
@@ -98,7 +98,7 @@ export function NeedsSection() {
               />
               <div
                 aria-hidden
-                className="absolute inset-0 bg-gradient-to-t from-[#101613]/92 via-[#101613]/45 to-[#101613]/10"
+                className="absolute inset-0 bg-gradient-to-t from-background/92 via-background/45 to-background/10"
               />
               <div
                 className={cn(
@@ -110,7 +110,7 @@ export function NeedsSection() {
                   {item.title}
                 </h3>
                 <p className={copyClass[item.tile]}>{item.text}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[#9DCFB0]">
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
                   Shop collection
                   <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                 </span>

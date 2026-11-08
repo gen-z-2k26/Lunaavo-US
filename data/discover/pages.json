@@ -2,1438 +2,811 @@
   "pages": [
     {
       "slug": "about-us",
-      "title": "About DROVIIA",
+      "title": "About Us — Lunaavo",
       "effectiveDate": "",
-      "tagline": "Bringing comfort, convenience, and innovation to everyday living",
+      "tagline": "Welcome to Lunaavo — Making Everyday Living Better",
       "intro": [
-        "About DROVIIA"
+        "At Lunaavo, we believe a well-equipped kitchen can make everyday life easier, more enjoyable, and more inspiring.",
+        "Whether you're preparing your morning coffee, cooking a family dinner, upgrading your kitchen appliances, or exploring new ways to prepare your favorite meals, having the right equipment makes a difference.",
+        "That's why Lunaavo is dedicated to bringing together a wide selection of kitchen and dining essentials in one convenient online shopping destination."
       ],
-      "description": "Bringing Comfort, Convenience, and Innovation to Everyday Living",
-      "sections": [
-        {
-          "id": "bringing-comfort-convenience-and-innovation-to-everyday-living",
-          "title": "Bringing Comfort, Convenience, and Innovation to Everyday Living",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "At DROVIIA, we believe a better home starts with the right essentials. From modern kitchen appliances and climate control solutions to personal care devices and everyday household equipment, we're here to make finding the products you need simpler, more convenient, and more accessible."
-            },
-            {
-              "type": "paragraph",
-              "text": "Operated by Modern Closet Spaces LLC, DROVIIA is a U.S.-based online retailer offering a diverse selection of home appliances, personal care electronics, and practical solutions designed to support modern lifestyles."
-            },
-            {
-              "type": "paragraph",
-              "text": "Our goal is simple: to provide a straightforward shopping experience built around product selection, transparent information, and dependable customer support."
-            }
-          ]
-        },
-        {
-          "id": "everything-you-need-for-a-more-comfortable-home",
-          "title": "Everything You Need for a More Comfortable Home",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Every home is different, and so are the products that make it work."
-            },
-            {
-              "type": "paragraph",
-              "text": "Whether you're upgrading your kitchen, improving indoor comfort, refreshing your personal care routine, or looking for practical home equipment, DROVIIA brings a variety of products together in one convenient online destination."
-            },
-            {
-              "type": "paragraph",
-              "text": "Explore our product collections:"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Kitchen & Laundry Appliances: Refrigerators, wine fridges, range hoods, and laundry appliances for everyday household needs.",
-                "Heating, Cooling & Air Quality: Air conditioners, furnaces, boilers, humidifiers, and space heaters to help create a more comfortable indoor environment.",
-                "Hair & Personal Care: Hair dryers, straighteners, curling irons, and styling tool sets for your daily grooming routine.",
-                "Home & Commercial Essentials: Garage door openers and hand dryers designed for practical residential and commercial applications."
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "We aim to make browsing and comparing products easier by presenting useful product details, specifications, and purchasing information."
-            }
-          ]
-        },
-        {
-          "id": "our-approach-to-online-shopping",
-          "title": "Our Approach to Online Shopping",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Shopping for home appliances and electronics should feel straightforward, not overwhelming."
-            },
-            {
-              "type": "paragraph",
-              "text": "At DROVIIA, we focus on the details that matter most to customers."
-            }
-          ]
-        },
-        {
-          "id": "a-wide-range-of-practical-products",
-          "title": "A Wide Range of Practical Products",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "We bring together products across multiple categories, helping customers explore different options for their homes, workplaces, and personal routines."
-            }
-          ]
-        },
-        {
-          "id": "clear-product-information",
-          "title": "Clear Product Information",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "We believe informed decisions lead to better shopping experiences. Our product listings aim to provide relevant descriptions, features, and specifications so you can compare options before purchasing."
-            }
-          ]
-        },
-        {
-          "id": "transparent-pricing-and-checkout",
-          "title": "Transparent Pricing and Checkout",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "We want customers to understand their purchases before placing an order. Product prices, applicable shipping charges, and order totals are presented during the shopping and checkout process."
-            }
-          ]
-        },
-        {
-          "id": "customer-support-when-you-need-it",
-          "title": "Customer Support When You Need It",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Questions can arise before or after a purchase. Our customer care channels are available to help with product inquiries, order information, delivery questions, and return requests."
-            }
-          ]
-        },
-        {
-          "id": "shopping-with-confidence",
-          "title": "Shopping with Confidence",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "We understand that purchasing appliances and electronics online requires careful consideration."
-            },
-            {
-              "type": "paragraph",
-              "text": "That's why we emphasize clear communication, accessible support, and straightforward shopping policies."
-            },
-            {
-              "type": "paragraph",
-              "text": "Our customer experience is built around:"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Convenient online shopping: Browse products and place orders from wherever you are.",
-                "Order transparency: Review your order information and available shipment tracking details.",
-                "Clear policies: Access information about shipping, returns, refunds, and order-related procedures.",
-                "Accessible assistance: Contact our customer care team when you need help.",
-                "Secure checkout: Complete purchases through the payment options available at checkout."
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "We believe customer confidence comes from providing accurate information and following through on our commitments."
-            }
-          ]
-        },
-        {
-          "id": "our-commitment-to-you",
-          "title": "Our Commitment to You",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "At DROVIIA, our commitment extends beyond offering products."
-            },
-            {
-              "type": "paragraph",
-              "text": "We aim to create a shopping environment where customers can explore products comfortably, understand their purchasing options, and receive assistance when questions arise."
-            },
-            {
-              "type": "paragraph",
-              "text": "As we continue developing our online store, our priorities remain focused on improving product discovery, maintaining clear communication, and making the overall shopping experience more convenient."
-            },
-            {
-              "type": "paragraph",
-              "text": "Your home. Your comfort. Your everyday essentials."
-            }
-          ]
-        },
-        {
-          "id": "get-to-know-droviia",
-          "title": "Get to Know DROVIIA",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "DROVIIA is operated by Modern Closet Spaces LLC, a business based in Gardena, California."
-            },
-            {
-              "type": "paragraph",
-              "text": "We welcome questions about our products, orders, and customer service policies."
-            },
-            {
-              "type": "paragraph",
-              "text": "Business Information"
-            },
-            {
-              "type": "paragraph",
-              "text": "Store Name: DROVIIA"
-            },
-            {
-              "type": "paragraph",
-              "text": "Legal Business Name: Modern Closet Spaces LLC"
-            },
-            {
-              "type": "paragraph",
-              "text": "Business Address: 1320 W El Segundo Blvd Ste E, Gardena, CA 90247, United States"
-            },
-            {
-              "type": "paragraph",
-              "text": "Website: https://droviia.us"
-            },
-            {
-              "type": "paragraph",
-              "text": "Customer Care"
-            },
-            {
-              "type": "paragraph",
-              "text": "Email: info@droviia.us"
-            },
-            {
-              "type": "paragraph",
-              "text": "Phone: +1 (424) 329-0223"
-            },
-            {
-              "type": "paragraph",
-              "text": "Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time (PT)"
-            },
-            {
-              "type": "paragraph",
-              "text": "Live Chat Support: Available 24/7"
-            },
-            {
-              "type": "paragraph",
-              "text": "Whether you're searching for a new appliance, exploring home comfort solutions, or need assistance with an existing order, our team is here to help."
-            },
-            {
-              "type": "paragraph",
-              "text": "DROVIIA — Everyday Essentials for Better Living."
-            }
-          ]
-        }
-      ],
+      "description": "At Lunaavo, we believe a well-equipped kitchen can make everyday life easier, more enjoyable, and more inspiring.",
+      "sections": [],
       "lines": [
-        "About DROVIIA",
-        "Bringing Comfort, Convenience, and Innovation to Everyday Living",
-        "At DROVIIA, we believe a better home starts with the right essentials. From modern kitchen appliances and climate control solutions to personal care devices and everyday household equipment, we're here to make finding the products you need simpler, more convenient, and more accessible.",
-        "Operated by Modern Closet Spaces LLC, DROVIIA is a U.S.-based online retailer offering a diverse selection of home appliances, personal care electronics, and practical solutions designed to support modern lifestyles.",
-        "Our goal is simple: to provide a straightforward shopping experience built around product selection, transparent information, and dependable customer support.",
-        "Everything You Need for a More Comfortable Home",
-        "Every home is different, and so are the products that make it work.",
-        "Whether you're upgrading your kitchen, improving indoor comfort, refreshing your personal care routine, or looking for practical home equipment, DROVIIA brings a variety of products together in one convenient online destination.",
-        "Explore our product collections:",
-        "* Kitchen & Laundry Appliances: Refrigerators, wine fridges, range hoods, and laundry appliances for everyday household needs.",
-        "* Heating, Cooling & Air Quality: Air conditioners, furnaces, boilers, humidifiers, and space heaters to help create a more comfortable indoor environment.",
-        "* Hair & Personal Care: Hair dryers, straighteners, curling irons, and styling tool sets for your daily grooming routine.",
-        "* Home & Commercial Essentials: Garage door openers and hand dryers designed for practical residential and commercial applications.",
-        "We aim to make browsing and comparing products easier by presenting useful product details, specifications, and purchasing information.",
-        "Our Approach to Online Shopping",
-        "Shopping for home appliances and electronics should feel straightforward, not overwhelming.",
-        "At DROVIIA, we focus on the details that matter most to customers.",
-        "A Wide Range of Practical Products",
-        "We bring together products across multiple categories, helping customers explore different options for their homes, workplaces, and personal routines.",
+        "About Us — Lunaavo",
+        "Welcome to Lunaavo — Making Everyday Living Better",
+        "At Lunaavo, we believe a well-equipped kitchen can make everyday life easier, more enjoyable, and more inspiring.",
+        "Whether you're preparing your morning coffee, cooking a family dinner, upgrading your kitchen appliances, or exploring new ways to prepare your favorite meals, having the right equipment makes a difference.",
+        "That's why Lunaavo is dedicated to bringing together a wide selection of kitchen and dining essentials in one convenient online shopping destination.",
+        "From everyday cooking appliances to specialized kitchen equipment, our goal is simple: help you find practical products that fit your home, your lifestyle, and your needs.",
+        "Visit us at https://lunaavo.us.",
+        "Who We Are",
+        "Lunaavo is a U.S.-based online retail store operated by San Rafael Luggage Center, Inc, with its business address in Berkeley, California.",
+        "We focus on kitchen and dining products designed for a variety of household needs, cooking preferences, and lifestyles.",
+        "We understand that choosing kitchen equipment is about more than selecting a product. It's about finding something that fits your space, suits your cooking habits, and provides the functionality you're looking for.",
+        "Our online store is organized to make exploring different products and comparing options more convenient.",
+        "Whether you're shopping for an essential appliance or a specialized cooking tool, Lunaavo aims to make the experience straightforward and informative.",
+        "What You'll Find at Lunaavo",
+        "Our Kitchen & Dining collection brings together products for everyday food preparation, cooking, beverage making, and kitchen organization.",
+        "Coffee & Beverage Essentials",
+        "Start your day with equipment suited to your favorite drinks.",
+        "Explore options for preparing coffee, espresso, tea, and other beverages, with different features and capacities to suit individual preferences.",
+        "Cooking & Food Preparation",
+        "From preparing ingredients to cooking complete meals, the right kitchen equipment can simplify everyday tasks.",
+        "Our product selection includes cooking and food preparation appliances for a range of needs, from routine meals to more specialized recipes.",
+        "Kitchen Appliances",
+        "Explore kitchen equipment designed for different cooking spaces and household requirements.",
+        "We aim to make product specifications and available options easy to review, helping you choose equipment that suits your kitchen.",
+        "Specialized Kitchen Equipment",
+        "For customers who enjoy experimenting with recipes or preparing particular foods, Lunaavo also offers a selection of specialized kitchen products.",
+        "Whether you're exploring new cooking techniques or upgrading existing equipment, our store provides a convenient place to compare available choices.",
+        "Our Mission",
+        "To make shopping for kitchen and dining essentials simpler, more accessible, and more convenient.",
+        "We want customers to feel informed and confident as they explore products and make purchasing decisions.",
+        "Our mission is guided by four priorities:",
+        "Product Variety",
+        "Bring together a useful selection of kitchen and dining products to serve different preferences, budgets, and household needs.",
         "Clear Product Information",
-        "We believe informed decisions lead to better shopping experiences. Our product listings aim to provide relevant descriptions, features, and specifications so you can compare options before purchasing.",
-        "Transparent Pricing and Checkout",
-        "We want customers to understand their purchases before placing an order. Product prices, applicable shipping charges, and order totals are presented during the shopping and checkout process.",
-        "Customer Support When You Need It",
-        "Questions can arise before or after a purchase. Our customer care channels are available to help with product inquiries, order information, delivery questions, and return requests.",
-        "Shopping with Confidence",
-        "We understand that purchasing appliances and electronics online requires careful consideration.",
-        "That's why we emphasize clear communication, accessible support, and straightforward shopping policies.",
-        "Our customer experience is built around:",
-        "* Convenient online shopping: Browse products and place orders from wherever you are.",
-        "* Order transparency: Review your order information and available shipment tracking details.",
-        "* Clear policies: Access information about shipping, returns, refunds, and order-related procedures.",
-        "* Accessible assistance: Contact our customer care team when you need help.",
-        "* Secure checkout: Complete purchases through the payment options available at checkout.",
-        "We believe customer confidence comes from providing accurate information and following through on our commitments.",
-        "Our Commitment to You",
-        "At DROVIIA, our commitment extends beyond offering products.",
-        "We aim to create a shopping environment where customers can explore products comfortably, understand their purchasing options, and receive assistance when questions arise.",
-        "As we continue developing our online store, our priorities remain focused on improving product discovery, maintaining clear communication, and making the overall shopping experience more convenient.",
-        "Your home. Your comfort. Your everyday essentials.",
-        "Get to Know DROVIIA",
-        "DROVIIA is operated by Modern Closet Spaces LLC, a business based in Gardena, California.",
-        "We welcome questions about our products, orders, and customer service policies.",
-        "Business Information",
-        "Store Name: DROVIIA",
-        "Legal Business Name: Modern Closet Spaces LLC",
-        "Business Address: 1320 W El Segundo Blvd Ste E, Gardena, CA 90247, United States",
-        "Website: https://droviia.us",
-        "Customer Care",
-        "Email: info@droviia.us",
-        "Phone: +1 (424) 329-0223",
-        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time (PT)",
+        "Present product details, specifications, and available features so customers can make informed comparisons.",
+        "Convenient Online Shopping",
+        "Provide an organized shopping experience that makes it easier to browse categories, discover products, and complete purchases.",
+        "Helpful Customer Support",
+        "Make it easy for customers to contact us with questions about products, orders, delivery, returns, and other shopping concerns.",
+        "Why Shop With Lunaavo?",
+        "1. A Store Focused on Kitchen & Dining",
+        "Lunaavo is designed around the products that support everyday cooking and dining.",
+        "Rather than requiring customers to search across unrelated departments, we aim to provide a focused shopping destination for kitchen-related essentials.",
+        "2. Products for Different Needs",
+        "Every kitchen is different.",
+        "Some customers need compact appliances for smaller spaces, while others are searching for larger equipment or specialized features.",
+        "Our goal is to offer options across different product types and specifications.",
+        "3. Information That Helps You Decide",
+        "We understand that kitchen appliances can involve important considerations, including dimensions, capacity, power requirements, compatibility, and installation.",
+        "We encourage customers to review the available product specifications and contact us whenever additional clarification is needed.",
+        "4. Convenient Shopping From Home",
+        "Lunaavo allows customers to explore products, compare available options, and place orders online without visiting multiple physical stores.",
+        "Our website is designed to make browsing and shopping more straightforward.",
+        "5. Customer Support When You Need It",
+        "Questions can arise before or after a purchase.",
+        "Our support channels are available to help customers with product inquiries, order-related questions, and general assistance.",
+        "Email: info@lunaavo.us",
+        "Phone: +1 (510) 345-2632",
+        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM",
         "Live Chat Support: Available 24/7",
-        "Whether you're searching for a new appliance, exploring home comfort solutions, or need assistance with an existing order, our team is here to help.",
-        "DROVIIA — Everyday Essentials for Better Living."
+        "Our Commitment to Customers",
+        "At Lunaavo, we believe a positive shopping experience begins with clear communication and accessible information.",
+        "We aim to provide customers with:",
+        "* Clear product descriptions and specifications.",
+        "* Transparent pricing and checkout information.",
+        "* Accessible shipping and delivery policies.",
+        "* Clearly explained return and refund procedures.",
+        "* Convenient ways to contact customer support.",
+        "* Information about applicable product warranties and support options.",
+        "* Respectful handling of customer questions and concerns.",
+        "We encourage customers to review the relevant product information and store policies before purchasing.",
+        "Our commitment is to make important shopping information easy to find and understand.",
+        "Supporting Your Everyday Kitchen Experience",
+        "The kitchen is more than a place to prepare meals.",
+        "It's where mornings begin, recipes are explored, meals are shared, and everyday routines come together.",
+        "Whether you're making a quick breakfast, preparing coffee before work, experimenting with a new recipe, or upgrading an appliance, the equipment you choose plays a part in that experience.",
+        "Lunaavo is here to help you explore the products that support those moments.",
+        "We believe shopping for kitchen equipment should be practical, informative, and convenient.",
+        "A U.S.-Based Business",
+        "Lunaavo operates under San Rafael Luggage Center, Inc, with its business address in Berkeley, California.",
+        "We believe customers should be able to identify the business operating the store and know how to contact us.",
+        "Our Business Information",
+        "Store Name: Lunaavo",
+        "Legal Business Name: San Rafael Luggage Center, Inc",
+        "Business Address:",
+        "2221 Shattuck Ave.",
+        "Berkeley, CA 94704",
+        "United States",
+        "Official Website: https://lunaavo.us",
+        "Customer Support Email: info@lunaavo.us",
+        "Phone: +1 (510) 345-2632",
+        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM",
+        "Live Chat: Available 24/7",
+        "Our listed business address is provided for business identification and correspondence. Please contact customer support before sending returns or visiting the location, as return instructions and in-person services may differ.",
+        "We're Here to Help",
+        "Whether you're researching your next kitchen appliance, comparing product features, or looking for assistance with an existing order, our customer support team is available through our published contact channels.",
+        "You can reach us through:",
+        "Email: info@lunaavo.us",
+        "Telephone: +1 (510) 345-2632",
+        "Website: https://lunaavo.us",
+        "You can also use our website's live chat for assistance.",
+        "For questions about shipping, returns, payments, or product support, please refer to our customer care pages.",
+        "Discover Lunaavo",
+        "Your kitchen deserves equipment that fits the way you live.",
+        "From everyday essentials to specialized cooking appliances, Lunaavo brings together kitchen and dining products to help you find what you're looking for.",
+        "Explore our collections, compare your options, and discover products for your home.",
+        "Lunaavo — Bringing More to Your Kitchen.",
+        "Explore Our Kitchen & Dining Collection Today."
       ]
     },
     {
       "slug": "contact-us",
       "title": "Contact Us",
       "effectiveDate": "",
-      "tagline": "We're here to help",
-      "intro": [],
-      "description": "At DROVIIA, we're committed to making your shopping experience as convenient and straightforward as possible. Whether you have a question about a product, need assistance with an order, or want to learn more about our sh",
-      "sections": [
-        {
-          "id": "we-re-here-to-help",
-          "title": "We're Here to Help",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "At DROVIIA, we're committed to making your shopping experience as convenient and straightforward as possible. Whether you have a question about a product, need assistance with an order, or want to learn more about our shipping and return policies, our customer care team is here to assist."
-            },
-            {
-              "type": "paragraph",
-              "text": "We value every customer inquiry and aim to provide clear, helpful, and professional support."
-            }
-          ]
-        },
-        {
-          "id": "get-in-touch-with-droviia",
-          "title": "Get in Touch With DROVIIA",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Have a question or need assistance? Choose the contact method that works best for you."
-            },
-            {
-              "type": "paragraph",
-              "text": "Email Support"
-            },
-            {
-              "type": "paragraph",
-              "text": "Email: info@droviia.us"
-            },
-            {
-              "type": "paragraph",
-              "text": "For product inquiries, order assistance, shipping questions, returns, refunds, and general customer service, please contact us by email."
-            },
-            {
-              "type": "paragraph",
-              "text": "If your inquiry concerns an existing order, include your order number and a brief description of your request so our team can assist you more efficiently."
-            },
-            {
-              "type": "paragraph",
-              "text": "Phone Support"
-            },
-            {
-              "type": "paragraph",
-              "text": "Phone: +1 (424) 329-0223"
-            },
-            {
-              "type": "paragraph",
-              "text": "Our customer care team is available during regular business hours to assist with questions about our products and services."
-            },
-            {
-              "type": "paragraph",
-              "text": "Business Hours:"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Monday–Friday: 9:00 AM–5:00 PM Pacific Time (PT)",
-                "Saturday–Sunday: Outside regular phone support hours"
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "Live Chat Support — Available 24/7"
-            },
-            {
-              "type": "paragraph",
-              "text": "Need assistance outside regular business hours?"
-            },
-            {
-              "type": "paragraph",
-              "text": "Our website offers 24/7 live chat support, providing a convenient way to submit questions and request assistance at any time."
-            },
-            {
-              "type": "paragraph",
-              "text": "Look for the chat icon on our website to get started."
-            },
-            {
-              "type": "paragraph",
-              "text": "How Can We Help You?"
-            },
-            {
-              "type": "paragraph",
-              "text": "Our customer care team can assist with a variety of inquiries, including:"
-            }
-          ]
-        },
-        {
-          "id": "product-information-availability",
-          "title": "Product Information & Availability",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Need help understanding product specifications, features, or availability? Contact us before placing your order."
-            }
-          ]
-        },
-        {
-          "id": "order-status-tracking",
-          "title": "Order Status & Tracking",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Have questions about an existing order? Provide your order number, and we'll help you review the available order and shipment information."
-            },
-            {
-              "type": "paragraph",
-              "text": "Shipping & Delivery"
-            },
-            {
-              "type": "paragraph",
-              "text": "For questions about shipping charges, estimated delivery times, carrier information, or delivery concerns, our team can help explain the applicable shipping options."
-            },
-            {
-              "type": "paragraph",
-              "text": "Returns & Refunds"
-            },
-            {
-              "type": "paragraph",
-              "text": "Need to request a return or ask about a refund? Contact our team for information about eligibility, authorization, and the next steps under our Return & Refund Policy."
-            },
-            {
-              "type": "paragraph",
-              "text": "Payments & Checkout"
-            },
-            {
-              "type": "paragraph",
-              "text": "If you're experiencing difficulty completing a purchase or have questions about available payment methods, please reach out for assistance."
-            }
-          ]
-        },
-        {
-          "id": "warranty-product-support",
-          "title": "Warranty & Product Support",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "For questions about product warranties, manufacturer coverage, or product-related concerns, contact us with the relevant product details."
-            }
-          ]
-        },
-        {
-          "id": "send-us-a-message",
-          "title": "Send Us a Message",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "You can also reach us through the contact form on this page."
-            },
-            {
-              "type": "paragraph",
-              "text": "Please provide the following information:"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Full Name",
-                "Email Address",
-                "Phone Number (Optional)",
-                "Order Number (If Applicable)",
-                "Subject",
-                "Your Message"
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "Once your inquiry is submitted, our customer care team will review it and respond as soon as reasonably possible."
-            },
-            {
-              "type": "paragraph",
-              "text": "For order-related inquiries, please include relevant details to help us understand your request."
-            },
-            {
-              "type": "paragraph",
-              "text": "For your security, never include passwords, full payment card numbers, or other sensitive financial information in your message."
-            },
-            {
-              "type": "paragraph",
-              "text": "Our Business Information"
-            },
-            {
-              "type": "paragraph",
-              "text": "Store Name: DROVIIA"
-            },
-            {
-              "type": "paragraph",
-              "text": "Legal Business Name: Modern Closet Spaces LLC"
-            },
-            {
-              "type": "paragraph",
-              "text": "Business Address:"
-            },
-            {
-              "type": "paragraph",
-              "text": "1320 W El Segundo Blvd Ste E"
-            },
-            {
-              "type": "paragraph",
-              "text": "Gardena, CA 90247"
-            },
-            {
-              "type": "paragraph",
-              "text": "United States"
-            },
-            {
-              "type": "paragraph",
-              "text": "Website: https://droviia.us"
-            },
-            {
-              "type": "paragraph",
-              "text": "Customer Support Email: info@droviia.us"
-            },
-            {
-              "type": "paragraph",
-              "text": "Phone: +1 (424) 329-0223"
-            },
-            {
-              "type": "paragraph",
-              "text": "Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time (PT)"
-            },
-            {
-              "type": "paragraph",
-              "text": "Live Chat Support: Available 24/7"
-            },
-            {
-              "type": "paragraph",
-              "text": "Please note: Our business address is provided for business correspondence. Do not send product returns to this address unless our customer care team has specifically authorized it and provided return instructions."
-            },
-            {
-              "type": "paragraph",
-              "text": "Helpful Resources"
-            },
-            {
-              "type": "paragraph",
-              "text": "Looking for quick answers? Visit our customer support pages for additional information."
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Frequently Asked Questions: /faqs/",
-                "Shipping & Delivery: /shipping-policy/",
-                "Returns & Refunds: /return-and-refund-policy/",
-                "Track Your Order: /track-your-order/",
-                "Order Help Center: /order-help-center/",
-                "Warranty & Product Support: /warranty/"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "your-satisfaction-matters",
-          "title": "Your Satisfaction Matters",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "At DROVIIA, we believe good customer service starts with listening, understanding your concerns, and communicating clearly."
-            },
-            {
-              "type": "paragraph",
-              "text": "Whether you're exploring our home appliance collections or need assistance after placing an order, we're here to help you navigate the process."
-            },
-            {
-              "type": "paragraph",
-              "text": "DROVIIA — Everyday Essentials for Better Living."
-            }
-          ]
-        }
+      "tagline": "We're Here to Help",
+      "intro": [
+        "Welcome to Lunaavo Customer Support!",
+        "Whether you have a question about a kitchen appliance, need assistance with an order, or want more information before making a purchase, our team is here to help.",
+        "At Lunaavo, we believe that clear communication and accessible customer support are essential to a positive shopping experience."
       ],
+      "description": "Whether you have a question about a kitchen appliance, need assistance with an order, or want more information before making a purchase, our team is here to help.",
+      "sections": [],
       "lines": [
         "Contact Us",
         "We're Here to Help",
-        "At DROVIIA, we're committed to making your shopping experience as convenient and straightforward as possible. Whether you have a question about a product, need assistance with an order, or want to learn more about our shipping and return policies, our customer care team is here to assist.",
-        "We value every customer inquiry and aim to provide clear, helpful, and professional support.",
-        "Get in Touch With DROVIIA",
-        "Have a question or need assistance? Choose the contact method that works best for you.",
+        "Welcome to Lunaavo Customer Support!",
+        "Whether you have a question about a kitchen appliance, need assistance with an order, or want more information before making a purchase, our team is here to help.",
+        "At Lunaavo, we believe that clear communication and accessible customer support are essential to a positive shopping experience.",
+        "We welcome questions about our products, ordering process, shipping, returns, and other customer service matters.",
+        "Have a question? Get in touch with us today.",
+        "1. Get in Touch With Lunaavo",
+        "We offer several convenient ways to contact our customer support team.",
         "Email Support",
-        "Email: info@droviia.us",
-        "For product inquiries, order assistance, shipping questions, returns, refunds, and general customer service, please contact us by email.",
-        "If your inquiry concerns an existing order, include your order number and a brief description of your request so our team can assist you more efficiently.",
+        "Email: info@lunaavo.us",
+        "For product inquiries, order assistance, returns, refunds, and general questions, you can contact us by email.",
+        "When contacting us about an existing order, please include your order number and a brief description of your inquiry.",
+        "This helps our team understand your request and provide relevant assistance.",
         "Phone Support",
-        "Phone: +1 (424) 329-0223",
-        "Our customer care team is available during regular business hours to assist with questions about our products and services.",
-        "Business Hours:",
-        "* Monday–Friday: 9:00 AM–5:00 PM Pacific Time (PT)",
-        "* Saturday–Sunday: Outside regular phone support hours",
-        "Live Chat Support — Available 24/7",
-        "Need assistance outside regular business hours?",
-        "Our website offers 24/7 live chat support, providing a convenient way to submit questions and request assistance at any time.",
-        "Look for the chat icon on our website to get started.",
-        "How Can We Help You?",
-        "Our customer care team can assist with a variety of inquiries, including:",
-        "Product Information & Availability",
-        "Need help understanding product specifications, features, or availability? Contact us before placing your order.",
-        "Order Status & Tracking",
-        "Have questions about an existing order? Provide your order number, and we'll help you review the available order and shipment information.",
-        "Shipping & Delivery",
-        "For questions about shipping charges, estimated delivery times, carrier information, or delivery concerns, our team can help explain the applicable shipping options.",
-        "Returns & Refunds",
-        "Need to request a return or ask about a refund? Contact our team for information about eligibility, authorization, and the next steps under our Return & Refund Policy.",
-        "Payments & Checkout",
-        "If you're experiencing difficulty completing a purchase or have questions about available payment methods, please reach out for assistance.",
-        "Warranty & Product Support",
-        "For questions about product warranties, manufacturer coverage, or product-related concerns, contact us with the relevant product details.",
-        "Send Us a Message",
-        "You can also reach us through the contact form on this page.",
-        "Please provide the following information:",
-        "* Full Name",
-        "* Email Address",
-        "* Phone Number (Optional)",
-        "* Order Number (If Applicable)",
-        "* Subject",
-        "* Your Message",
-        "Once your inquiry is submitted, our customer care team will review it and respond as soon as reasonably possible.",
-        "For order-related inquiries, please include relevant details to help us understand your request.",
-        "For your security, never include passwords, full payment card numbers, or other sensitive financial information in your message.",
-        "Our Business Information",
-        "Store Name: DROVIIA",
-        "Legal Business Name: Modern Closet Spaces LLC",
-        "Business Address:",
-        "1320 W El Segundo Blvd Ste E",
-        "Gardena, CA 90247",
-        "United States",
-        "Website: https://droviia.us",
-        "Customer Support Email: info@droviia.us",
-        "Phone: +1 (424) 329-0223",
+        "Phone: +1 (510) 345-2632",
         "Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time (PT)",
-        "Live Chat Support: Available 24/7",
-        "Please note: Our business address is provided for business correspondence. Do not send product returns to this address unless our customer care team has specifically authorized it and provided return instructions.",
-        "Helpful Resources",
-        "Looking for quick answers? Visit our customer support pages for additional information.",
-        "* Frequently Asked Questions: /faqs/",
-        "* Shipping & Delivery: /shipping-policy/",
-        "* Returns & Refunds: /return-and-refund-policy/",
-        "* Track Your Order: /track-your-order/",
-        "* Order Help Center: /order-help-center/",
-        "* Warranty & Product Support: /warranty/",
-        "Your Satisfaction Matters",
-        "At DROVIIA, we believe good customer service starts with listening, understanding your concerns, and communicating clearly.",
-        "Whether you're exploring our home appliance collections or need assistance after placing an order, we're here to help you navigate the process.",
-        "DROVIIA — Everyday Essentials for Better Living."
+        "Our telephone support is available during regular business hours, excluding applicable business holidays.",
+        "If you contact us outside these hours, please use email or live chat.",
+        "Live Chat Support",
+        "Live Chat Availability: 24 Hours a Day, 7 Days a Week",
+        "Need assistance while browsing?",
+        "Use the live chat feature on our website to submit questions about products, orders, or general shopping information.",
+        "If an inquiry requires additional review, follow-up may occur during regular business hours.",
+        "2. Our Business Information",
+        "Lunaavo is a U.S.-based online store operated by San Rafael Luggage Center, Inc.",
+        "Store Name: Lunaavo",
+        "Legal Business Name: San Rafael Luggage Center, Inc",
+        "Business Address:",
+        "2221 Shattuck Ave.",
+        "Berkeley, CA 94704",
+        "United States",
+        "Website: https://lunaavo.us",
+        "Customer Support Email: info@lunaavo.us",
+        "Telephone: +1 (510) 345-2632",
+        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time (PT)",
+        "Live Chat Support: 24/7",
+        "Our business address is provided for identification and correspondence. Please contact us before arranging an in-person visit or mailing merchandise, as this address is not necessarily a retail showroom or authorized return location.",
+        "3. How Can We Help You?",
+        "Our customer support team can assist with a variety of shopping-related questions.",
+        "Product Information & Recommendations",
+        "Looking for the right kitchen appliance?",
+        "Contact us if you need help understanding:",
+        "* Product specifications and features.",
+        "* Available models and options.",
+        "* Product dimensions and capacity.",
+        "* Electrical or installation requirements.",
+        "* Product compatibility.",
+        "* Included accessories.",
+        "* Product availability.",
+        "* Manufacturer warranty information, where applicable.",
+        "We encourage customers to review product specifications carefully, particularly when purchasing appliances that require installation.",
+        "Order Assistance",
+        "Already placed an order?",
+        "We can help with questions about:",
+        "* Order confirmations.",
+        "* Order status.",
+        "* Order processing.",
+        "* Shipping updates.",
+        "* Tracking information.",
+        "* Billing or checkout concerns.",
+        "* Order modifications.",
+        "* Cancellation requests.",
+        "Please include your order number when contacting us about an existing purchase.",
+        "Shipping & Delivery",
+        "Have a question about delivery?",
+        "Our support team can help you understand:",
+        "* Available shipping options.",
+        "* Estimated processing times.",
+        "* Delivery estimates.",
+        "* Tracking updates.",
+        "* Shipping restrictions.",
+        "* Oversized appliance delivery considerations.",
+        "* Missing or delayed shipments.",
+        "Shipping methods, charges, and delivery timelines are explained in our published Shipping & Delivery Policy.",
+        "Returns & Refunds",
+        "If you need assistance with a return or refund, please contact our customer support team.",
+        "We can provide information about:",
+        "* Return eligibility.",
+        "* Return authorization procedures.",
+        "* Return instructions.",
+        "* Damaged or incorrect items.",
+        "* Defective products.",
+        "* Refund status.",
+        "* Applicable return conditions.",
+        "Important: Please do not send merchandise to our business address without receiving return authorization and instructions from our team.",
+        "Warranty & Product Support",
+        "Questions about a product warranty or a technical issue?",
+        "We can help you locate available warranty information and understand the next steps for product-related concerns.",
+        "Warranty coverage and procedures may vary by product and manufacturer.",
+        "4. Send Us a Message",
+        "Have a question, suggestion, or concern?",
+        "You can contact us using our website's contact form or by emailing info@lunaavo.us.",
+        "When submitting a message, please provide:",
+        "Full Name: Your first and last name.",
+        "Email Address: An email address where we can contact you.",
+        "Phone Number: Optional, if you would prefer telephone assistance.",
+        "Order Number: If your inquiry relates to an existing order.",
+        "Subject: Select the topic of your inquiry.",
+        "Message: Describe your question or concern.",
+        "Please do not include passwords, complete payment card numbers, or other unnecessary sensitive information.",
+        "Our team will review your inquiry and respond as appropriate.",
+        "5. Customer Support Hours",
+        "Our regular business hours are:",
+        "Monday: 9:00 AM–5:00 PM PT",
+        "Tuesday: 9:00 AM–5:00 PM PT",
+        "Wednesday: 9:00 AM–5:00 PM PT",
+        "Thursday: 9:00 AM–5:00 PM PT",
+        "Friday: 9:00 AM–5:00 PM PT",
+        "Saturday: Closed for regular phone support",
+        "Sunday: Closed for regular phone support",
+        "Live Chat: Available 24/7",
+        "Business hours may vary on public holidays or during special operating periods.",
+        "6. Before Contacting Support",
+        "You may find answers to common questions in our Customer Care pages.",
+        "Frequently Asked Questions",
+        "https://lunaavo.us/faqs/",
+        "Shipping & Delivery",
+        "https://lunaavo.us/shipping-policy/",
+        "Returns & Refunds",
+        "https://lunaavo.us/return-and-refund-policy/",
+        "Order Cancellation",
+        "https://lunaavo.us/cancellation-policy/",
+        "Track Your Order",
+        "https://lunaavo.us/track-your-order/",
+        "Payment Methods",
+        "https://lunaavo.us/payment-policy/",
+        "Warranty & Product Support",
+        "https://lunaavo.us/warranty/",
+        "Order Help Center",
+        "https://lunaavo.us/order-help-center/",
+        "These resources explain our customer service procedures and available shopping information.",
+        "7. Business and General Inquiries",
+        "For business-related questions, website concerns, or other general inquiries, please contact:",
+        "info@lunaavo.us",
+        "Include a clear subject line and relevant details so your inquiry can be reviewed appropriately.",
+        "For privacy-related concerns or requests involving personal information, you may also use this email address.",
+        "8. Visit Our Website",
+        "Explore our Kitchen & Dining collection and discover products for everyday cooking, food preparation, and home use.",
+        "Website: https://lunaavo.us",
+        "Our online store is designed to make it easier to browse available products, compare specifications, and find useful shopping information.",
+        "If you experience a technical problem while browsing or checking out, please contact us with a description of the issue.",
+        "9. Our Customer Service Commitment",
+        "At Lunaavo, we aim to provide customer support that is:",
+        "Helpful: We work to understand your question and provide relevant information.",
+        "Clear: We aim to explain product details, policies, and available options in understandable language.",
+        "Respectful: We treat customer inquiries with professionalism and courtesy.",
+        "Accessible: We provide multiple ways to contact our team.",
+        "Transparent: We aim to communicate important information about orders, products, and customer service procedures.",
+        "We value customer feedback and use it to identify opportunities to improve the shopping experience.",
+        "10. Contact Lunaavo Today",
+        "Whether you're shopping for a new appliance or need assistance with an existing purchase, we're here to help.",
+        "Lunaavo",
+        "Operated by San Rafael Luggage Center, Inc",
+        "Business Address:",
+        "2221 Shattuck Ave.",
+        "Berkeley, CA 94704",
+        "United States",
+        "Email: info@lunaavo.us",
+        "Phone: +1 (510) 345-2632",
+        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time",
+        "Live Chat Support: 24/7",
+        "Website: https://lunaavo.us",
+        "Lunaavo — Bringing More to Your Kitchen.",
+        "We're here to help make your shopping experience simpler, clearer, and more convenient."
       ]
     },
     {
       "slug": "faqs",
       "title": "Frequently Asked Questions (FAQs)",
       "effectiveDate": "",
-      "tagline": "How can we help you?",
+      "tagline": "Welcome to the Lunaavo Help Center",
       "intro": [
-        "Frequently Asked Questions (FAQs)",
-        "How Can We Help You?",
-        "Welcome to the DROVIIA Help Center.",
-        "We've put together answers to frequently asked questions about our products, ordering process, shipping, payments, returns, refunds, and customer support.",
-        "Whether you're shopping for home appliances, heating and cooling equipment, or personal care essentials, we're here to help you make informed purchasing decisions."
+        "Shopping for kitchen appliances and dining essentials should be simple, convenient, and stress-free.",
+        "At Lunaavo, we're here to help you find the information you need, whether you're comparing products, placing an order, tracking a delivery, or requesting assistance after a purchase.",
+        "Below are answers to some of the most common questions from our customers."
       ],
-      "description": "We've put together answers to frequently asked questions about our products, ordering process, shipping, payments, returns, refunds, and customer support.",
-      "sections": [
-        {
-          "id": "overview",
-          "title": "Overview",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Can't find the answer you're looking for? Contact our customer care team at info@droviia.us or use our 24/7 live chat support."
-            }
-          ]
-        },
-        {
-          "id": "general-questions",
-          "title": "1. General Questions",
-          "blocks": [
-            {
-              "type": "faq",
-              "question": "What is DROVIIA?",
-              "answer": "DROVIIA is a U.S.-based online retailer offering home appliances, heating and cooling equipment, personal care electronics, and practical household essentials. Our product collections include refrigerators, laundry appliances, air conditioners, space heaters, humidifiers, hair styling tools, garage door openers, and more. DROVIIA is operated by Modern Closet Spaces LLC, based in Gardena, California. Where is DROVIIA located? Our business information is: DROVIIA — Modern Closet Spaces LLC 1320 W El Segundo Blvd Ste E Gardena, CA 90247, United States You can contact our customer care team at +1 (424) 329-0223 or info@droviia.us. Please note that our listed business address is not automatically an authorized return location. Is DROVIIA an online store? Yes. DROVIIA operates through our website, https://droviia.us, where customers can browse available products, review product details, and place orders online. What types of products does DROVIIA sell? Our product selection includes: Kitchen & Laundry Appliances: Refrigerators, wine fridges, range hoods, and laundry appliances. Heating, Cooling & Air Quality: Air conditioners, furnaces, boilers, humidifiers, and space heaters. Hair & Personal Care: Hair dryers, straighteners, curling irons, and hair styling tool sets. Home & Commercial Essentials: Hand dryers and garage door openers. Product selection and availability may change over time. Are your products new and authentic? Product condition, brand, model, and included accessories should be identified in each listing. We aim to provide accurate product information so you can understand what you're purchasing. If you need confirmation about a particular product's condition, packaging, or specifications, contact us before placing your order. Why are some products offered at discounted prices? Product prices may vary based on inventory, promotional offers, product models, and market conditions. Certain products may be discounted as part of inventory clearance or promotional pricing. A discounted price does not, by itself, indicate that a product is used or defective. Please review the individual listing for the product's condition and specifications. Are you an authorized dealer for every brand you sell? Manufacturer authorization can vary by brand and product. We do not represent ourselves as an authorized dealer for a particular brand unless that relationship has been confirmed. If manufacturer authorization or warranty eligibility is important to your purchase, contact our support team for clarification before ordering."
-            }
-          ]
-        },
-        {
-          "id": "orders-product-availability",
-          "title": "2. Orders & Product Availability",
-          "blocks": [
-            {
-              "type": "faq",
-              "question": "How do I place an order?",
-              "answer": "Ordering from DROVIIA is straightforward: Browse our product categories or use the search feature. Select the product you want and review its specifications. Choose any available product options. Add the item to your shopping cart. Proceed to checkout and enter your delivery information. Review your order total, shipping charges, and payment options. Complete your purchase. Once your order is successfully placed, you should receive an order confirmation at the email address provided during checkout. Can I place an order without creating an account? Guest checkout availability depends on the options enabled on our website. If guest checkout is available, you can complete your purchase without registering an account. How can I check whether a product is in stock? Product availability is generally displayed on the product page. If you have questions about a specific model, size, color, or configuration, contact our customer care team before ordering. What happens if an item becomes unavailable after I place an order? If an ordered product becomes unavailable, our team will contact you to explain the situation and available options. Depending on the circumstances, you may be offered an alternative product, a revised fulfillment timeframe, or cancellation with a refund. We will not substitute a different product without your agreement. Can I modify or cancel my order? Please contact us as soon as possible at info@droviia.us with your order number and requested change. We'll review the order's fulfillment status to determine whether a modification or cancellation is still possible. Once an order has entered shipment preparation or has been dispatched, changes may no longer be possible. For more information, review our Order Cancellation Policy. Can I order multiple products at once? Yes. You can add multiple available products to your cart and complete checkout together. Depending on product size, availability, and fulfillment requirements, items from the same order may arrive in separate shipments."
-            }
-          ]
-        },
-        {
-          "id": "shipping-delivery",
-          "title": "3. Shipping & Delivery",
-          "blocks": [
-            {
-              "type": "faq",
-              "question": "Where does DROVIIA ship?",
-              "answer": "DROVIIA serves customers in the United States. Delivery availability may depend on the product, destination, and shipping method. Certain large appliances or specialized equipment may have location-specific shipping restrictions. How much does shipping cost? Our current standard shipping schedule is: Orders below $100 USD: $5 standard shipping. Orders of $100 USD or more: Free standard shipping. These rates are based on our existing standard shipping policy. Large appliances, freight shipments, and specialized deliveries may require different arrangements, which must be disclosed before purchase. The applicable shipping charge will be displayed during checkout. How long does delivery take? For orders eligible for our standard parcel shipping service, our current estimates are: Order processing: 0–1 business days. Carrier transit: 3–5 business days. Total estimated delivery: 3–6 business days. These estimates are not guaranteed delivery dates. Oversized appliances, freight shipments, and products requiring special handling may have different delivery timelines. Refer to the product listing and checkout information for applicable details. What is your daily order cutoff time? Our standard order cutoff is 3:00 PM Pacific Time (PT) on business days. Orders received before the cutoff may begin processing that day. Orders received afterward, on weekends, or on U.S. federal holidays generally begin processing on the next business day. Which shipping carriers do you use? Our standard parcel shipping carriers include: USPS UPS The carrier used for your order depends on the product and delivery requirements. Larger appliances may require a specialized freight carrier. How can I track my order? When your order ships, we'll send a shipping confirmation email containing the available tracking information. You can follow your shipment using the carrier's tracking service or visit our Track Your Order page. What should I do if my order is delayed? If your order hasn't arrived within the expected delivery window, review your tracking information first. If a standard parcel shipment has not arrived within seven business days after dispatch, contact info@droviia.us with your order number. Our team will help review the available shipment information. What if my package arrives damaged? Please inspect your delivery as soon as reasonably possible. If the package or product appears damaged, contact us promptly at info@droviia.us. Include your order number, a description of the issue, and clear photographs of the product and packaging. For large appliances, retain the packaging and any delivery documentation while our team reviews your claim."
-            }
-          ]
-        },
-        {
-          "id": "payments-pricing",
-          "title": "4. Payments & Pricing",
-          "blocks": [
-            {
-              "type": "faq",
-              "question": "What payment methods does DROVIIA accept?",
-              "answer": "Available payment methods are displayed during checkout. Depending on the payment services currently enabled, these may include eligible debit cards, credit cards, or other supported payment options. Please refer to the checkout page for the most accurate information. Are your prices listed in U.S. dollars? Yes. Product prices on DROVIIA are displayed in USD (United States dollars). Are there any hidden fees? We aim to present applicable product charges, shipping costs, taxes, and other required checkout charges before you confirm your purchase. Certain optional services, such as specialized delivery or installation, may involve additional charges when offered. Why are some appliances priced lower than elsewhere? Prices can differ between retailers due to purchasing arrangements, inventory levels, promotional campaigns, and product availability. Some discounts may be associated with clearance inventory or particular product configurations. We encourage customers to compare model numbers, product conditions, included accessories, and warranty terms when evaluating prices. Can I use a discount or promotional code? If an eligible promotional code is available, enter it in the designated field during checkout. Discount codes may be subject to expiration dates, product exclusions, minimum purchase requirements, or other promotional conditions. Is my payment information secure? We aim to use appropriate security measures and supported payment processing services to protect customer transactions. Please review our Privacy Policy for information about how customer data is handled."
-            }
-          ]
-        },
-        {
-          "id": "returns-refunds-exchanges",
-          "title": "5. Returns, Refunds & Exchanges",
-          "blocks": [
-            {
-              "type": "faq",
-              "question": "What is your return window?",
-              "answer": "Our current return policy provides a 30-day return request window from the delivery date for eligible products. Eligibility depends on the product's condition, category, reason for return, and applicable exclusions. Because DROVIIA offers both small electronics and large appliances, certain products may require additional return instructions. Can I return a product if I change my mind? Our existing policy excludes returns requested solely because of a change of mind. Other eligible return requests are reviewed according to the published Return & Refund Policy and applicable consumer protection laws. Please contact our customer care team before sending any product back. How do I request a return? To request a return: Email info@droviia.us with your order number. Identify the product and explain the reason for your request. Include photographs or supporting details if the product is damaged, defective, or incorrect. Wait for our team to review your request. If approved, follow the return instructions and use the designated return destination. Do not ship products to our business address without prior authorization. Do you charge a restocking fee? Under our existing standard return policy, a $5.00 USD restocking fee applies to approved non-defective standard returns. The fee is waived for approved claims involving damaged, defective, or incorrect products. Any different fees applicable to oversized appliances must be disclosed in the finalized return policy before they are applied. Who pays for return shipping? For approved standard returns involving non-defective products, customers are generally responsible for return shipping costs. For approved claims involving damaged, defective, or incorrect products, DROVIIA covers the necessary return shipping. Large appliances may require coordinated pickup or special return arrangements. How long does it take to receive a refund? After an authorized return arrives, our current policy provides for inspection within two business days. Once approved, refunds are generally processed within seven business days after inspection approval. Your bank or payment provider may require additional time to make the funds available. Do you offer exchanges? We do not currently offer direct exchanges. If you need a different product, model, size, or configuration, you may place a new order. If your original product qualifies for a return, submit a separate return request under the applicable policy. What happens if I receive the wrong item? Contact info@droviia.us promptly with your order number and photographs of the item received. Our team will review the issue and arrange an appropriate resolution, which may include a replacement or refund."
-            }
-          ]
-        },
-        {
-          "id": "product-warranties-technical-information",
-          "title": "6. Product Warranties & Technical Information",
-          "blocks": [
-            {
-              "type": "faq",
-              "question": "Do your products come with a warranty?",
-              "answer": "Warranty coverage depends on the product, manufacturer, and applicable purchase terms. Some products may include manufacturer warranty coverage, while others may have different support arrangements. Please review the product listing or contact us for warranty information before purchasing. Can you help me choose the right appliance? Our customer care team can help you locate available product specifications and information. For appliances requiring professional installation or compatibility assessments, we recommend consulting a qualified technician before purchasing. Do you provide installation services? Installation availability has not been established for all products. Unless installation is specifically included in the product listing or checkout, customers should not assume it is part of the purchase. Products such as furnaces, boilers, air conditioners, range hoods, and garage door openers may require professional installation. Can I install a furnace, boiler, or air conditioner myself? Some equipment requires installation by appropriately qualified professionals and may be subject to local building codes, permits, or safety regulations. Always follow the manufacturer's instructions and applicable local requirements. Improper installation can create safety risks and may affect warranty coverage. How do I know whether an appliance will fit my space? Review the product's dimensions, installation clearances, electrical requirements, ventilation requirements, and other relevant specifications. For built-in appliances or specialized equipment, confirm compatibility with your space and existing systems before ordering. What if my appliance stops working? Contact our support team with your order number, product model, and a description of the issue. We'll help identify the available support options based on the product's return eligibility and applicable warranty terms."
-            }
-          ]
-        },
-        {
-          "id": "customer-accounts-support",
-          "title": "7. Customer Accounts & Support",
-          "blocks": [
-            {
-              "type": "faq",
-              "question": "How can I contact DROVIIA?",
-              "answer": "You can reach us through: Email: info@droviia.us Phone: +1 (424) 329-0223 Live Chat: Available 24/7 Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time (PT) What information should I provide when contacting customer support? For order-related inquiries, please include: Your order number. The email address associated with your purchase. A brief explanation of your question or concern. Relevant product details or photographs, when necessary. Please do not share passwords or complete payment card details. Can I contact customer support outside business hours? Yes. Our website offers 24/7 live chat support. Phone support is available during our regular business hours, Monday through Friday, 9:00 AM–5:00 PM PT. How can I request information about my personal data? For privacy-related inquiries, email info@droviia.us. You can also review our Privacy Policy and Your Privacy Choices page for additional information about available privacy rights and requests."
-            }
-          ]
-        },
-        {
-          "id": "business-information",
-          "title": "8. Business Information",
-          "blocks": [
-            {
-              "type": "faq",
-              "question": "Who owns and operates DROVIIA?",
-              "answer": "DROVIIA is operated by Modern Closet Spaces LLC. Business Name: DROVIIA Legal Business Name: Modern Closet Spaces LLC Business Address: 1320 W El Segundo Blvd Ste E Gardena, CA 90247 United States Website: https://droviia.us Email: info@droviia.us Phone: +1 (424) 329-0223 Business Hours: Monday–Friday, 9:00 AM–5:00 PM PT Live Chat Support: Available 24/7 Still Have Questions? We're here to help you find the information you need. Whether you're comparing appliances, checking an order, or requesting customer support, the DROVIIA team is available to assist. Email: info@droviia.us Phone: +1 (424) 329-0223 You can also visit our Contact Us page or use our 24/7 live chat. DROVIIA — Everyday Essentials for Better Living."
-            }
-          ]
-        }
-      ],
+      "description": "Shopping for kitchen appliances and dining essentials should be simple, convenient, and stress-free.",
+      "sections": [],
       "lines": [
         "Frequently Asked Questions (FAQs)",
-        "How Can We Help You?",
-        "Welcome to the DROVIIA Help Center.",
-        "We've put together answers to frequently asked questions about our products, ordering process, shipping, payments, returns, refunds, and customer support.",
-        "Whether you're shopping for home appliances, heating and cooling equipment, or personal care essentials, we're here to help you make informed purchasing decisions.",
-        "Can't find the answer you're looking for? Contact our customer care team at info@droviia.us or use our 24/7 live chat support.",
-        "1. General Questions",
-        "What is DROVIIA?",
-        "DROVIIA is a U.S.-based online retailer offering home appliances, heating and cooling equipment, personal care electronics, and practical household essentials.",
-        "Our product collections include refrigerators, laundry appliances, air conditioners, space heaters, humidifiers, hair styling tools, garage door openers, and more.",
-        "DROVIIA is operated by Modern Closet Spaces LLC, based in Gardena, California.",
-        "Where is DROVIIA located?",
-        "Our business information is:",
-        "DROVIIA — Modern Closet Spaces LLC",
-        "1320 W El Segundo Blvd Ste E",
-        "Gardena, CA 90247, United States",
-        "You can contact our customer care team at +1 (424) 329-0223 or info@droviia.us.",
-        "Please note that our listed business address is not automatically an authorized return location.",
-        "Is DROVIIA an online store?",
-        "Yes. DROVIIA operates through our website, https://droviia.us, where customers can browse available products, review product details, and place orders online.",
-        "What types of products does DROVIIA sell?",
-        "Our product selection includes:",
-        "* Kitchen & Laundry Appliances: Refrigerators, wine fridges, range hoods, and laundry appliances.",
-        "* Heating, Cooling & Air Quality: Air conditioners, furnaces, boilers, humidifiers, and space heaters.",
-        "* Hair & Personal Care: Hair dryers, straighteners, curling irons, and hair styling tool sets.",
-        "* Home & Commercial Essentials: Hand dryers and garage door openers.",
-        "Product selection and availability may change over time.",
-        "Are your products new and authentic?",
-        "Product condition, brand, model, and included accessories should be identified in each listing.",
-        "We aim to provide accurate product information so you can understand what you're purchasing. If you need confirmation about a particular product's condition, packaging, or specifications, contact us before placing your order.",
-        "Why are some products offered at discounted prices?",
-        "Product prices may vary based on inventory, promotional offers, product models, and market conditions.",
-        "Certain products may be discounted as part of inventory clearance or promotional pricing. A discounted price does not, by itself, indicate that a product is used or defective.",
-        "Please review the individual listing for the product's condition and specifications.",
-        "Are you an authorized dealer for every brand you sell?",
-        "Manufacturer authorization can vary by brand and product. We do not represent ourselves as an authorized dealer for a particular brand unless that relationship has been confirmed.",
-        "If manufacturer authorization or warranty eligibility is important to your purchase, contact our support team for clarification before ordering.",
-        "2. Orders & Product Availability",
-        "How do I place an order?",
-        "Ordering from DROVIIA is straightforward:",
-        "1. Browse our product categories or use the search feature.",
-        "2. Select the product you want and review its specifications.",
-        "3. Choose any available product options.",
-        "4. Add the item to your shopping cart.",
-        "5. Proceed to checkout and enter your delivery information.",
-        "6. Review your order total, shipping charges, and payment options.",
-        "7. Complete your purchase.",
-        "Once your order is successfully placed, you should receive an order confirmation at the email address provided during checkout.",
-        "Can I place an order without creating an account?",
-        "Guest checkout availability depends on the options enabled on our website. If guest checkout is available, you can complete your purchase without registering an account.",
-        "How can I check whether a product is in stock?",
-        "Product availability is generally displayed on the product page.",
-        "If you have questions about a specific model, size, color, or configuration, contact our customer care team before ordering.",
-        "What happens if an item becomes unavailable after I place an order?",
-        "If an ordered product becomes unavailable, our team will contact you to explain the situation and available options.",
-        "Depending on the circumstances, you may be offered an alternative product, a revised fulfillment timeframe, or cancellation with a refund.",
-        "We will not substitute a different product without your agreement.",
-        "Can I modify or cancel my order?",
-        "Please contact us as soon as possible at info@droviia.us with your order number and requested change.",
-        "We'll review the order's fulfillment status to determine whether a modification or cancellation is still possible.",
-        "Once an order has entered shipment preparation or has been dispatched, changes may no longer be possible.",
-        "For more information, review our Order Cancellation Policy.",
-        "Can I order multiple products at once?",
-        "Yes. You can add multiple available products to your cart and complete checkout together.",
-        "Depending on product size, availability, and fulfillment requirements, items from the same order may arrive in separate shipments.",
-        "3. Shipping & Delivery",
-        "Where does DROVIIA ship?",
-        "DROVIIA serves customers in the United States.",
-        "Delivery availability may depend on the product, destination, and shipping method. Certain large appliances or specialized equipment may have location-specific shipping restrictions.",
-        "How much does shipping cost?",
-        "Our current standard shipping schedule is:",
-        "* Orders below $100 USD: $5 standard shipping.",
-        "* Orders of $100 USD or more: Free standard shipping.",
-        "These rates are based on our existing standard shipping policy. Large appliances, freight shipments, and specialized deliveries may require different arrangements, which must be disclosed before purchase.",
-        "The applicable shipping charge will be displayed during checkout.",
-        "How long does delivery take?",
-        "For orders eligible for our standard parcel shipping service, our current estimates are:",
-        "* Order processing: 0–1 business days.",
-        "* Carrier transit: 3–5 business days.",
-        "* Total estimated delivery: 3–6 business days.",
-        "These estimates are not guaranteed delivery dates.",
-        "Oversized appliances, freight shipments, and products requiring special handling may have different delivery timelines. Refer to the product listing and checkout information for applicable details.",
-        "What is your daily order cutoff time?",
-        "Our standard order cutoff is 3:00 PM Pacific Time (PT) on business days.",
-        "Orders received before the cutoff may begin processing that day. Orders received afterward, on weekends, or on U.S. federal holidays generally begin processing on the next business day.",
-        "Which shipping carriers do you use?",
-        "Our standard parcel shipping carriers include:",
-        "* USPS",
-        "* UPS",
-        "The carrier used for your order depends on the product and delivery requirements. Larger appliances may require a specialized freight carrier.",
-        "How can I track my order?",
-        "When your order ships, we'll send a shipping confirmation email containing the available tracking information.",
-        "You can follow your shipment using the carrier's tracking service or visit our Track Your Order page.",
-        "What should I do if my order is delayed?",
-        "If your order hasn't arrived within the expected delivery window, review your tracking information first.",
-        "If a standard parcel shipment has not arrived within seven business days after dispatch, contact info@droviia.us with your order number.",
-        "Our team will help review the available shipment information.",
-        "What if my package arrives damaged?",
-        "Please inspect your delivery as soon as reasonably possible.",
-        "If the package or product appears damaged, contact us promptly at info@droviia.us.",
-        "Include your order number, a description of the issue, and clear photographs of the product and packaging.",
-        "For large appliances, retain the packaging and any delivery documentation while our team reviews your claim.",
-        "4. Payments & Pricing",
-        "What payment methods does DROVIIA accept?",
-        "Available payment methods are displayed during checkout.",
-        "Depending on the payment services currently enabled, these may include eligible debit cards, credit cards, or other supported payment options.",
-        "Please refer to the checkout page for the most accurate information.",
-        "Are your prices listed in U.S. dollars?",
-        "Yes. Product prices on DROVIIA are displayed in USD (United States dollars).",
-        "Are there any hidden fees?",
-        "We aim to present applicable product charges, shipping costs, taxes, and other required checkout charges before you confirm your purchase.",
-        "Certain optional services, such as specialized delivery or installation, may involve additional charges when offered.",
-        "Why are some appliances priced lower than elsewhere?",
-        "Prices can differ between retailers due to purchasing arrangements, inventory levels, promotional campaigns, and product availability.",
-        "Some discounts may be associated with clearance inventory or particular product configurations.",
-        "We encourage customers to compare model numbers, product conditions, included accessories, and warranty terms when evaluating prices.",
-        "Can I use a discount or promotional code?",
-        "If an eligible promotional code is available, enter it in the designated field during checkout.",
-        "Discount codes may be subject to expiration dates, product exclusions, minimum purchase requirements, or other promotional conditions.",
-        "Is my payment information secure?",
-        "We aim to use appropriate security measures and supported payment processing services to protect customer transactions.",
-        "Please review our Privacy Policy for information about how customer data is handled.",
-        "5. Returns, Refunds & Exchanges",
-        "What is your return window?",
-        "Our current return policy provides a 30-day return request window from the delivery date for eligible products.",
-        "Eligibility depends on the product's condition, category, reason for return, and applicable exclusions.",
-        "Because DROVIIA offers both small electronics and large appliances, certain products may require additional return instructions.",
-        "Can I return a product if I change my mind?",
-        "Our existing policy excludes returns requested solely because of a change of mind.",
-        "Other eligible return requests are reviewed according to the published Return & Refund Policy and applicable consumer protection laws.",
-        "Please contact our customer care team before sending any product back.",
-        "How do I request a return?",
-        "To request a return:",
-        "1. Email info@droviia.us with your order number.",
-        "2. Identify the product and explain the reason for your request.",
-        "3. Include photographs or supporting details if the product is damaged, defective, or incorrect.",
-        "4. Wait for our team to review your request.",
-        "5. If approved, follow the return instructions and use the designated return destination.",
-        "Do not ship products to our business address without prior authorization.",
-        "Do you charge a restocking fee?",
-        "Under our existing standard return policy, a $5.00 USD restocking fee applies to approved non-defective standard returns.",
-        "The fee is waived for approved claims involving damaged, defective, or incorrect products.",
-        "Any different fees applicable to oversized appliances must be disclosed in the finalized return policy before they are applied.",
-        "Who pays for return shipping?",
-        "For approved standard returns involving non-defective products, customers are generally responsible for return shipping costs.",
-        "For approved claims involving damaged, defective, or incorrect products, DROVIIA covers the necessary return shipping.",
-        "Large appliances may require coordinated pickup or special return arrangements.",
-        "How long does it take to receive a refund?",
-        "After an authorized return arrives, our current policy provides for inspection within two business days.",
-        "Once approved, refunds are generally processed within seven business days after inspection approval.",
-        "Your bank or payment provider may require additional time to make the funds available.",
-        "Do you offer exchanges?",
-        "We do not currently offer direct exchanges.",
-        "If you need a different product, model, size, or configuration, you may place a new order.",
-        "If your original product qualifies for a return, submit a separate return request under the applicable policy.",
-        "What happens if I receive the wrong item?",
-        "Contact info@droviia.us promptly with your order number and photographs of the item received.",
-        "Our team will review the issue and arrange an appropriate resolution, which may include a replacement or refund.",
-        "6. Product Warranties & Technical Information",
-        "Do your products come with a warranty?",
-        "Warranty coverage depends on the product, manufacturer, and applicable purchase terms.",
-        "Some products may include manufacturer warranty coverage, while others may have different support arrangements.",
-        "Please review the product listing or contact us for warranty information before purchasing.",
-        "Can you help me choose the right appliance?",
-        "Our customer care team can help you locate available product specifications and information.",
-        "For appliances requiring professional installation or compatibility assessments, we recommend consulting a qualified technician before purchasing.",
-        "Do you provide installation services?",
-        "Installation availability has not been established for all products.",
-        "Unless installation is specifically included in the product listing or checkout, customers should not assume it is part of the purchase.",
-        "Products such as furnaces, boilers, air conditioners, range hoods, and garage door openers may require professional installation.",
-        "Can I install a furnace, boiler, or air conditioner myself?",
-        "Some equipment requires installation by appropriately qualified professionals and may be subject to local building codes, permits, or safety regulations.",
-        "Always follow the manufacturer's instructions and applicable local requirements.",
-        "Improper installation can create safety risks and may affect warranty coverage.",
-        "How do I know whether an appliance will fit my space?",
-        "Review the product's dimensions, installation clearances, electrical requirements, ventilation requirements, and other relevant specifications.",
-        "For built-in appliances or specialized equipment, confirm compatibility with your space and existing systems before ordering.",
-        "What if my appliance stops working?",
-        "Contact our support team with your order number, product model, and a description of the issue.",
-        "We'll help identify the available support options based on the product's return eligibility and applicable warranty terms.",
-        "7. Customer Accounts & Support",
-        "How can I contact DROVIIA?",
-        "You can reach us through:",
-        "Email: info@droviia.us",
-        "Phone: +1 (424) 329-0223",
+        "Welcome to the Lunaavo Help Center",
+        "Shopping for kitchen appliances and dining essentials should be simple, convenient, and stress-free.",
+        "At Lunaavo, we're here to help you find the information you need, whether you're comparing products, placing an order, tracking a delivery, or requesting assistance after a purchase.",
+        "Below are answers to some of the most common questions from our customers.",
+        "If you can't find what you're looking for, our customer support team is happy to help.",
+        "Email: info@lunaavo.us",
+        "Phone: +1 (510) 345-2632",
         "Live Chat: Available 24/7",
-        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time (PT)",
-        "What information should I provide when contacting customer support?",
-        "For order-related inquiries, please include:",
-        "* Your order number.",
-        "* The email address associated with your purchase.",
-        "* A brief explanation of your question or concern.",
-        "* Relevant product details or photographs, when necessary.",
-        "Please do not share passwords or complete payment card details.",
-        "Can I contact customer support outside business hours?",
-        "Yes. Our website offers 24/7 live chat support.",
-        "Phone support is available during our regular business hours, Monday through Friday, 9:00 AM–5:00 PM PT.",
-        "How can I request information about my personal data?",
-        "For privacy-related inquiries, email info@droviia.us.",
-        "You can also review our Privacy Policy and Your Privacy Choices page for additional information about available privacy rights and requests.",
-        "8. Business Information",
-        "Who owns and operates DROVIIA?",
-        "DROVIIA is operated by Modern Closet Spaces LLC.",
-        "Business Name: DROVIIA",
-        "Legal Business Name: Modern Closet Spaces LLC",
-        "Business Address:",
-        "1320 W El Segundo Blvd Ste E",
-        "Gardena, CA 90247",
+        "1. General Questions",
+        "Q1. What is Lunaavo?",
+        "Lunaavo is a U.S.-based online store specializing in kitchen and dining products.",
+        "We bring together kitchen appliances, cooking equipment, food preparation essentials, and related products to help customers find equipment suited to their homes and everyday routines.",
+        "Our goal is to make shopping for kitchen and dining essentials straightforward, informative, and convenient.",
+        "Visit our store: https://lunaavo.us",
+        "Q2. Is Lunaavo a legitimate U.S. business?",
+        "Lunaavo is operated by San Rafael Luggage Center, Inc, with its business address in Berkeley, California.",
+        "We provide our business information, contact details, and customer service policies so shoppers can identify the company operating our website and contact us when assistance is needed.",
+        "Legal Business Name: San Rafael Luggage Center, Inc",
+        "Business Address: 2221 Shattuck Ave., Berkeley, CA 94704, United States",
+        "Customer Support: info@lunaavo.us",
+        "Q3. Where is Lunaavo located?",
+        "Our listed business address is:",
+        "Lunaavo — San Rafael Luggage Center, Inc",
+        "2221 Shattuck Ave.",
+        "Berkeley, CA 94704",
         "United States",
-        "Website: https://droviia.us",
-        "Email: info@droviia.us",
-        "Phone: +1 (424) 329-0223",
-        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM PT",
-        "Live Chat Support: Available 24/7",
-        "Still Have Questions?",
-        "We're here to help you find the information you need.",
-        "Whether you're comparing appliances, checking an order, or requesting customer support, the DROVIIA team is available to assist.",
-        "Email: info@droviia.us",
-        "Phone: +1 (424) 329-0223",
-        "You can also visit our Contact Us page or use our 24/7 live chat.",
-        "DROVIIA — Everyday Essentials for Better Living."
+        "Lunaavo operates as an online shopping destination. Please contact us before arranging an in-person visit, as the business address does not necessarily serve as a public showroom or customer pickup location.",
+        "Q4. What products does Lunaavo sell?",
+        "Lunaavo focuses on kitchen and dining essentials, including products for cooking, beverage preparation, food processing, and other kitchen activities.",
+        "Depending on current product availability, you can explore kitchen appliances and specialized equipment for different household needs.",
+        "Browse our website to see our current selection.",
+        "Q5. Are your products brand-new and unused?",
+        "Product condition should be clearly identified in the individual product listing.",
+        "If a product is described as new, it should match that description. Any applicable condition details, included accessories, and product-specific limitations should be reviewed before purchase.",
+        "If you would like confirmation about a particular item, contact us with the product name or link before ordering.",
+        "Q6. Why are some products priced lower than elsewhere?",
+        "Product prices can vary between retailers because of supplier pricing, inventory costs, promotions, and market conditions.",
+        "A lower price does not automatically mean a product is used or defective.",
+        "We recommend comparing the exact model number, product specifications, condition, included accessories, and warranty information when evaluating offers.",
+        "If you have questions about a particular product or price, our support team can help clarify the listing information.",
+        "2. Product Information & Availability",
+        "Q7. How do I know which appliance is right for my kitchen?",
+        "We recommend reviewing the product's specifications carefully, particularly:",
+        "* Dimensions and available installation space.",
+        "* Capacity and performance features.",
+        "* Electrical or gas requirements.",
+        "* Product model number.",
+        "* Included accessories.",
+        "* Compatibility and installation instructions.",
+        "* Manufacturer recommendations.",
+        "For larger appliances, verify measurements and utility requirements before ordering.",
+        "If you need clarification, send our team the product link and your question.",
+        "Q8. Are the products shown on your website available to order?",
+        "Product availability is indicated on individual listings where supported by our website.",
+        "Inventory may change, particularly for popular models or promotional products.",
+        "If an item is unavailable, you may be unable to purchase it until availability is updated.",
+        "For questions about a specific item, please contact our customer support team.",
+        "Q9. Do your appliances come with accessories?",
+        "Included accessories vary by product and model.",
+        "Please check the product description and manufacturer's specifications to understand what is included.",
+        "Accessories shown in lifestyle photographs may not always be included unless explicitly stated in the listing.",
+        "If you're unsure, contact us before purchasing.",
+        "Q10. Do you sell replacement parts or accessories?",
+        "Available replacement parts and accessories depend on our current catalog.",
+        "You can search our website for the product or accessory you're looking for.",
+        "If you need help identifying a compatible item, please provide the appliance model number and relevant details.",
+        "3. Ordering & Checkout",
+        "Q11. How do I place an order?",
+        "Ordering from Lunaavo is straightforward:",
+        "1. Browse our Kitchen & Dining collection.",
+        "2. Select the product you want.",
+        "3. Review the description, specifications, and price.",
+        "4. Add the item to your cart.",
+        "5. Proceed to checkout.",
+        "6. Enter your billing and shipping information.",
+        "7. Select an available payment method.",
+        "8. Review your order and submit it.",
+        "Once your order is successfully placed, you should receive an order confirmation through the contact information provided at checkout.",
+        "Q12. Can I place an order without creating an account?",
+        "If guest checkout is enabled on our website, you can complete your purchase without creating an account.",
+        "Available checkout options are displayed during the ordering process.",
+        "Please enter a valid email address so you can receive important order communications.",
+        "Q13. How do I know if my order was successful?",
+        "After successfully submitting your order, you should see an order confirmation or order status message.",
+        "You may also receive a confirmation email containing your order details.",
+        "If you don't receive an email, check your spam or junk folder.",
+        "If you're still unsure whether your order was received, contact info@lunaavo.us before attempting another purchase to avoid duplicate orders.",
+        "Q14. Can I modify my order after placing it?",
+        "If you need to change an order, contact our support team as soon as possible.",
+        "Depending on the order's processing and fulfillment status, certain changes may no longer be possible.",
+        "Please include your order number and the details you want to update.",
+        "We will review your request and explain the available options.",
+        "Q15. Can I cancel my order?",
+        "You may request an order cancellation by contacting customer support.",
+        "Whether cancellation is possible depends on the order's current status and the terms of our Order Cancellation Policy.",
+        "Orders that have already entered shipping or fulfillment may be subject to different procedures.",
+        "For the fastest assistance, contact us immediately with your order number.",
+        "Read more: Order Cancellation Policy",
+        "4. Payments & Pricing",
+        "Q16. What payment methods do you accept?",
+        "The payment methods currently available are displayed during checkout.",
+        "Available options may depend on your order, payment provider, and other applicable conditions.",
+        "Please review the checkout page for the payment methods supported for your purchase.",
+        "If you experience a payment issue, contact our customer support team.",
+        "Q17. Is it safe to make a payment on Lunaavo?",
+        "We aim to provide a secure and responsible online shopping experience.",
+        "Payments are handled through the payment services integrated with our checkout, subject to their applicable security practices.",
+        "For your protection, never send complete payment card details, passwords, or security codes through email or live chat.",
+        "You can review our Privacy Policy for more information about how customer information is handled.",
+        "Q18. Why was my payment declined?",
+        "A payment may be declined for several reasons, including:",
+        "* Incorrect card details.",
+        "* Insufficient available funds.",
+        "* Bank security restrictions.",
+        "* Billing information mismatches.",
+        "* Payment provider verification requirements.",
+        "* Temporary processing errors.",
+        "We recommend checking your payment details and contacting your bank or payment provider if the issue continues.",
+        "If you need additional assistance, our team can help review the checkout issue without requesting sensitive card information.",
+        "Q19. Are there additional charges at checkout?",
+        "The total amount payable should be displayed before you complete your order.",
+        "Depending on your purchase and delivery location, the final amount may include applicable taxes, shipping charges, or other disclosed fees.",
+        "Please review your order summary carefully before submitting payment.",
+        "Q20. Do you offer discount codes or promotional offers?",
+        "Promotional offers may be available from time to time.",
+        "When a valid discount code is offered, you can enter it in the applicable field during checkout.",
+        "Discounts may have eligibility requirements, expiration dates, or other conditions.",
+        "Only promotions published or confirmed through Lunaavo's official channels should be treated as authorized offers.",
+        "5. Shipping & Delivery",
+        "Q21. Where does Lunaavo ship?",
+        "Lunaavo serves customers in the United States.",
+        "Shipping eligibility for a particular product or destination is determined by the options available during checkout and our published Shipping & Delivery Policy.",
+        "Some products may have delivery restrictions due to their size, weight, or handling requirements.",
+        "Q22. How much does shipping cost?",
+        "Applicable shipping charges, if any, are determined by the product, order, destination, and available delivery method.",
+        "Any shipping fees should be disclosed during checkout before you submit your order.",
+        "For further information, please review our Shipping & Delivery Policy.",
+        "Q23. How long does delivery take?",
+        "Estimated delivery times depend on factors such as:",
+        "* Product availability.",
+        "* Order processing.",
+        "* Shipping destination.",
+        "* Carrier service.",
+        "* Product dimensions and handling requirements.",
+        "* Weather or transportation disruptions.",
+        "Please refer to the estimated delivery information provided during checkout and in our Shipping & Delivery Policy.",
+        "Delivery estimates are not guarantees unless expressly stated.",
+        "Q24. How can I track my order?",
+        "If tracking information is available for your shipment, it may be provided through your order updates or shipping confirmation.",
+        "You can use the tracking details to check your shipment's progress.",
+        "If you need help locating tracking information, contact our team with your order number.",
+        "Visit: Track Your Order",
+        "Q25. What should I do if my order is delayed?",
+        "We understand that waiting longer than expected can be frustrating.",
+        "If your order has not arrived within the communicated delivery timeframe, contact us at info@lunaavo.us.",
+        "Please include your order number so we can review the available shipment information and assist with the next steps.",
+        "Q26. What if my package is marked delivered but I haven't received it?",
+        "First, check the delivery location, surrounding areas, and any delivery notifications from the carrier.",
+        "If the package is still missing, contact the carrier and notify Lunaavo customer support.",
+        "We'll review the available order and tracking details and help you understand the next steps.",
+        "Q27. Do large kitchen appliances require special delivery arrangements?",
+        "Some larger appliances may require specialized shipping, additional handling, or delivery coordination.",
+        "Depending on the product, delivery services may differ from those available for smaller parcels.",
+        "Please review the product listing and shipping information for any special requirements.",
+        "Installation, unpacking, or removal of an existing appliance should not be assumed to be included unless expressly stated.",
+        "6. Returns, Refunds & Exchanges",
+        "Q28. Can I return a product if I'm not satisfied?",
+        "Return eligibility depends on the product, its condition, the reason for the return, and our published Returns & Refunds Policy.",
+        "Before requesting a return, please review the applicable policy and contact customer support for instructions.",
+        "Do not ship merchandise to our business address without receiving return instructions.",
+        "Q29. What if I receive a damaged, defective, or incorrect item?",
+        "If there is a problem with your order, please contact us promptly.",
+        "Include:",
+        "* Your order number.",
+        "* The product name.",
+        "* A description of the issue.",
+        "* Clear photographs, if relevant.",
+        "* Any additional details that may help us review the concern.",
+        "Our team will assess the information and explain the available resolution options under our policies and applicable law.",
+        "Q30. How do I request a refund?",
+        "To request a refund, email info@lunaavo.us with your order number and the reason for your request.",
+        "Our support team will review your inquiry and provide information about eligibility and the applicable procedure.",
+        "Approved refunds are processed according to our Returns & Refunds Policy and applicable payment provider requirements.",
+        "The time required for funds to appear may also depend on your financial institution.",
+        "Q31. Can I exchange a product?",
+        "Exchange availability depends on the product and the circumstances of your request.",
+        "Please contact customer support with your order details and the item you wish to exchange.",
+        "We will explain whether an exchange or another available resolution is possible.",
+        "Q32. Where should I send a returned item?",
+        "Please do not send returns directly to our listed business address unless our support team specifically authorizes that location.",
+        "Contact info@lunaavo.us first to obtain the applicable return instructions.",
+        "Shipping an item to an unauthorized address may delay the return process.",
+        "7. Warranty & Product Support",
+        "Q33. Do Lunaavo products come with a warranty?",
+        "Warranty coverage varies by product and manufacturer.",
+        "Where applicable, warranty details may be provided in the product listing or accompanying manufacturer documentation.",
+        "Before purchasing, we recommend reviewing the available warranty terms, including coverage, exclusions, and claim procedures.",
+        "For additional questions, contact our customer support team.",
+        "Q34. What should I do if my appliance stops working?",
+        "Start by reviewing the product manual and any manufacturer troubleshooting instructions.",
+        "If the issue continues, contact us with:",
+        "* Your order number.",
+        "* Product name and model.",
+        "* A description of the problem.",
+        "* Relevant photos or other supporting information.",
+        "We can help you identify the applicable support or warranty information.",
+        "For electrical, gas, or other potentially hazardous appliance issues, discontinue use and seek qualified assistance when appropriate.",
+        "Q35. Does Lunaavo provide installation services?",
+        "Installation services are not included unless expressly stated in the product listing or purchase agreement.",
+        "Certain appliances may require professional installation, including equipment involving electrical wiring, gas connections, plumbing, or ventilation.",
+        "Always follow the manufacturer's installation requirements and applicable local regulations.",
+        "8. Account, Privacy & Website Support",
+        "Q36. How is my personal information used?",
+        "Customer information may be used for purposes such as processing orders, providing support, communicating about purchases, and operating our website.",
+        "For more details about the categories of information collected, the purposes of processing, and available privacy rights, please review our Privacy Policy.",
+        "Q37. What should I do if I'm having trouble using the website?",
+        "If you're experiencing a technical issue, try refreshing the page or using an updated browser.",
+        "If the issue persists, contact us with:",
+        "* A description of the problem.",
+        "* The page or product involved.",
+        "* Your device and browser, if relevant.",
+        "* A screenshot, if helpful.",
+        "Please avoid sharing passwords or sensitive payment information.",
+        "Q38. Can I contact Lunaavo before placing an order?",
+        "Absolutely.",
+        "We encourage customers to ask questions before purchasing, particularly when selecting appliances with specific dimensions, compatibility requirements, or technical features.",
+        "Contact us with the product link and your question, and we'll help clarify the available information.",
+        "9. Customer Service & Contact Information",
+        "Q39. How can I contact Lunaavo customer support?",
+        "You can reach Lunaavo through the following channels:",
+        "Email: info@lunaavo.us",
+        "Phone: +1 (510) 345-2632",
+        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time",
+        "Live Chat: Available 24/7",
+        "Website: https://lunaavo.us",
+        "For order-related inquiries, include your order number to help us locate the relevant information.",
+        "Q40. Is customer support available on weekends?",
+        "Our regular business hours are Monday through Friday, 9:00 AM to 5:00 PM Pacific Time.",
+        "Our website's live chat is available 24/7.",
+        "Inquiries requiring additional review may be handled during regular business hours.",
+        "Q41. How can I submit feedback or a complaint?",
+        "We welcome customer feedback.",
+        "If you have a suggestion, concern, or complaint, email info@lunaavo.us with a description of the matter.",
+        "If your message relates to an order, include the order number and any relevant details.",
+        "Our team will review your inquiry and provide appropriate assistance.",
+        "Still Have Questions? We're Here to Help.",
+        "Can't find the answer you're looking for?",
+        "Our customer support channels are available to help with product information, orders, shipping, returns, and other shopping questions.",
+        "Lunaavo Customer Support",
+        "Email: info@lunaavo.us",
+        "Phone: +1 (510) 345-2632",
+        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time",
+        "Live Chat: Available 24/7",
+        "Business Address:",
+        "2221 Shattuck Ave.",
+        "Berkeley, CA 94704",
+        "United States",
+        "Legal Business Name: San Rafael Luggage Center, Inc",
+        "Website: https://lunaavo.us",
+        "Lunaavo — Bringing More to Your Kitchen.",
+        "Explore our collection and shop with confidence, knowing that help is available when you need it."
       ]
     },
     {
       "slug": "our-commitment",
       "title": "Our Commitment",
       "effectiveDate": "",
-      "tagline": "Your comfort. Our priority. Your confidence.",
+      "tagline": "Lunaavo — Bringing More to Your Kitchen.",
       "intro": [
-        "Your Comfort. Our Priority. Your Confidence.",
-        "At DROVIIA, we believe online shopping should be simple, transparent, and convenient. Whether you're upgrading your home appliances, exploring heating and cooling solutions, or shopping for personal care essentials, you deserve clear information, dependable service, and a shopping experience you can feel confident about.",
-        "Operated by Modern Closet Spaces LLC, DROVIIA is committed to making home appliances and everyday essentials more accessible to customers across the United States.",
-        "Our commitment goes beyond offering products. It's about building lasting customer relationships through honest communication, responsible business practices, and attentive support."
+        "Our Promise to Every Customer",
+        "At Lunaavo, we believe that a great shopping experience goes beyond finding the right product. It's about having clear information, knowing what to expect, and feeling confident throughout the purchasing process.",
+        "Whether you're upgrading your kitchen, choosing a new coffee maker, replacing an essential appliance, or exploring specialized cooking equipment, we want to make your shopping experience as straightforward and convenient as possible."
       ],
-      "description": "Your Comfort. Our Priority. Your Confidence.",
-      "sections": [
-        {
-          "id": "quality-products-for-everyday-living",
-          "title": "1. Quality Products for Everyday Living",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "We understand that purchasing home appliances and electronics is an important decision."
-            },
-            {
-              "type": "paragraph",
-              "text": "From refrigerators and laundry appliances to air conditioners, heating equipment, and personal care devices, our goal is to offer a diverse selection of products that support your daily needs."
-            },
-            {
-              "type": "paragraph",
-              "text": "We are committed to:"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Providing clear and informative product descriptions.",
-                "Displaying relevant specifications, features, and product details.",
-                "Helping customers compare products before making a purchase.",
-                "Communicating product availability and important purchasing information accurately.",
-                "Providing applicable warranty information when available."
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "We believe every customer deserves the information needed to make an informed purchasing decision."
-            }
-          ]
-        },
-        {
-          "id": "fair-pricing-and-transparent-shopping",
-          "title": "2. Fair Pricing and Transparent Shopping",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "At DROVIIA, we believe a positive shopping experience begins with clarity."
-            },
-            {
-              "type": "paragraph",
-              "text": "We aim to offer competitive pricing while ensuring customers understand the costs associated with their purchases."
-            },
-            {
-              "type": "paragraph",
-              "text": "Our pricing commitment includes:"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Clearly displayed product prices in U.S. dollars.",
-                "Applicable shipping charges presented before checkout.",
-                "Transparent promotional offers and discount conditions.",
-                "No undisclosed charges added after an order is placed.",
-                "Clear information about available payment options."
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "Our focus is on delivering value through product selection, transparent pricing, and a convenient purchasing process."
-            }
-          ]
-        },
-        {
-          "id": "clear-shipping-and-delivery-information",
-          "title": "3. Clear Shipping and Delivery Information",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "We know how important it is to receive your order within a reasonable timeframe."
-            },
-            {
-              "type": "paragraph",
-              "text": "That's why we aim to communicate shipping information clearly, from order processing through delivery."
-            },
-            {
-              "type": "paragraph",
-              "text": "Our commitment includes:"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Providing applicable shipping rates before purchase.",
-                "Communicating estimated processing and delivery timeframes.",
-                "Sending shipment confirmation and tracking information when available.",
-                "Assisting customers with delivery-related questions.",
-                "Notifying customers of significant fulfillment delays and explaining their available options."
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "Delivery methods, charges, and estimated timelines may vary depending on the product's size, weight, destination, and shipping requirements."
-            },
-            {
-              "type": "paragraph",
-              "text": "For complete information, please review our Shipping & Delivery Policy."
-            }
-          ]
-        },
-        {
-          "id": "straightforward-returns-and-refunds",
-          "title": "4. Straightforward Returns and Refunds",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "We understand that circumstances can change and that products may occasionally arrive damaged, defective, or different from what was ordered."
-            },
-            {
-              "type": "paragraph",
-              "text": "Our goal is to make the return and refund process as clear and manageable as possible."
-            },
-            {
-              "type": "paragraph",
-              "text": "We are committed to:"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Explaining product return eligibility and applicable exclusions.",
-                "Providing clear instructions for submitting return requests.",
-                "Reviewing damaged, defective, or incorrect-item claims fairly.",
-                "Communicating applicable return shipping charges and restocking fees.",
-                "Processing approved refunds according to our published policy.",
-                "Respecting applicable consumer protection rights."
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "Return eligibility may differ by product type, condition, and the reason for the request. Certain appliances may also have special handling or return requirements."
-            },
-            {
-              "type": "paragraph",
-              "text": "For full details, please review our Return & Refund Policy."
-            }
-          ]
-        },
-        {
-          "id": "responsive-and-accessible-customer-support",
-          "title": "5. Responsive and Accessible Customer Support",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Customer service is an essential part of the DROVIIA shopping experience."
-            },
-            {
-              "type": "paragraph",
-              "text": "Whether you have questions before purchasing or need assistance with an existing order, we want you to know how to reach us."
-            },
-            {
-              "type": "paragraph",
-              "text": "Our customer care team can assist with:"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "General product and availability inquiries.",
-                "Order confirmation and status questions.",
-                "Shipping and tracking assistance.",
-                "Return and refund requests.",
-                "Payment-related inquiries.",
-                "Product warranty and support information."
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "Customer Support Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time (PT)."
-            },
-            {
-              "type": "paragraph",
-              "text": "Live Chat Support: Available 24/7."
-            },
-            {
-              "type": "paragraph",
-              "text": "We aim to address customer inquiries professionally, respectfully, and with clear communication."
-            }
-          ]
-        },
-        {
-          "id": "responsible-and-secure-shopping",
-          "title": "6. Responsible and Secure Shopping",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "We recognize the importance of protecting customer information and providing a trustworthy online shopping environment."
-            },
-            {
-              "type": "paragraph",
-              "text": "DROVIIA is committed to responsible handling of personal information and transparent communication about how customer data is used."
-            },
-            {
-              "type": "paragraph",
-              "text": "Our priorities include:"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Using appropriate safeguards to protect customer information.",
-                "Providing access to our Privacy Policy and Terms of Service.",
-                "Explaining how personal information may be collected and processed.",
-                "Supporting applicable customer privacy rights.",
-                "Offering payment methods through the checkout options available on our website."
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "We encourage customers to review our Privacy Policy for additional information about our data practices."
-            }
-          ]
-        },
-        {
-          "id": "honest-communication-and-accountability",
-          "title": "7. Honest Communication and Accountability",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Trust is earned through consistency, transparency, and responsible actions."
-            },
-            {
-              "type": "paragraph",
-              "text": "We believe customers should receive accurate information about the products they purchase and the services they can expect."
-            },
-            {
-              "type": "paragraph",
-              "text": "We are committed to:"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Avoiding misleading product descriptions or unsupported claims.",
-                "Clearly communicating important product limitations and requirements.",
-                "Providing accurate information about shipping, returns, and warranties.",
-                "Addressing customer concerns fairly.",
-                "Improving our website and customer experience based on customer needs."
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "If an issue arises, our priority is to understand the situation, explain the available options, and work toward an appropriate resolution."
-            }
-          ]
-        },
-        {
-          "id": "continuously-improving-your-shopping-experience",
-          "title": "8. Continuously Improving Your Shopping Experience",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "At DROVIIA, we believe there is always room to improve."
-            },
-            {
-              "type": "paragraph",
-              "text": "As our product selection and online shopping experience develop, we aim to make it easier for customers to discover products, compare options, and find the information they need."
-            },
-            {
-              "type": "paragraph",
-              "text": "Our ongoing priorities include improving website navigation, product information, mobile usability, order communication, and customer support accessibility."
-            },
-            {
-              "type": "paragraph",
-              "text": "We value customer feedback because it helps us identify opportunities to serve you better."
-            }
-          ]
-        },
-        {
-          "id": "the-droviia-promise",
-          "title": "The DROVIIA Promise",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Your home deserves thoughtful choices. Your purchases deserve clear information. And your trust deserves our attention."
-            },
-            {
-              "type": "paragraph",
-              "text": "At DROVIIA, we strive to bring these principles together in every shopping experience."
-            },
-            {
-              "type": "paragraph",
-              "text": "Whether you're purchasing a small personal care appliance or investing in a major household upgrade, our commitment remains the same: clear information, transparent policies, and customer-focused service."
-            },
-            {
-              "type": "paragraph",
-              "text": "Thank you for choosing DROVIIA as part of your everyday living."
-            }
-          ]
-        },
-        {
-          "id": "we-re-here-to-help",
-          "title": "We're Here to Help",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Have a question about a product, an order, or our store policies? Our customer care team is available to assist."
-            },
-            {
-              "type": "paragraph",
-              "text": "DROVIIA"
-            },
-            {
-              "type": "paragraph",
-              "text": "Operated by Modern Closet Spaces LLC"
-            },
-            {
-              "type": "paragraph",
-              "text": "Business Address:"
-            },
-            {
-              "type": "paragraph",
-              "text": "1320 W El Segundo Blvd Ste E"
-            },
-            {
-              "type": "paragraph",
-              "text": "Gardena, CA 90247, United States"
-            },
-            {
-              "type": "paragraph",
-              "text": "Email: info@droviia.us"
-            },
-            {
-              "type": "paragraph",
-              "text": "Phone: +1 (424) 329-0223"
-            },
-            {
-              "type": "paragraph",
-              "text": "Business Hours: Monday–Friday, 9:00 AM–5:00 PM PT"
-            },
-            {
-              "type": "paragraph",
-              "text": "Live Chat: Available 24/7"
-            },
-            {
-              "type": "paragraph",
-              "text": "Website: https://droviia.us"
-            },
-            {
-              "type": "paragraph",
-              "text": "DROVIIA — Everyday Essentials for Better Living."
-            }
-          ]
-        }
-      ],
+      "description": "Lunaavo — Bringing More to Your Kitchen.",
+      "sections": [],
       "lines": [
         "Our Commitment",
-        "Your Comfort. Our Priority. Your Confidence.",
-        "At DROVIIA, we believe online shopping should be simple, transparent, and convenient. Whether you're upgrading your home appliances, exploring heating and cooling solutions, or shopping for personal care essentials, you deserve clear information, dependable service, and a shopping experience you can feel confident about.",
-        "Operated by Modern Closet Spaces LLC, DROVIIA is committed to making home appliances and everyday essentials more accessible to customers across the United States.",
-        "Our commitment goes beyond offering products. It's about building lasting customer relationships through honest communication, responsible business practices, and attentive support.",
-        "1. Quality Products for Everyday Living",
-        "We understand that purchasing home appliances and electronics is an important decision.",
-        "From refrigerators and laundry appliances to air conditioners, heating equipment, and personal care devices, our goal is to offer a diverse selection of products that support your daily needs.",
-        "We are committed to:",
-        "* Providing clear and informative product descriptions.",
-        "* Displaying relevant specifications, features, and product details.",
-        "* Helping customers compare products before making a purchase.",
-        "* Communicating product availability and important purchasing information accurately.",
-        "* Providing applicable warranty information when available.",
-        "We believe every customer deserves the information needed to make an informed purchasing decision.",
-        "2. Fair Pricing and Transparent Shopping",
-        "At DROVIIA, we believe a positive shopping experience begins with clarity.",
-        "We aim to offer competitive pricing while ensuring customers understand the costs associated with their purchases.",
-        "Our pricing commitment includes:",
-        "* Clearly displayed product prices in U.S. dollars.",
-        "* Applicable shipping charges presented before checkout.",
-        "* Transparent promotional offers and discount conditions.",
-        "* No undisclosed charges added after an order is placed.",
-        "* Clear information about available payment options.",
-        "Our focus is on delivering value through product selection, transparent pricing, and a convenient purchasing process.",
-        "3. Clear Shipping and Delivery Information",
-        "We know how important it is to receive your order within a reasonable timeframe.",
-        "That's why we aim to communicate shipping information clearly, from order processing through delivery.",
-        "Our commitment includes:",
-        "* Providing applicable shipping rates before purchase.",
-        "* Communicating estimated processing and delivery timeframes.",
-        "* Sending shipment confirmation and tracking information when available.",
-        "* Assisting customers with delivery-related questions.",
-        "* Notifying customers of significant fulfillment delays and explaining their available options.",
-        "Delivery methods, charges, and estimated timelines may vary depending on the product's size, weight, destination, and shipping requirements.",
-        "For complete information, please review our Shipping & Delivery Policy.",
-        "4. Straightforward Returns and Refunds",
-        "We understand that circumstances can change and that products may occasionally arrive damaged, defective, or different from what was ordered.",
-        "Our goal is to make the return and refund process as clear and manageable as possible.",
-        "We are committed to:",
-        "* Explaining product return eligibility and applicable exclusions.",
-        "* Providing clear instructions for submitting return requests.",
-        "* Reviewing damaged, defective, or incorrect-item claims fairly.",
-        "* Communicating applicable return shipping charges and restocking fees.",
-        "* Processing approved refunds according to our published policy.",
-        "* Respecting applicable consumer protection rights.",
-        "Return eligibility may differ by product type, condition, and the reason for the request. Certain appliances may also have special handling or return requirements.",
-        "For full details, please review our Return & Refund Policy.",
-        "5. Responsive and Accessible Customer Support",
-        "Customer service is an essential part of the DROVIIA shopping experience.",
-        "Whether you have questions before purchasing or need assistance with an existing order, we want you to know how to reach us.",
-        "Our customer care team can assist with:",
-        "* General product and availability inquiries.",
-        "* Order confirmation and status questions.",
-        "* Shipping and tracking assistance.",
-        "* Return and refund requests.",
-        "* Payment-related inquiries.",
-        "* Product warranty and support information.",
-        "Customer Support Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time (PT).",
-        "Live Chat Support: Available 24/7.",
-        "We aim to address customer inquiries professionally, respectfully, and with clear communication.",
-        "6. Responsible and Secure Shopping",
-        "We recognize the importance of protecting customer information and providing a trustworthy online shopping environment.",
-        "DROVIIA is committed to responsible handling of personal information and transparent communication about how customer data is used.",
-        "Our priorities include:",
-        "* Using appropriate safeguards to protect customer information.",
-        "* Providing access to our Privacy Policy and Terms of Service.",
-        "* Explaining how personal information may be collected and processed.",
-        "* Supporting applicable customer privacy rights.",
-        "* Offering payment methods through the checkout options available on our website.",
-        "We encourage customers to review our Privacy Policy for additional information about our data practices.",
-        "7. Honest Communication and Accountability",
-        "Trust is earned through consistency, transparency, and responsible actions.",
-        "We believe customers should receive accurate information about the products they purchase and the services they can expect.",
-        "We are committed to:",
-        "* Avoiding misleading product descriptions or unsupported claims.",
-        "* Clearly communicating important product limitations and requirements.",
-        "* Providing accurate information about shipping, returns, and warranties.",
-        "* Addressing customer concerns fairly.",
-        "* Improving our website and customer experience based on customer needs.",
-        "If an issue arises, our priority is to understand the situation, explain the available options, and work toward an appropriate resolution.",
-        "8. Continuously Improving Your Shopping Experience",
-        "At DROVIIA, we believe there is always room to improve.",
-        "As our product selection and online shopping experience develop, we aim to make it easier for customers to discover products, compare options, and find the information they need.",
-        "Our ongoing priorities include improving website navigation, product information, mobile usability, order communication, and customer support accessibility.",
-        "We value customer feedback because it helps us identify opportunities to serve you better.",
-        "The DROVIIA Promise",
-        "Your home deserves thoughtful choices. Your purchases deserve clear information. And your trust deserves our attention.",
-        "At DROVIIA, we strive to bring these principles together in every shopping experience.",
-        "Whether you're purchasing a small personal care appliance or investing in a major household upgrade, our commitment remains the same: clear information, transparent policies, and customer-focused service.",
-        "Thank you for choosing DROVIIA as part of your everyday living.",
-        "We're Here to Help",
-        "Have a question about a product, an order, or our store policies? Our customer care team is available to assist.",
-        "DROVIIA",
-        "Operated by Modern Closet Spaces LLC",
+        "Lunaavo — Bringing More to Your Kitchen.",
+        "Our Promise to Every Customer",
+        "At Lunaavo, we believe that a great shopping experience goes beyond finding the right product. It's about having clear information, knowing what to expect, and feeling confident throughout the purchasing process.",
+        "Whether you're upgrading your kitchen, choosing a new coffee maker, replacing an essential appliance, or exploring specialized cooking equipment, we want to make your shopping experience as straightforward and convenient as possible.",
+        "Our commitment is built around five principles: product quality, transparent information, fair pricing, customer care, and responsible business practices.",
+        "As a U.S.-based online store operated by San Rafael Luggage Center, Inc, we aim to build lasting customer relationships through honesty, consistency, and attentive service.",
+        "1. Our Commitment to Product Quality",
+        "We understand that kitchen appliances and cooking equipment are important purchases.",
+        "Customers rely on these products for everyday activities, from preparing breakfast and making coffee to cooking meals and maintaining their kitchens.",
+        "That's why we aim to provide clear information about the products available through Lunaavo.",
+        "What Product Quality Means to Us",
+        "Our approach focuses on:",
+        "* Presenting accurate product specifications and descriptions.",
+        "* Identifying product models and features clearly.",
+        "* Communicating relevant product conditions and included accessories.",
+        "* Providing available manufacturer information.",
+        "* Helping customers understand compatibility and installation requirements.",
+        "* Addressing concerns about damaged, defective, or incorrect products.",
+        "We recognize that different products have different technical requirements, performance characteristics, and warranty conditions.",
+        "We encourage customers to review the information on each product page before making a purchase.",
+        "Our promise: We aim to provide the information customers need to make informed purchasing decisions.",
+        "2. Transparent and Fair Pricing",
+        "At Lunaavo, we believe customers deserve to understand the price of their purchases before completing an order.",
+        "We aim to maintain clear product pricing and communicate applicable charges during checkout.",
+        "Our Pricing Principles",
+        "* Display product prices in U.S. dollars.",
+        "* Clearly identify available promotional offers.",
+        "* Disclose applicable shipping charges before purchase.",
+        "* Display applicable taxes and other required fees during checkout.",
+        "* Avoid misleading price comparisons or unsupported discount claims.",
+        "* Communicate material pricing errors appropriately.",
+        "Product prices may change based on availability, supplier pricing, promotions, and other business considerations.",
+        "Any advertised discount or special offer is subject to its stated terms.",
+        "Our promise: We aim to provide straightforward pricing information without unnecessary surprises at checkout.",
+        "3. A Convenient and Informative Shopping Experience",
+        "Shopping for kitchen equipment should not be unnecessarily complicated.",
+        "With different product sizes, features, brands, and specifications available, choosing the right appliance can require careful consideration.",
+        "Lunaavo aims to simplify this process by organizing products into relevant categories and presenting useful information.",
+        "Our Shopping Experience Priorities",
+        "We aim to provide:",
+        "* Clearly organized kitchen and dining categories.",
+        "* Product descriptions that explain relevant features.",
+        "* Technical specifications where available.",
+        "* Clear product images.",
+        "* Accessible customer service information.",
+        "* Straightforward shopping cart and checkout processes.",
+        "* Easy access to shipping, returns, and other store policies.",
+        "Whether you're comparing espresso machines, browsing food preparation equipment, or selecting a larger kitchen appliance, our goal is to make finding and evaluating products easier.",
+        "Our promise: We work toward a shopping experience that is convenient, understandable, and accessible.",
+        "4. Honest Shipping and Delivery Information",
+        "We understand that delivery expectations matter, particularly when customers are purchasing essential kitchen appliances or equipment for their homes.",
+        "Our goal is to provide clear information about shipping eligibility, available delivery methods, estimated timelines, and applicable charges.",
+        "Our Delivery Commitments",
+        "We aim to:",
+        "* Provide shipping information before customers complete their orders.",
+        "* Communicate estimated processing and delivery times.",
+        "* Explain any special delivery requirements for larger products.",
+        "* Provide shipment tracking information when available.",
+        "* Inform customers about material delays when appropriate.",
+        "* Assist customers with shipping-related questions.",
+        "Some products, including larger kitchen appliances, may require specialized handling or freight delivery.",
+        "Delivery availability and timelines may vary based on the product, destination, carrier, and other relevant circumstances.",
+        "Customers can find the applicable details in our Shipping & Delivery Policy.",
+        "Our promise: We aim to communicate delivery expectations clearly and assist customers when shipping concerns arise.",
+        "5. Clear Returns and Refund Procedures",
+        "We believe customers should be able to understand their return and refund options before purchasing.",
+        "Our goal is to maintain a clearly written policy explaining return eligibility, request procedures, applicable fees, and refund processing.",
+        "Our Returns and Refund Principles",
+        "We aim to:",
+        "* Explain which products qualify for returns.",
+        "* Clearly disclose applicable return conditions.",
+        "* Provide instructions for requesting a return.",
+        "* Explain how damaged, defective, or incorrect items are handled.",
+        "* Communicate any applicable return shipping or restocking charges.",
+        "* Review eligible refund requests fairly.",
+        "* Process approved refunds according to our published policy and applicable law.",
+        "Return eligibility may depend on the product, its condition, the reason for the request, and applicable legal requirements.",
+        "We encourage customers to review our Returns & Refunds Policy before placing an order.",
+        "Our promise: We aim to handle eligible return and refund requests fairly, consistently, and transparently.",
+        "6. Customer Support That Listens",
+        "We understand that customers may need assistance at different stages of their shopping experience.",
+        "Some customers have questions about product specifications before ordering. Others may need assistance with delivery, order updates, returns, or warranty information.",
+        "At Lunaavo, we want customers to know how to reach us when they need help.",
+        "How We Support Our Customers",
+        "Our customer service channels are available for inquiries involving:",
+        "* Product information and specifications.",
+        "* Product availability.",
+        "* Order placement and checkout questions.",
+        "* Order status and tracking.",
+        "* Shipping and delivery.",
+        "* Cancellations.",
+        "* Returns and refunds.",
+        "* Warranty and product support.",
+        "* General website assistance.",
+        "Contact Our Team",
+        "Email: info@lunaavo.us",
+        "Phone: +1 (510) 345-2632",
+        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM",
+        "Live Chat Support: Available 24/7",
+        "Our goal is to provide helpful, respectful communication and practical assistance.",
+        "Our promise: We aim to listen carefully, provide accurate information, and help customers understand their available options.",
+        "7. Responsible Product Information",
+        "Kitchen and dining equipment can involve important safety, compatibility, and installation considerations.",
+        "We encourage customers to choose products based on their intended use and the manufacturer's specifications.",
+        "For appliances such as cooktops, ovens, ranges, dishwashers, and other installed equipment, customers should review relevant requirements before purchasing.",
+        "Important Product Considerations",
+        "These may include:",
+        "* Product dimensions.",
+        "* Electrical requirements.",
+        "* Gas or plumbing connections.",
+        "* Ventilation requirements.",
+        "* Installation clearances.",
+        "* Intended household or commercial use.",
+        "* Manufacturer instructions.",
+        "* Warranty limitations.",
+        "Some appliances may require installation by a qualified professional.",
+        "Installation services are not included unless expressly stated in the applicable product listing or purchase agreement.",
+        "Our promise: We aim to communicate important product information and encourage safe, informed purchasing decisions.",
+        "8. Respecting Your Privacy and Security",
+        "We recognize the importance of protecting customer information.",
+        "Customers may provide personal information when creating accounts, placing orders, contacting support, or using website features.",
+        "Our approach is guided by responsible information handling and applicable privacy requirements.",
+        "Our Privacy Commitments",
+        "We aim to:",
+        "* Explain how personal information is collected and used.",
+        "* Limit information collection to legitimate purposes.",
+        "* Use appropriate safeguards for information under our control.",
+        "* Work with payment and technology providers according to applicable requirements.",
+        "* Provide accessible privacy information.",
+        "* Respect applicable customer privacy rights.",
+        "* Offer ways to contact us about privacy concerns.",
+        "Customers can learn more by reviewing our Privacy Policy, Cookie Policy, and Your Privacy Choices page.",
+        "Our promise: We aim to handle customer information responsibly and communicate our privacy practices transparently.",
+        "9. Accessibility and Inclusive Shopping",
+        "We believe online shopping should be accessible to as many people as possible.",
+        "Our goal is to improve website usability for customers with different abilities, devices, and accessibility needs.",
+        "We aim to consider:",
+        "* Clear website navigation.",
+        "* Readable content.",
+        "* Meaningful product information.",
+        "* Keyboard accessibility.",
+        "* Compatibility with assistive technologies.",
+        "* Understandable forms and checkout instructions.",
+        "* Accessible customer support options.",
+        "We recognize that website accessibility requires ongoing attention and improvement.",
+        "Customers who encounter accessibility barriers are encouraged to contact us.",
+        "Our promise: We aim to identify and address accessibility concerns and make our online shopping experience more inclusive.",
+        "10. Building Trust Through Transparency",
+        "Trust is earned through consistent actions, clear communication, and responsible business practices.",
+        "We believe customers should be able to identify the business operating an online store, understand its policies, and know where to seek assistance.",
+        "That's why we make our business and contact information available.",
+        "Our Business Information",
+        "Store Name: Lunaavo",
+        "Legal Business Name: San Rafael Luggage Center, Inc",
         "Business Address:",
-        "1320 W El Segundo Blvd Ste E",
-        "Gardena, CA 90247, United States",
-        "Email: info@droviia.us",
-        "Phone: +1 (424) 329-0223",
-        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM PT",
+        "2221 Shattuck Ave.",
+        "Berkeley, CA 94704",
+        "United States",
+        "Website: https://lunaavo.us",
+        "Email: info@lunaavo.us",
+        "Phone: +1 (510) 345-2632",
+        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM",
         "Live Chat: Available 24/7",
-        "Website: https://droviia.us",
-        "DROVIIA — Everyday Essentials for Better Living."
+        "Our business address is provided for identification and correspondence. Customers should contact support before sending returns or arranging an in-person visit.",
+        "Our promise: We aim to maintain clear business information and accessible communication channels.",
+        "11. Continuous Improvement",
+        "Customer expectations, product technologies, and online shopping experiences continue to evolve.",
+        "We recognize the importance of regularly reviewing our website content, product information, customer service processes, and shopping experience.",
+        "Our improvement priorities include:",
+        "* Making product information clearer.",
+        "* Improving website navigation.",
+        "* Expanding useful product information.",
+        "* Addressing customer feedback.",
+        "* Reviewing customer support processes.",
+        "* Maintaining accurate store policies.",
+        "* Improving accessibility and usability.",
+        "* Identifying opportunities to simplify the purchasing experience.",
+        "We value constructive customer feedback because it helps us understand where improvements may be needed.",
+        "Our promise: We aim to keep improving the Lunaavo shopping experience as our business develops.",
+        "12. Our Commitment Goes Beyond the Checkout",
+        "For us, a customer relationship does not end when an order is placed.",
+        "We recognize that customers may need information and assistance after their purchase, particularly when purchasing kitchen equipment with technical specifications, installation requirements, or warranty considerations.",
+        "Our goal is to make post-purchase support information easy to access.",
+        "Customers can contact us about order concerns, delivery questions, eligible returns, and available product support options.",
+        "We encourage customers to retain their order confirmation and relevant product documentation for future reference.",
+        "Our promise: We aim to provide accessible information and support throughout the customer purchasing experience.",
+        "Our Commitment to You",
+        "At Lunaavo, our priorities are straightforward:",
+        "Quality-Focused Product Information. Helping customers understand what they're purchasing.",
+        "Transparent Shopping. Communicating prices, policies, and important conditions clearly.",
+        "Convenient Online Experience. Making it easier to discover and compare kitchen and dining products.",
+        "Helpful Customer Care. Providing accessible support channels for questions and concerns.",
+        "Responsible Business Practices. Respecting applicable customer rights and maintaining clear communication.",
+        "We believe these principles are essential to creating a shopping experience customers can feel confident using.",
+        "Experience the Lunaavo Difference",
+        "Whether you're preparing everyday meals, exploring new recipes, or upgrading your kitchen equipment, Lunaavo aims to make shopping for kitchen and dining essentials more convenient.",
+        "Discover our collections and find products suited to your home and lifestyle.",
+        "Lunaavo — Bringing More to Your Kitchen.",
+        "Explore Our Kitchen & Dining Collection",
+        "https://lunaavo.us",
+        "Contact Lunaavo",
+        "Have a question or need assistance?",
+        "Lunaavo",
+        "Operated by San Rafael Luggage Center, Inc",
+        "Address:",
+        "2221 Shattuck Ave.",
+        "Berkeley, CA 94704",
+        "United States",
+        "Email: info@lunaavo.us",
+        "Phone: +1 (510) 345-2632",
+        "Business Hours: Monday–Friday, 9:00 AM–5:00 PM",
+        "Live Chat Support: Available 24/7",
+        "Website: https://lunaavo.us"
       ]
     }
   ]
