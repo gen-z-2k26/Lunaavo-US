@@ -19,8 +19,8 @@ export function StorySection({ settings }: { settings: StoreSettings }) {
       >
         <RevealImage className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
           <Image
-            src="/brand/collection-kitchen.jpg"
-            alt="Kitchen stocked for everyday cooking and dining"
+            src="/brand/lunaavo-dining.jpg"
+            alt="Dining table set for an everyday meal"
             fill
             sizes="(min-width: 1024px) 40vw, 100vw"
             className="object-cover"

@@ -44,7 +44,7 @@ export function StepsSection() {
           {steps.map((item, index) => (
             <Reveal key={item.title} delay={index * 0.06} as="li">
               <div className="surface-card h-full space-y-4 p-6">
-                <p className="font-display inline-flex size-12 items-center justify-center rounded-full bg-primary/25 text-lg text-foreground">
+                <p className="font-display inline-flex size-12 items-center justify-center rounded-full bg-primary text-lg text-primary-foreground">
                   {item.number}
                 </p>
                 <h3 className="text-lg tracking-tight">{item.title}</h3>

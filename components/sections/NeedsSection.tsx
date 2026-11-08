@@ -8,34 +8,34 @@ import { cn } from "@/lib/utils";
 const needs = [
   {
     title: "Kitchen appliances",
-    text: "Equipment for different cooking spaces and household requirements, with specifications you can review before you buy.",
-    image: "/brand/collection-kitchen.jpg",
-    alt: "Kitchen set up for everyday cooking",
-    imageClass: "object-[62%_center]",
+    text: "Blenders, toasters, mixers, and other countertop equipment, with specifications you can review before you buy.",
+    image: "/brand/lunaavo-appliances.jpg",
+    alt: "Blender, toaster, mixer, and kettle on a kitchen counter",
+    imageClass: "object-center",
     tile: "feature" as const,
   },
   {
     title: "Cooking and food preparation",
-    text: "Appliances that help with everyday meals and more specialized recipes.",
-    image: "/brand/home-hero.jpg",
-    alt: "Counter prepared for cooking and food preparation",
-    imageClass: "object-[center_40%]",
+    text: "Boards, pans, and the everyday tools that turn ingredients into a meal.",
+    image: "/brand/lunaavo-cooking.jpg",
+    alt: "Cutting board with herbs, tomatoes, and a skillet",
+    imageClass: "object-center",
     tile: "wide" as const,
   },
   {
     title: "Coffee and beverage",
     text: "Equipment for coffee, espresso, tea, and other drinks, in different sizes and features.",
-    image: "/brand/collection-kitchen.jpg",
-    alt: "Kitchen counter for coffee and beverages",
-    imageClass: "object-[20%_center]",
+    image: "/brand/lunaavo-coffee.jpg",
+    alt: "Pour-over coffee, kettle, and ceramic cups",
+    imageClass: "object-center",
     tile: "compact" as const,
   },
   {
     title: "Specialized equipment",
     text: "Tools for particular recipes and techniques, gathered in one kitchen and dining shop.",
-    image: "/brand/home-hero.jpg",
-    alt: "Specialized kitchen equipment in a home kitchen",
-    imageClass: "object-[78%_center]",
+    image: "/brand/lunaavo-specialty.jpg",
+    alt: "Pasta machine, slicer, and small plates on a counter",
+    imageClass: "object-center",
     tile: "compact" as const,
   },
 ];
@@ -69,7 +69,7 @@ export function NeedsSection() {
         <SectionHeader
           eyebrow="Collections"
           title="Shop the kitchen and dining collection"
-          subtitle="Four places to start. The products themselves come from the live catalog."
+          subtitle="Appliances, cookware, coffee, and tools for a particular recipe."
           titleId="needs-heading"
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:h-[42rem] lg:grid-cols-4 lg:grid-rows-2">
@@ -98,7 +98,7 @@ export function NeedsSection() {
               />
               <div
                 aria-hidden
-                className="absolute inset-0 bg-gradient-to-t from-background/92 via-background/45 to-background/10"
+                className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/28 to-transparent"
               />
               <div
                 className={cn(

@@ -23,20 +23,20 @@ export function HeroSection({ settings }: { settings: StoreSettings }) {
       className="dark relative isolate h-[calc(100svh-3.5rem)] overflow-hidden bg-background text-foreground sm:h-[calc(100svh-4rem)]"
     >
       <Image
-        src="/brand/home-hero.jpg"
-        alt="Kitchen prepared for everyday cooking"
+        src="/brand/lunaavo-hero.jpg"
+        alt="Kitchen island set with plates, coffee, and fruit"
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[72%_center]"
+        className="object-cover object-[62%_center]"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-background/92 via-background/70 to-background/25"
+        className="absolute inset-0 bg-gradient-to-r from-background via-background/72 to-background/10"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/20 to-background/25"
+        className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/20"
       />
 
       <div
