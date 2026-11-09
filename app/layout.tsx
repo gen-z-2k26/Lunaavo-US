@@ -69,6 +69,9 @@ export async function generateMetadata(): Promise<Metadata> {
         description,
         images: [ogImage],
       },
+      verification: {
+        google: "7c4meET1Ka3ZaII2tRW0uYig3vUNoWbYjhvfOxKu4CQ",
+      },
       robots: {
         index: true,
         follow: true,
@@ -81,6 +84,9 @@ export async function generateMetadata(): Promise<Metadata> {
     return {
       title: "Online store",
       description: "Simple ecommerce storefront.",
+      verification: {
+        google: "7c4meET1Ka3ZaII2tRW0uYig3vUNoWbYjhvfOxKu4CQ",
+      },
       robots: {
         index: true,
         follow: true,
