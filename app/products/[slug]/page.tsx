@@ -64,7 +64,7 @@ export async function generateMetadata({
 
   if (!product) {
     return {
-      title: "Product niet gevonden",
+      title: "Product not found",
       robots: {
         index: false,
         follow: false,
