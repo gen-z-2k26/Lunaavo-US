@@ -23,28 +23,28 @@ export const POLICY_PAGES: PolicyPageDef[] = [
     slug: "shipping-policy",
     title: "Shipping & Delivery",
     description:
-      "At Lunaavo, we understand how important it is to receive your kitchen appliances and dining essentials safely and within the expected delivery timeframe.",
+      "At Lunaavo, we understand the importance of receiving your kitchen appliances and dining essentials safely and on time.",
     intro:
-      "This Shipping & Delivery Policy explains how orders are processed, where we deliver, how shipping charges are calculated, and what to do if you experience a delivery issue.",
-    groupTitles: ["Shipping and delivery"],
+      "Shipping is free on all orders within the United States. Estimated total delivery time is 4–8 business days.",
+    groupTitles: ["Shipping & Delivery"],
   },
   {
     slug: "return-and-refund-policy",
     title: "Returns & Refunds",
     description:
-      "Our Returns & Refunds Policy explains how to request a return, which products may be eligible, how refunds are processed, and what to do if you receive a damaged, defective, or incorrect item.",
+      "We offer a 30-day return policy, free return shipping for eligible returns, no restocking fees, and refund processing within 5 business days after receipt and approval of the returned product.",
     intro:
-      "At Lunaavo, customer satisfaction is important to us. Review this policy before placing an order.",
-    groupTitles: ["Returns and exchanges", "Refunds"],
+      "At Lunaavo, we want customers to shop with confidence.",
+    groupTitles: ["Returns, Refunds & Exchanges"],
   },
   {
     slug: "cancellation-policy",
     title: "Order Cancellation",
     description:
-      "This Order Cancellation Policy explains how to request a cancellation, when an order may be canceled, how refunds are handled, and what happens if your order has already been shipped.",
+      "We offer free order cancellation before dispatch, with no cancellation fees for eligible orders.",
     intro:
-      "At Lunaavo, we understand that plans can change. Contact us as soon as you need to cancel or change an order.",
-    groupTitles: ["Placing and managing orders"],
+      "At Lunaavo, we understand that plans can change after an order is placed.",
+    groupTitles: ["Ordering & Checkout"],
   },
   {
     slug: "payment-policy",
@@ -53,7 +53,7 @@ export const POLICY_PAGES: PolicyPageDef[] = [
       "This Payment Policy explains how payments are handled, which payment methods may be available, how billing information is processed, and what to do if you encounter a payment-related issue.",
     intro:
       "All prices on Lunaavo are displayed in United States Dollars (USD) unless otherwise indicated. The methods shown at checkout are the options available for your purchase.",
-    groupTitles: ["Payments and checkout"],
+    groupTitles: ["Payments & Pricing"],
   },
   {
     slug: "buy-now-pay-later",
@@ -183,7 +183,7 @@ export const POLICY_PAGES: PolicyPageDef[] = [
       {
         title: "Returns and refunds",
         paragraphs: [
-          "Return eligibility, timing, shipping responsibility, and any restocking fee are described in the Returns & Refunds Policy.",
+          "Eligible items may be returned within 30 days of delivery with free return shipping and no restocking fee, as described in the Returns & Refunds Policy.",
           "Do not send products to the Berkeley business address unless customer support specifically authorizes that destination.",
         ],
       },

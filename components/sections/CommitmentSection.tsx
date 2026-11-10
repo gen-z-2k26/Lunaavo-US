@@ -12,15 +12,15 @@ const pillars = [
   },
   {
     title: "Transparent pricing",
-    text: "Prices are in U.S. dollars. Shipping and the order total are shown before you pay.",
+    text: "Prices are in U.S. dollars, shipping is free, and the order total is shown before you pay.",
   },
   {
-    title: "Shipping you can review",
-    text: "Shipping charges and delivery timing are explained in our shipping policy and shown at checkout.",
+    title: "Free shipping",
+    text: "Free shipping on all U.S. orders, with an estimated total delivery time of 4–8 business days.",
   },
   {
-    title: "Returns you can look up",
-    text: "Eligibility, timing, and any fees are described in the returns policy. Contact us before sending an item back.",
+    title: "30-day returns",
+    text: "Request a return within 30 days of delivery. Return shipping is free, there is no restocking fee, and refunds are processed within 5 business days of approval.",
   },
 ];
 

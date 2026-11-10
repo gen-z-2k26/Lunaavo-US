@@ -314,9 +314,9 @@ export function ProductDetail({
                 title: "Shipping and returns",
                 content: (
                   <>
-                    <p>Estimated delivery is 3 to 7 business days after processing.</p>
+                    <p>Free U.S. shipping. Estimated delivery is 4–8 business days.</p>
                     <p className="mt-2">
-                      Eligible items may be returned within 30 days. Questions:{" "}
+                      Eligible items may be returned within 30 days of delivery with free return shipping. Questions:{" "}
                       {settings.contact.email}
                       {settings.contact.phone ? ` or ${settings.contact.phone}` : ""}.
                     </p>

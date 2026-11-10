@@ -150,244 +150,215 @@
     "intro": "Shopping for kitchen appliances and dining essentials should be simple, convenient, and stress-free.",
     "groups": [
       {
-        "title": "1. General Questions",
+        "title": "General Questions",
         "items": [
           {
             "question": "What is Lunaavo?",
-            "answer": "Lunaavo is a U.S.-based online store specializing in kitchen and dining products. We bring together kitchen appliances, cooking equipment, food preparation essentials, and related products to help customers find equipment suited to their homes and everyday routines. Our goal is to make shopping for kitchen and dining essentials straightforward, informative, and convenient. Visit our store: https://lunaavo.us"
+            "answer": "Lunaavo is a U.S.-based online store specializing in kitchen appliances, cooking equipment, and dining essentials. Our selection includes products designed to make everyday cooking, food preparation, and kitchen activities more convenient. We focus on offering brand-new products, competitive pricing, transparent shopping policies, and accessible customer support. Website: https://www.lunaavo.us/"
           },
           {
             "question": "Is Lunaavo a legitimate U.S. business?",
-            "answer": "Lunaavo is operated by San Rafael Luggage Center, Inc, with its business address in Berkeley, California. We provide our business information, contact details, and customer service policies so shoppers can identify the company operating our website and contact us when assistance is needed. Legal Business Name: San Rafael Luggage Center, Inc Business Address: 2221 Shattuck Ave., Berkeley, CA 94704, United States Customer Support: info@lunaavo.us"
+            "answer": "Lunaavo is operated by San Rafael Luggage Center, Inc, with its listed business address in Berkeley, California. We provide our legal business information, contact details, and customer service policies to help shoppers make informed purchasing decisions. Legal Business Name: San Rafael Luggage Center, Inc Business Address: 2221 Shattuck Ave., Berkeley, CA 94704, United States Customer Support: info@lunaavo.us If you have questions about our business or an order, our customer support team is available to assist you."
           },
           {
             "question": "Where is Lunaavo located?",
-            "answer": "Our listed business address is: Lunaavo — San Rafael Luggage Center, Inc 2221 Shattuck Ave. Berkeley, CA 94704 United States Lunaavo operates as an online shopping destination. Please contact us before arranging an in-person visit, as the business address does not necessarily serve as a public showroom or customer pickup location."
+            "answer": "Our business address is: 2221 Shattuck Ave. Berkeley, CA 94704 United States Lunaavo operates as an online retail store. We do not offer in-person shopping, warehouse collection, or customer pickup. All eligible orders are delivered through our shipping and logistics partners."
           },
           {
             "question": "What products does Lunaavo sell?",
-            "answer": "Lunaavo focuses on kitchen and dining essentials, including products for cooking, beverage preparation, food processing, and other kitchen activities. Depending on current product availability, you can explore kitchen appliances and specialized equipment for different household needs. Browse our website to see our current selection."
+            "answer": "We specialize in kitchen and dining products, including: * Coffee makers and espresso machines. * Ovens and cooktops. * Food mixers and blenders. * Food preparation appliances. * Cooking equipment. * Kitchen accessories. * Other kitchen and dining essentials. Product availability may change as our catalog is updated. Visit our website to explore the current selection."
           },
           {
-            "question": "Are your products brand-new and unused?",
-            "answer": "Product condition should be clearly identified in the individual product listing. If a product is described as new, it should match that description. Any applicable condition details, included accessories, and product-specific limitations should be reviewed before purchase. If you would like confirmation about a particular item, contact us with the product name or link before ordering."
+            "question": "Are all Lunaavo products brand-new?",
+            "answer": "Yes. All products sold by Lunaavo are brand-new and unused. Our products are supplied in their original product packaging with the applicable components and accessories specified in their listings. We do not sell used or refurbished products. If you have questions about a particular model, its packaging, or included accessories, contact our customer support team before purchasing."
           },
           {
-            "question": "Why are some products priced lower than elsewhere?",
-            "answer": "Product prices can vary between retailers because of supplier pricing, inventory costs, promotions, and market conditions. A lower price does not automatically mean a product is used or defective. We recommend comparing the exact model number, product specifications, condition, included accessories, and warranty information when evaluating offers. If you have questions about a particular product or price, our support team can help clarify the listing information."
+            "question": "Why are some Lunaavo products priced lower than other retailers?",
+            "answer": "We aim to offer competitive pricing through supplier relationships, inventory management, and promotional pricing opportunities. Product prices can vary between retailers based on purchasing costs, inventory levels, and current promotions. A lower price does not mean that the product is used or refurbished. All Lunaavo products are sold as brand-new. We encourage customers to compare model numbers, specifications, included accessories, and applicable warranty terms when evaluating products."
           }
         ]
       },
       {
-        "title": "2. Product Information & Availability",
+        "title": "Product Information & Availability",
         "items": [
           {
-            "question": "How do I know which appliance is right for my kitchen?",
-            "answer": "We recommend reviewing the product's specifications carefully, particularly: * Dimensions and available installation space. * Capacity and performance features. * Electrical or gas requirements. * Product model number. * Included accessories. * Compatibility and installation instructions. * Manufacturer recommendations. For larger appliances, verify measurements and utility requirements before ordering. If you need clarification, send our team the product link and your question."
+            "question": "How do I choose the right appliance for my kitchen?",
+            "answer": "Before purchasing an appliance, we recommend reviewing: * Product dimensions. * Available installation space. * Capacity and performance specifications. * Electrical, gas, or plumbing requirements. * Model number and compatibility. * Included accessories. * Manufacturer recommendations. For larger appliances, confirm that the product will fit your intended location and meet the necessary utility requirements. If you're unsure which model is suitable, contact our support team with the product link and your requirements."
           },
           {
-            "question": "Are the products shown on your website available to order?",
-            "answer": "Product availability is indicated on individual listings where supported by our website. Inventory may change, particularly for popular models or promotional products. If an item is unavailable, you may be unable to purchase it until availability is updated. For questions about a specific item, please contact our customer support team."
+            "question": "Are products listed on Lunaavo available to order?",
+            "answer": "Products displayed as available on our website can generally be ordered through checkout. Inventory levels may change due to demand, supplier availability, and ongoing order processing. If a product becomes unavailable after an order is placed, our team will review the situation and communicate the available options. For confirmation about a particular product, contact us before placing your order."
           },
           {
-            "question": "Do your appliances come with accessories?",
-            "answer": "Included accessories vary by product and model. Please check the product description and manufacturer's specifications to understand what is included. Accessories shown in lifestyle photographs may not always be included unless explicitly stated in the listing. If you're unsure, contact us before purchasing."
+            "question": "Do appliances come with accessories?",
+            "answer": "Included accessories depend on the product and manufacturer. Please review the product description and specifications to determine which accessories are included. Items shown in promotional or lifestyle photographs may not be included unless specifically stated in the product listing. If you need clarification, our support team can help you review the available product information."
           },
           {
-            "question": "Do you sell replacement parts or accessories?",
-            "answer": "Available replacement parts and accessories depend on our current catalog. You can search our website for the product or accessory you're looking for. If you need help identifying a compatible item, please provide the appliance model number and relevant details."
+            "question": "Do you sell replacement parts or appliance accessories?",
+            "answer": "Our catalog may include compatible accessories and replacement parts for selected products. Availability depends on the specific appliance and our current inventory. We recommend searching our website or contacting support with the appliance's model number to check for suitable products."
           }
         ]
       },
       {
-        "title": "3. Ordering & Checkout",
+        "title": "Ordering & Checkout",
         "items": [
           {
             "question": "How do I place an order?",
-            "answer": "Ordering from Lunaavo is straightforward:"
-          }
-        ]
-      },
-      {
-        "title": "1. Browse our Kitchen & Dining collection.",
-        "items": []
-      },
-      {
-        "title": "2. Select the product you want.",
-        "items": []
-      },
-      {
-        "title": "3. Review the description, specifications, and price.",
-        "items": []
-      },
-      {
-        "title": "4. Add the item to your cart.",
-        "items": []
-      },
-      {
-        "title": "5. Proceed to checkout.",
-        "items": []
-      },
-      {
-        "title": "6. Enter your billing and shipping information.",
-        "items": []
-      },
-      {
-        "title": "7. Select an available payment method.",
-        "items": []
-      },
-      {
-        "title": "8. Review your order and submit it.",
-        "items": [
-          {
-            "question": "Can I place an order without creating an account?",
-            "answer": "If guest checkout is enabled on our website, you can complete your purchase without creating an account. Available checkout options are displayed during the ordering process. Please enter a valid email address so you can receive important order communications."
+            "answer": "Ordering from Lunaavo is straightforward: 1. Browse our website and select your preferred product. 2. Review the product specifications, price, and availability. 3. Add the product to your shopping cart. 4. Proceed to checkout. 5. Enter your billing and shipping details. 6. Select an available payment method. 7. Review your order information. 8. Complete your purchase. Once your order is successfully submitted, an order confirmation will be displayed, and you may receive a confirmation email."
           },
           {
-            "question": "How do I know if my order was successful?",
-            "answer": "After successfully submitting your order, you should see an order confirmation or order status message. You may also receive a confirmation email containing your order details. If you don't receive an email, check your spam or junk folder. If you're still unsure whether your order was received, contact info@lunaavo.us before attempting another purchase to avoid duplicate orders."
+            "question": "Can I place an order without creating an account?",
+            "answer": "Yes. Lunaavo supports guest checkout. You can place an order without registering for a customer account. Simply enter your required billing, shipping, and contact information during checkout. We recommend providing a valid email address so you can receive order confirmations, shipping updates, and important communications."
+          },
+          {
+            "question": "How do I know whether my order was successful?",
+            "answer": "After completing checkout, you should see an order confirmation or order status message. You may also receive an order confirmation email containing your purchase details. If you do not receive an email: * Check your spam or junk folder. * Verify the email address entered during checkout. * Contact our customer support team. If you're unsure whether an order was submitted successfully, please contact us before placing another order to avoid duplicate purchases."
           },
           {
             "question": "Can I modify my order after placing it?",
-            "answer": "If you need to change an order, contact our support team as soon as possible. Depending on the order's processing and fulfillment status, certain changes may no longer be possible. Please include your order number and the details you want to update. We will review your request and explain the available options."
+            "answer": "If you need to change your order, contact us as soon as possible. We may be able to assist with changes before the order is dispatched. Once an order has shipped, certain modifications may no longer be possible. Please email info@lunaavo.us with your order number and the changes you would like to request."
           },
           {
             "question": "Can I cancel my order?",
-            "answer": "You may request an order cancellation by contacting customer support. Whether cancellation is possible depends on the order's current status and the terms of our Order Cancellation Policy. Orders that have already entered shipping or fulfillment may be subject to different procedures. For the fastest assistance, contact us immediately with your order number. Read more: Order Cancellation Policy"
+            "answer": "Yes. Lunaavo offers free order cancellation before dispatch. If your order has not yet been dispatched, you may request cancellation without a cancellation fee. To request cancellation, contact our customer support team as soon as possible with your order number. Once an order has been dispatched, it can no longer be canceled through the standard pre-dispatch cancellation process. However, you may still qualify for a return under our 30-day Returns & Refunds Policy after delivery. Cancellation Fee Before Dispatch: $0 For more information, visit: https://www.lunaavo.us/cancellation-policy/"
           }
         ]
       },
       {
-        "title": "4. Payments & Pricing",
+        "title": "Payments & Pricing",
         "items": [
           {
-            "question": "What payment methods do you accept?",
-            "answer": "The payment methods currently available are displayed during checkout. Available options may depend on your order, payment provider, and other applicable conditions. Please review the checkout page for the payment methods supported for your purchase. If you experience a payment issue, contact our customer support team."
+            "question": "What payment methods does Lunaavo accept?",
+            "answer": "Lunaavo supports credit and debit card payments and Afterpay when available at checkout. Supported payment options may include major card networks and available financing services. Because payment provider availability may change, the exact payment methods offered can vary over time. The payment options displayed on the checkout page are the most accurate and up-to-date methods available for your purchase. Please review the available payment methods before completing your order. If a payment option is not displayed, it may not currently be available."
           },
           {
-            "question": "Is it safe to make a payment on Lunaavo?",
-            "answer": "We aim to provide a secure and responsible online shopping experience. Payments are handled through the payment services integrated with our checkout, subject to their applicable security practices. For your protection, never send complete payment card details, passwords, or security codes through email or live chat. You can review our Privacy Policy for more information about how customer information is handled."
+            "question": "Is it safe to make payments on Lunaavo?",
+            "answer": "We aim to provide a secure online shopping experience. Payments are handled through the payment services integrated with our checkout. For your protection: * Always verify that you are shopping on our official website. * Complete payments through the checkout page. * Never share your full payment card information by email or live chat. * Never share account passwords or card security codes. For more information about how customer information is handled, please review our Privacy Policy."
           },
           {
             "question": "Why was my payment declined?",
-            "answer": "A payment may be declined for several reasons, including: * Incorrect card details. * Insufficient available funds. * Bank security restrictions. * Billing information mismatches. * Payment provider verification requirements. * Temporary processing errors. We recommend checking your payment details and contacting your bank or payment provider if the issue continues. If you need additional assistance, our team can help review the checkout issue without requesting sensitive card information."
+            "answer": "Payments may be declined for several reasons, including: * Incorrect payment details. * Insufficient available funds. * Bank security restrictions. * Billing address mismatches. * Payment provider verification requirements. * Temporary payment processing issues. If your payment is declined, check your information and try again. You may also contact your bank or payment provider. If the problem continues, contact Lunaavo support for assistance."
           },
           {
             "question": "Are there additional charges at checkout?",
-            "answer": "The total amount payable should be displayed before you complete your order. Depending on your purchase and delivery location, the final amount may include applicable taxes, shipping charges, or other disclosed fees. Please review your order summary carefully before submitting payment."
+            "answer": "Lunaavo offers free standard shipping throughout the United States, with no minimum order value. There are no standard shipping charges for eligible U.S. orders, including eligible oversized appliances. Applicable sales taxes may be calculated based on your order and delivery location. Optional services, such as appliance installation where offered, may have separate charges if disclosed before purchase. Your order total and any applicable charges will be displayed during checkout."
           },
           {
-            "question": "Do you offer discount codes or promotional offers?",
-            "answer": "Promotional offers may be available from time to time. When a valid discount code is offered, you can enter it in the applicable field during checkout. Discounts may have eligibility requirements, expiration dates, or other conditions. Only promotions published or confirmed through Lunaavo's official channels should be treated as authorized offers."
+            "question": "Does Lunaavo offer discounts or promotional codes?",
+            "answer": "We may offer promotional discounts, special pricing, or limited-time offers. When a valid discount code is available, you can enter it in the applicable field during checkout. Promotions may have eligibility conditions or expiration dates. For current offers, check our website or contact customer support."
           }
         ]
       },
       {
-        "title": "5. Shipping & Delivery",
+        "title": "Shipping & Delivery",
         "items": [
           {
             "question": "Where does Lunaavo ship?",
-            "answer": "Lunaavo serves customers in the United States. Shipping eligibility for a particular product or destination is determined by the options available during checkout and our published Shipping & Delivery Policy. Some products may have delivery restrictions due to their size, weight, or handling requirements."
+            "answer": "Lunaavo provides shipping throughout the United States, including all 50 states. We currently focus on domestic U.S. deliveries. Shipping eligibility for individual addresses is subject to carrier service availability and any applicable delivery restrictions. We do not currently offer international shipping. For further information, review our Shipping & Delivery Policy."
           },
           {
             "question": "How much does shipping cost?",
-            "answer": "Applicable shipping charges, if any, are determined by the product, order, destination, and available delivery method. Any shipping fees should be disclosed during checkout before you submit your order. For further information, please review our Shipping & Delivery Policy."
+            "answer": "Shipping is completely FREE on eligible orders throughout the United States. Our shipping terms include: * Free shipping on all orders. * No minimum purchase requirement. * No standard shipping fees. * Free shipping for eligible oversized appliances. The shipping cost for eligible orders is $0."
           },
           {
             "question": "How long does delivery take?",
-            "answer": "Estimated delivery times depend on factors such as: * Product availability. * Order processing. * Shipping destination. * Carrier service. * Product dimensions and handling requirements. * Weather or transportation disruptions. Please refer to the estimated delivery information provided during checkout and in our Shipping & Delivery Policy. Delivery estimates are not guarantees unless expressly stated."
+            "answer": "Our standard estimated delivery timeframe is 4–8 business days. Shipping Stage Estimated Time Order handling 0–1 business days Shipping transit 4–7 business days Total estimated delivery 4–8 business days Order Cutoff: 5:00 PM Eastern Time (New York local time) Handling Days: Monday–Friday Transit Days: Monday–Friday Orders placed after the cutoff generally begin processing on the following business day. Business days exclude weekends and applicable public holidays. Delivery times are estimates and may be affected by carrier delays, weather, or other circumstances."
           },
           {
             "question": "How can I track my order?",
-            "answer": "If tracking information is available for your shipment, it may be provided through your order updates or shipping confirmation. You can use the tracking details to check your shipment's progress. If you need help locating tracking information, contact our team with your order number. Visit: Track Your Order"
+            "answer": "Once your order has been shipped, tracking information will be provided through the applicable shipping notification. You can use your tracking number to monitor the shipment's progress. If you need assistance locating your tracking information, contact us with your order number. Track Your Order: https://www.lunaavo.us/track-your-order/"
           },
           {
             "question": "What should I do if my order is delayed?",
-            "answer": "We understand that waiting longer than expected can be frustrating. If your order has not arrived within the communicated delivery timeframe, contact us at info@lunaavo.us. Please include your order number so we can review the available shipment information and assist with the next steps."
+            "answer": "If your order has not arrived within the estimated delivery timeframe, please contact us. Email: info@lunaavo.us Include your order number and any available tracking details. Our team will review the shipment status and help you understand the next steps. If an order cannot be shipped within the promised timeframe, we will provide the notices and options required by applicable law."
           },
           {
             "question": "What if my package is marked delivered but I haven't received it?",
-            "answer": "First, check the delivery location, surrounding areas, and any delivery notifications from the carrier. If the package is still missing, contact the carrier and notify Lunaavo customer support. We'll review the available order and tracking details and help you understand the next steps."
+            "answer": "If tracking shows your order as delivered but you cannot locate it: 1. Confirm the shipping address on your order. 2. Check around your delivery location. 3. Review any delivery photographs or carrier notifications. 4. Check with household members or building management, where appropriate. 5. Contact the shipping carrier. 6. Notify Lunaavo customer support if the package remains missing. We will review the available delivery information and assist with the appropriate next steps."
           },
           {
             "question": "Do large kitchen appliances require special delivery arrangements?",
-            "answer": "Some larger appliances may require specialized shipping, additional handling, or delivery coordination. Depending on the product, delivery services may differ from those available for smaller parcels. Please review the product listing and shipping information for any special requirements. Installation, unpacking, or removal of an existing appliance should not be assumed to be included unless expressly stated."
+            "answer": "Some oversized appliances may require specialized handling, freight transportation, or delivery coordination. Eligible oversized appliances are covered by our free shipping policy and standard estimated 4–8-business-day delivery timeframe. Certain products may require delivery appointments or special access arrangements. Please ensure your delivery location can accommodate the appliance's size and weight. Installation services may be available for eligible appliances and should be confirmed separately."
+          },
+          {
+            "question": "Does Lunaavo offer customer pickup?",
+            "answer": "No. Lunaavo is an online delivery-only retailer. We do not offer: * In-store pickup. * Warehouse collection. * Customer pickup from our business address. All eligible purchases are shipped directly to the customer's designated delivery address."
           }
         ]
       },
       {
-        "title": "6. Returns, Refunds & Exchanges",
+        "title": "Returns, Refunds & Exchanges",
         "items": [
           {
             "question": "Can I return a product if I'm not satisfied?",
-            "answer": "Return eligibility depends on the product, its condition, the reason for the return, and our published Returns & Refunds Policy. Before requesting a return, please review the applicable policy and contact customer support for instructions. Do not ship merchandise to our business address without receiving return instructions."
+            "answer": "Yes. Lunaavo offers a 30-day return policy. We accept eligible returns for both defective and non-defective products. For standard non-defective returns, products must remain new, unused, and uninstalled. Our return policy includes: * 30 calendar days from delivery. * Free return shipping. * No restocking fees. * Prepaid return labels sent by email after return approval. To request a return, contact info@lunaavo.us within 30 days of delivery."
           },
           {
-            "question": "What if I receive a damaged, defective, or incorrect item?",
-            "answer": "If there is a problem with your order, please contact us promptly. Include: * Your order number. * The product name. * A description of the issue. * Clear photographs, if relevant. * Any additional details that may help us review the concern. Our team will assess the information and explain the available resolution options under our policies and applicable law."
+            "question": "What if I receive a damaged, defective, or incorrect product?",
+            "answer": "If your product arrives damaged, defective, or incorrect, please contact our customer support team. Include: * Your order number. * Product name and model. * Description of the issue. * Relevant photographs, if available. We accept eligible defective-product returns within the 30-day return window. Return Shipping: FREE Restocking Fee: $0 We will review your request and explain the appropriate resolution. Additional warranty or statutory rights may apply."
           },
           {
             "question": "How do I request a refund?",
-            "answer": "To request a refund, email info@lunaavo.us with your order number and the reason for your request. Our support team will review your inquiry and provide information about eligibility and the applicable procedure. Approved refunds are processed according to our Returns & Refunds Policy and applicable payment provider requirements. The time required for funds to appear may also depend on your financial institution."
+            "answer": "To request a refund: 1. Email info@lunaavo.us within the applicable return period. 2. Provide your order number and reason for the return. 3. Wait for our return instructions. 4. Receive your free prepaid return label by email after approval. 5. Package the product securely. 6. Ship the item using the designated return method. Once we receive and approve the returned product, we will process your refund within 5 business days. Approved refunds are generally issued to the original payment method. Your bank or payment provider may require additional time to make the funds available."
           },
           {
             "question": "Can I exchange a product?",
-            "answer": "Exchange availability depends on the product and the circumstances of your request. Please contact customer support with your order details and the item you wish to exchange. We will explain whether an exchange or another available resolution is possible."
+            "answer": "No. Lunaavo does not accept direct product exchanges. If you ordered the wrong product or would prefer a different model, you may request an eligible return within 30 days. After returning the original product, you can place a separate order for the item you want. All new purchases are subject to current pricing and availability. This does not limit any replacement rights required by applicable law or product warranties."
           },
           {
-            "question": "Where should I send a returned item?",
-            "answer": "Please do not send returns directly to our listed business address unless our support team specifically authorizes that location. Contact info@lunaavo.us first to obtain the applicable return instructions. Shipping an item to an unauthorized address may delay the return process."
+            "question": "Where should I send a returned product?",
+            "answer": "Please contact our customer support team before sending a product back. Email: info@lunaavo.us Once your eligible return request is approved, we will email you a free prepaid return shipping label and the applicable instructions. Return labels are not included inside the original package. Use the return destination specified on the label or in the instructions. Do not send products to our Berkeley business address unless our team specifically authorizes that destination. Return Shipping Fee: $0 Restocking Fee: $0 For complete details, visit: https://www.lunaavo.us/return-and-refund-policy"
           }
         ]
       },
       {
-        "title": "7. Warranty & Product Support",
+        "title": "Warranty & Product Support",
         "items": [
           {
             "question": "Do Lunaavo products come with a warranty?",
-            "answer": "Warranty coverage varies by product and manufacturer. Where applicable, warranty details may be provided in the product listing or accompanying manufacturer documentation. Before purchasing, we recommend reviewing the available warranty terms, including coverage, exclusions, and claim procedures. For additional questions, contact our customer support team."
+            "answer": "Manufacturer warranty coverage is available where applicable. Warranty coverage depends on the specific product and manufacturer. Some products may include manufacturer warranty protection, while others may have different coverage terms. We recommend reviewing the product listing and applicable manufacturer documentation before purchasing. Warranty duration, exclusions, registration requirements, and claim procedures may vary. Lunaavo does not promise a universal warranty period for every product. If you need assistance understanding the warranty information for a particular appliance, contact our support team."
           },
           {
             "question": "What should I do if my appliance stops working?",
-            "answer": "Start by reviewing the product manual and any manufacturer troubleshooting instructions. If the issue continues, contact us with: * Your order number. * Product name and model. * A description of the problem. * Relevant photos or other supporting information. We can help you identify the applicable support or warranty information. For electrical, gas, or other potentially hazardous appliance issues, discontinue use and seek qualified assistance when appropriate."
+            "answer": "If your appliance stops working, begin by reviewing the manufacturer's operating instructions and troubleshooting guidance. If the issue continues, contact Lunaavo support with: * Your order number. * Product name and model. * Description of the problem. * Relevant photographs or other supporting information. Our team can help identify the applicable return, warranty, or product support procedure. For potentially unsafe electrical, gas, or heating-related problems, discontinue use and seek qualified assistance."
           },
           {
-            "question": "Does Lunaavo provide installation services?",
-            "answer": "Installation services are not included unless expressly stated in the product listing or purchase agreement. Certain appliances may require professional installation, including equipment involving electrical wiring, gas connections, plumbing, or ventilation. Always follow the manufacturer's installation requirements and applicable local regulations."
+            "question": "Does Lunaavo provide appliance installation services?",
+            "answer": "Yes. Installation services are available for eligible appliances. Installation eligibility and arrangements depend on the specific product and applicable service requirements. Before purchasing an appliance that requires installation, contact our customer support team to confirm: * Whether installation is available for the selected appliance. * The scope of the installation service. * Scheduling and coordination requirements. * Any applicable installation charges. Installation should not be assumed to be included in the product purchase price unless expressly stated. For appliances involving gas, electrical, or plumbing connections, installation must follow applicable safety requirements and manufacturer instructions."
           }
         ]
       },
       {
-        "title": "8. Account, Privacy & Website Support",
+        "title": "Account, Privacy & Website Support",
         "items": [
           {
             "question": "How is my personal information used?",
-            "answer": "Customer information may be used for purposes such as processing orders, providing support, communicating about purchases, and operating our website. For more details about the categories of information collected, the purposes of processing, and available privacy rights, please review our Privacy Policy."
+            "answer": "Customer information may be used to: * Process purchases. * Manage orders and deliveries. * Provide customer support. * Communicate important order information. * Operate and improve our website. * Meet applicable legal obligations. For more information about how we collect, use, and protect customer information, please review our Privacy Policy."
           },
           {
             "question": "What should I do if I'm having trouble using the website?",
-            "answer": "If you're experiencing a technical issue, try refreshing the page or using an updated browser. If the issue persists, contact us with: * A description of the problem. * The page or product involved. * Your device and browser, if relevant. * A screenshot, if helpful. Please avoid sharing passwords or sensitive payment information."
+            "answer": "If you experience a technical issue: 1. Refresh the page. 2. Check your internet connection. 3. Try an updated web browser. 4. Clear browser cache if necessary. 5. Contact customer support if the issue continues. When contacting us, please provide the page URL, a description of the problem, and a screenshot if available. Do not share passwords or sensitive payment information."
           },
           {
             "question": "Can I contact Lunaavo before placing an order?",
-            "answer": "Absolutely. We encourage customers to ask questions before purchasing, particularly when selecting appliances with specific dimensions, compatibility requirements, or technical features. Contact us with the product link and your question, and we'll help clarify the available information."
+            "answer": "Yes. We encourage customers to contact us before purchasing if they need additional information. Our team can assist with questions about: * Product specifications. * Appliance compatibility. * Dimensions and installation requirements. * Product availability. * Shipping and delivery. * Warranty information. * Payment options. * Installation service eligibility. Simply send us the product link and your question."
           }
         ]
       },
       {
-        "title": "9. Customer Service & Contact Information",
+        "title": "Customer Service & Contact Information",
         "items": [
           {
             "question": "How can I contact Lunaavo customer support?",
-            "answer": "You can reach Lunaavo through the following channels: Email: info@lunaavo.us Phone: +1 (510) 345-2632 Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time Live Chat: Available 24/7 Website: https://lunaavo.us For order-related inquiries, include your order number to help us locate the relevant information."
+            "answer": "You can reach our customer support team through: Email: info@lunaavo.us Monday–Friday 9:00 AM–5:00 PM Pacific Time Website: https://www.lunaavo.us/ For order-related questions, include your order number."
           },
           {
             "question": "Is customer support available on weekends?",
-            "answer": "Our regular business hours are Monday through Friday, 9:00 AM to 5:00 PM Pacific Time. Our website's live chat is available 24/7. Inquiries requiring additional review may be handled during regular business hours."
+            "answer": "Our regular customer support business hours are Monday through Friday, 9:00 AM–5:00 PM Pacific Time. Our website's live chat is available 24/7. Questions requiring additional review or assistance from a specialist may be handled during regular business hours. You can also email us at any time."
           },
           {
             "question": "How can I submit feedback or a complaint?",
-            "answer": "We welcome customer feedback. If you have a suggestion, concern, or complaint, email info@lunaavo.us with a description of the matter. If your message relates to an order, include the order number and any relevant details. Our team will review your inquiry and provide appropriate assistance. Still Have Questions? We're Here to Help. Can't find the answer you're looking for? Our customer support channels are available to help with product information, orders, shipping, returns, and other shopping questions. Lunaavo Customer Support Email: info@lunaavo.us Phone: +1 (510) 345-2632 Business Hours: Monday–Friday, 9:00 AM–5:00 PM Pacific Time Live Chat: Available 24/7 Business Address: 2221 Shattuck Ave. Berkeley, CA 94704 United States Legal Business Name: San Rafael Luggage Center, Inc Website: https://lunaavo.us Lunaavo — Bringing More to Your Kitchen. Explore our collection and shop with confidence, knowing that help is available when you need it."
+            "answer": "We welcome customer feedback and take concerns seriously. If you have a suggestion, question, or complaint, please email: info@lunaavo.us Include a description of your concern and any relevant order details. Our customer support team will review your inquiry and assist with the appropriate next steps. Still Have Questions? We're Here to Help. If you couldn't find the answer you were looking for, our customer support team is available to assist with product information, orders, payments, shipping, returns, warranties, and installation inquiries. Lunaavo Customer Support Email: info@lunaavo.us Legal Business Name: San Rafael Luggage Center, Inc Business Address: 2221 Shattuck Ave. Berkeley, CA 94704 United States Website: https://www.lunaavo.us/"
           }
         ]
       }

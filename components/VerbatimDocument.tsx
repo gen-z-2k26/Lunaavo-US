@@ -190,11 +190,13 @@ function BlockView({ block }: { block: Block }) {
 export function VerbatimDocument({ lines }: { lines: string[] }) {
   const [title, ...rest] = lines;
   let cursor = 0;
-  let meta: string | null = null;
+  const meta: string[] = [];
   let dek: string | null = null;
   if (rest[0] && isMeta(rest[0])) {
-    meta = rest[0];
-    cursor = 1;
+    while (rest[cursor] && isMeta(rest[cursor])) {
+      meta.push(rest[cursor]);
+      cursor += 1;
+    }
   } else if (
     rest[0] &&
     rest[1] &&
@@ -230,10 +232,17 @@ export function VerbatimDocument({ lines }: { lines: string[] }) {
               {dek}
             </p>
           ) : null}
-          {meta ? (
-            <p className="mt-6 inline-flex rounded-full border border-foreground/20 bg-foreground/10 px-3 py-1.5 text-sm text-foreground">
-              {meta}
-            </p>
+          {meta.length ? (
+            <div className="mt-6 flex flex-wrap gap-2">
+              {meta.map((line) => (
+                <p
+                  key={line}
+                  className="inline-flex rounded-full border border-foreground/20 bg-foreground/10 px-3 py-1.5 text-sm text-foreground"
+                >
+                  {line}
+                </p>
+              ))}
+            </div>
           ) : null}
         </div>
       </header>

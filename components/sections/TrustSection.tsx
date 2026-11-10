@@ -8,13 +8,13 @@ import { cn } from "@/lib/utils";
 const items: TrustItem[] = [
   {
     icon: "truck",
-    title: "Shipping at checkout",
-    text: "Shipping charges and delivery estimates are shown before you pay and explained in the shipping policy.",
+    title: "Free U.S. shipping",
+    text: "Shipping is free on all U.S. orders, with an estimated total delivery time of 4–8 business days.",
   },
   {
     icon: "refresh",
-    title: "Returns with a policy",
-    text: "Eligibility, timing, and any fees are described in the returns policy. Contact us before sending an item back.",
+    title: "30-day returns",
+    text: "Request a return within 30 days of delivery. Return shipping is free, there is no restocking fee, and refunds are processed within 5 business days of approval.",
   },
   {
     icon: "shield",

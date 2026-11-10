@@ -4,8 +4,8 @@ import { pageContainer } from "@/lib/layout";
 import type { TrustItem } from "@/lib/types";
 
 const items: TrustItem[] = [
-  { icon: "truck", title: "Shipping at checkout", text: "Charges and timing shown before you pay" },
-  { icon: "refresh", title: "Returns with a policy", text: "Eligibility is explained before you send anything back" },
+  { icon: "truck", title: "Free U.S. shipping", text: "Delivered in 4–8 business days" },
+  { icon: "refresh", title: "30-day returns", text: "Free return shipping, no restocking fee" },
   { icon: "shield", title: "Secure checkout", text: "Review the total before you pay" },
   { icon: "message", title: "Live chat 24/7", text: "Phone support Monday-Friday, 9-5" },
 ];
