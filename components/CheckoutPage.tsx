@@ -75,8 +75,13 @@ function addressFromCart(source: Address, fallbackCountry: string): Address {
   };
 }
 
-function buildCustomerNote(isGift: boolean, note: string) {
+function buildCustomerNote(isGift: boolean, note: string, marketing: boolean) {
   const parts: string[] = [];
+  parts.push(
+    marketing
+      ? "Marketing: customer opted in to news and offers by email."
+      : "Marketing: customer did not opt in to news and offers.",
+  );
   if (isGift) parts.push("Gift order: skip prices on the packing slip.");
   if (note.trim()) parts.push(note.trim());
   return parts.join("\n");
@@ -151,6 +156,7 @@ export function CheckoutPage() {
   const [affirmPublicKey, setAffirmPublicKey] = useState("");
   const [affirmEnv, setAffirmEnv] = useState<"sandbox" | "live">("sandbox");
   const [isGift, setIsGift] = useState(false);
+  const [emailOffers, setEmailOffers] = useState(false);
   const [sellerNote, setSellerNote] = useState("");
   const [showNote, setShowNote] = useState(false);
   const [showSummary, setShowSummary] = useState(false);
@@ -350,7 +356,7 @@ export function CheckoutPage() {
           billing,
           billingSameAsShipping: input.same,
           paymentKind: input.kind === "mock" ? undefined : input.kind,
-          customerNote: buildCustomerNote(isGift, sellerNote),
+          customerNote: buildCustomerNote(isGift, sellerNote, emailOffers),
         }),
       );
       if (
@@ -813,6 +819,17 @@ export function CheckoutPage() {
                     else setBilling({ ...billing, email: value });
                   }}
                 />
+                <label className="flex items-start gap-2.5 text-sm">
+                  <input
+                    type="checkbox"
+                    className="mt-0.5 size-4 shrink-0 accent-accent"
+                    checked={emailOffers}
+                    onChange={(event) => setEmailOffers(event.target.checked)}
+                  />
+                  <span className="leading-snug text-muted-foreground">
+                    Email me with news and offers
+                  </span>
+                </label>
               </section>
 
               <section className="space-y-3">
