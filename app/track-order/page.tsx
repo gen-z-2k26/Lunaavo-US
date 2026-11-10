@@ -1,8 +1,11 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Mail, Package, Truck } from "lucide-react";
 import { TrackOrderForm } from "@/components/TrackOrderForm";
 import { getSiteSettings } from "@/lib/api";
 import { pageContainer } from "@/lib/layout";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Track Your Order",
@@ -28,17 +31,8 @@ const steps = [
   },
 ];
 
-export default async function TrackOrderPage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
+export default async function TrackOrderPage() {
   const settings = await getSiteSettings();
-  const query = await searchParams;
-  const value = (key: string) => {
-    const raw = query[key];
-    return Array.isArray(raw) ? raw[0] || "" : raw || "";
-  };
 
   return (
     <div className="pb-16">
@@ -82,11 +76,13 @@ export default async function TrackOrderPage({
           ))}
         </ol>
 
-        <TrackOrderForm
-          initialOrderId={value("order") || value("id")}
-          initialOrderKey={value("key")}
-          initialEmail={value("email")}
-        />
+        <Suspense
+          fallback={
+            <div className="h-64 rounded-2xl border border-border bg-card" />
+          }
+        >
+          <TrackOrderForm />
+        </Suspense>
 
         {settings.contact.email || settings.contact.phone ? (
           <p className="text-sm text-foreground/80">

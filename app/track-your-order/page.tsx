@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import TrackOrderPage from "../track-order/page";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Track Your Order",
   description:

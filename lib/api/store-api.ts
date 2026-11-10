@@ -17,6 +17,7 @@ import {
   type RawStoreCart,
 } from "@/lib/api/map-cart";
 import { isStoreNonceError, storeRequestHeaders } from "@/lib/api/store-headers";
+import { HAS_CART_COOKIE } from "@/lib/cart-presence";
 import type { Address, GuestOrder, StoreCart } from "@/lib/types";
 
 const CART_COOKIE = "wc_cart_token";
@@ -141,13 +142,34 @@ async function storeRequest<T>(
   return { data: json as T, token: nextToken, nonce: nextNonce };
 }
 
+async function syncCartPresence(itemCount: number) {
+  try {
+    const store = await cookies();
+    if (itemCount > 0) {
+      store.set(HAS_CART_COOKIE, "1", {
+        httpOnly: false,
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+        path: "/",
+        maxAge: TOKEN_MAX_AGE,
+      });
+      return;
+    }
+    if (store.get(HAS_CART_COOKIE)) store.delete(HAS_CART_COOKIE);
+  } catch {
+    // The cart token still works if this hint cannot be written.
+  }
+}
+
 async function cartCall(
   path: string,
   options: StoreRequestOptions = {},
 ): Promise<StoreCart> {
   if (!isWooConfigured()) return emptyStoreCart();
   const { data } = await storeRequest<RawStoreCart>(path, options);
-  return mapStoreCart(data);
+  const cart = mapStoreCart(data);
+  await syncCartPresence(cart.items.length);
+  return cart;
 }
 
 async function mutateCart(

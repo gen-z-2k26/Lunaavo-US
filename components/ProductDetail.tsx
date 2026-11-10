@@ -12,7 +12,11 @@ import type {
 import { defaultProductPage } from "@/lib/types";
 import { formatPrice } from "@/lib/format";
 import { useStore } from "@/lib/store-context";
-import { addProductToCart, shopNowToCheckout } from "@/lib/add-to-cart";
+import {
+  addProductToCart,
+  isCatalogConflictError,
+  shopNowToCheckout,
+} from "@/lib/add-to-cart";
 import { userErrorMessage } from "@/lib/user-error";
 import { useCartStore } from "@/lib/cart-store";
 import { ProductRatingRow } from "@/components/ProductRatingRow";
@@ -43,6 +47,8 @@ export function ProductDetail({
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [rejectedId, setRejectedId] = useState<string | null>(null);
+  const inStock = product.inStock && rejectedId !== product.id;
   const [imageIndex, setImageIndex] = useState(0);
   const [shared, setShared] = useState(false);
   const page = settings.productPage ?? defaultProductPage;
@@ -50,14 +56,21 @@ export function ProductDetail({
   const slides = product.images.length ? product.images : [settings.logo];
   const active = slides[imageIndex] ?? slides[0];
 
+  function noteConflict(error: unknown) {
+    if (!isCatalogConflictError(error)) return;
+    setRejectedId(product.id);
+    router.refresh();
+  }
+
   async function handleAdd() {
-    if (!product.inStock || busy) return;
+    if (!inStock || busy) return;
     setBusy(true);
     try {
       await addProductToCart(product, quantity);
       setAdded(true);
       window.setTimeout(() => setAdded(false), 1200);
     } catch (error) {
+      noteConflict(error);
       setError(userErrorMessage(error, "Could not add to cart."));
     } finally {
       setBusy(false);
@@ -65,12 +78,13 @@ export function ProductDetail({
   }
 
   async function handleShopNow() {
-    if (!product.inStock || busy) return;
+    if (!inStock || busy) return;
     setBusy(true);
     try {
       await shopNowToCheckout(product, quantity, page.shopNowEmptyCart);
       router.push("/checkout");
     } catch (error) {
+      noteConflict(error);
       setError(
         userErrorMessage(error, "Could not start checkout."),
       );
@@ -249,7 +263,7 @@ export function ProductDetail({
             <QuantityPicker
               id="quantity"
               value={quantity}
-              disabled={!product.inStock}
+              disabled={!inStock}
               onChange={setQuantity}
               className="w-full justify-between rounded-none sm:w-auto"
             />
@@ -257,18 +271,18 @@ export function ProductDetail({
               type="button"
               size="lg"
               className="w-full rounded-none sm:min-w-36 sm:w-auto"
-              disabled={!product.inStock || busy}
+              disabled={!inStock || busy}
               onClick={() => void handleAdd()}
             >
               {added
                 ? "Added"
                 : busy
                   ? "Adding..."
-                  : product.inStock
+                  : inStock
                     ? "Add to cart"
                     : "Out of stock"}
             </Button>
-            {page.enableShopNow && product.inStock ? (
+            {page.enableShopNow && inStock ? (
               <Button
                 type="button"
                 size="lg"
@@ -283,7 +297,7 @@ export function ProductDetail({
           </div>
 
           <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
-            {product.inStock ? (
+            {inStock ? (
               <>
                 <Check className="size-4 text-emerald-600" aria-hidden />
                 In stock

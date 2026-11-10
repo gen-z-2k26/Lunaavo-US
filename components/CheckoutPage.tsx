@@ -4,18 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
-  Award,
   ChevronDown,
   ChevronLeft,
   Gift,
   Loader2,
-  Lock,
   Minus,
-  Package,
-  ShoppingBag,
   Plus,
-  ShieldCheck,
-  Truck,
+  ShoppingBag,
 } from "lucide-react";
 import { StoreImage } from "@/components/StoreImage";
 import { BrandLogo } from "@/components/BrandLogo";
@@ -23,17 +18,21 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PaymentBrandIcon } from "@/components/PaymentBrandIcon";
+import { AffirmPayment, PayPalPayment } from "@/components/PaymentStep";
 import {
-  AfterpayPayment,
-  PaymentFormSkeleton,
-  PaymentStep,
-} from "@/components/PaymentStep";
+  ExpressCheckoutRow,
+  StripeCardCheckout,
+  StripeCheckoutProvider,
+  type WalletPayer,
+  type WalletQuote,
+} from "@/components/StripeOnePageCheckout";
 import { iconsForCheckoutMethods } from "@/lib/checkout-icons";
 import { useCartStore } from "@/lib/cart-store";
 import { useStore } from "@/lib/store-context";
 import { formatPrice } from "@/lib/format";
 import { emptyAddress, emptyStoreCart } from "@/lib/api/map-cart";
 import {
+  completeCheckoutAction,
   createCheckoutSessionAction,
   getCheckoutOptionsAction,
 } from "@/app/actions/checkout";
@@ -46,6 +45,12 @@ import {
   updateCustomerAction,
 } from "@/app/actions/cart";
 import { unwrapCart, unwrapResult } from "@/lib/cart-result";
+import { toStripeMinor } from "@/lib/stripe-amount";
+import {
+  parseStripeShippingRateId,
+  splitPersonName,
+  stripeShippingRateId,
+} from "@/lib/stripe-address";
 import type {
   Address,
   CheckoutPaymentKind,
@@ -57,6 +62,10 @@ import type {
 import { cn } from "@/lib/utils";
 import { toast } from "@/lib/toast-store";
 import { userErrorMessage } from "@/lib/user-error";
+
+type StartedCheckout =
+  | { ok: true; session: CheckoutSessionResult }
+  | { ok: false; message: string };
 
 function addressFromCart(source: Address, fallbackCountry: string): Address {
   return {
@@ -82,6 +91,44 @@ function addressReady(address: Address) {
   );
 }
 
+function chargeMinor(total: number, currency: string) {
+  try {
+    return toStripeMinor(total, currency || "usd");
+  } catch {
+    return 0;
+  }
+}
+
+function blockToAddress(
+  block: NonNullable<WalletPayer["billing"]>,
+  email: string,
+  phone: string,
+  fallback: Address,
+): Address {
+  const name = splitPersonName(block.name);
+  return {
+    ...emptyAddress(),
+    ...fallback,
+    firstName: name.firstName || fallback.firstName || "Customer",
+    lastName: name.lastName || fallback.lastName || "-",
+    address1: block.line1,
+    address2: block.line2,
+    city: block.city,
+    state: block.state,
+    postcode: block.postcode,
+    country: block.country,
+    email: email || fallback.email,
+    phone: phone || fallback.phone,
+  };
+}
+
+function methodLabel(kind: CheckoutPaymentKind) {
+  if (kind === "stripe") return "Credit card";
+  if (kind === "paypal") return "PayPal";
+  if (kind === "affirm") return "Affirm";
+  return "Afterpay";
+}
+
 export function CheckoutPage() {
   const router = useRouter();
   const { settings } = useStore();
@@ -93,9 +140,7 @@ export function CheckoutPage() {
   const [same, setSame] = useState(true);
   const [countries, setCountries] = useState<CountryOption[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [submitting, setSubmitting] = useState(false);
-  const [session, setSession] = useState<CheckoutSessionResult | null>(null);
-  const [sessionError, setSessionError] = useState("");
+  const [paying, setPaying] = useState(false);
   const [mockPayment, setMockPayment] = useState(false);
   const [paymentMethods, setPaymentMethods] = useState<CheckoutPaymentMethod[]>(
     [],
@@ -110,12 +155,16 @@ export function CheckoutPage() {
   const [showNote, setShowNote] = useState(false);
   const [showSummary, setShowSummary] = useState(false);
   const syncKey = useRef("");
+  const ratesInflight = useRef<Promise<void> | null>(null);
+  const payRef = useRef<(() => void) | null>(null);
   const shippingRef = useRef(shipping);
   const billingRef = useRef(billing);
   const sameRef = useRef(same);
-  shippingRef.current = shipping;
-  billingRef.current = billing;
-  sameRef.current = same;
+  useEffect(() => {
+    shippingRef.current = shipping;
+    billingRef.current = billing;
+    sameRef.current = same;
+  }, [shipping, billing, same]);
 
   useEffect(() => {
     let cancelled = false;
@@ -155,13 +204,6 @@ export function CheckoutPage() {
     };
   }, [setCart]);
 
-  useEffect(() => {
-    if (session && session.cart.cartHash !== cart.cartHash) {
-      setSession(null);
-      setSessionError("");
-    }
-  }, [cart.cartHash, session]);
-
   async function refreshRates(nextShipping = shippingRef.current) {
     if (!addressReady(nextShipping)) return;
     const currentBilling = billingRef.current;
@@ -183,17 +225,24 @@ export function CheckoutPage() {
           phone: nextShipping.phone || currentBilling.phone,
         }
       : currentBilling;
-    try {
-      setCart(
-        unwrapCart(
+    const task = (async () => {
+      try {
+        const next = unwrapCart(
           await updateCustomerAction({
             shipping: nextShipping,
             billing: nextBilling,
           }),
-        ),
-      );
-    } catch {
-      syncKey.current = "";
+        );
+        setCart(next);
+      } catch {
+        syncKey.current = "";
+      }
+    })();
+    ratesInflight.current = task;
+    try {
+      await task;
+    } finally {
+      if (ratesInflight.current === task) ratesInflight.current = null;
     }
   }
 
@@ -201,10 +250,13 @@ export function CheckoutPage() {
     const next: Record<string, string> = {};
     if (!shipping.firstName.trim()) next.firstName = "First name is required.";
     if (!shipping.lastName.trim()) next.lastName = "Last name is required.";
-    if (!shipping.address1.trim()) next.address1 = "Street address is required.";
+    if (!shipping.address1.trim()) next.address1 = "Address is required.";
     if (!shipping.city.trim()) next.city = "City is required.";
-    if (!shipping.postcode.trim()) next.postcode = "ZIP code is required.";
+    if (!shipping.postcode.trim()) next.postcode = "Postal code is required.";
     if (!shipping.country.trim()) next.country = "Country is required.";
+    if (stateOptions.length && !shipping.state.trim()) {
+      next.state = "State is required.";
+    }
     const email = (same ? shipping.email : billing.email).trim();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       next.email = "Enter a valid email.";
@@ -213,66 +265,338 @@ export function CheckoutPage() {
     return Object.keys(next).length === 0;
   }
 
-  async function syncAddress() {
-    const nextBilling = same
-      ? {
-          ...shipping,
-          email: shipping.email || billing.email,
-          phone: shipping.phone || billing.phone,
-        }
-      : billing;
-    const next = unwrapCart(
-      await updateCustomerAction({
-        shipping,
-        billing: nextBilling,
-      }),
-    );
-    setCart(next);
-    return next;
+  function billingAddress() {
+    if (same) {
+      return {
+        ...shipping,
+        email: shipping.email || billing.email,
+        phone: shipping.phone || billing.phone,
+      };
+    }
+    return {
+      ...shipping,
+      ...billing,
+      firstName: billing.firstName || shipping.firstName,
+      lastName: billing.lastName || shipping.lastName,
+      address1: billing.address1 || shipping.address1,
+      address2: billing.address2 || shipping.address2,
+      city: billing.city || shipping.city,
+      state: billing.state || shipping.state,
+      postcode: billing.postcode || shipping.postcode,
+      country: billing.country || shipping.country,
+      email: billing.email || shipping.email,
+      phone: billing.phone || shipping.phone,
+    };
   }
 
-  async function proceedToPayment() {
-    if (!cart.items.length || !validate()) return;
-    setSubmitting(true);
-    setSessionError("");
-    setSession(null);
+  async function startCheckout(input: {
+    kind: CheckoutPaymentKind | "mock";
+    shipping: Address;
+    billing: Address;
+    same: boolean;
+    skipValidation?: boolean;
+    rateId?: string | null;
+  }): Promise<StartedCheckout> {
+    if (!input.skipValidation && !validate()) {
+      return { ok: false, message: "Check the highlighted fields." };
+    }
+    if (!cart.items.length) {
+      return { ok: false, message: "Your cart is empty." };
+    }
     try {
-      const nextCart = await syncAddress();
-      if (
+      const pendingRates = ratesInflight.current;
+      if (pendingRates) await pendingRates;
+      const shipping = {
+        ...input.shipping,
+        email: input.shipping.email || input.billing.email,
+      };
+      const billing = {
+        ...input.billing,
+        email: input.billing.email || shipping.email,
+        firstName: input.billing.firstName || shipping.firstName,
+        lastName: input.billing.lastName || shipping.lastName,
+      };
+      let nextCart = unwrapCart(
+        await updateCustomerAction({
+          shipping,
+          billing,
+        }),
+      );
+      const parsedRate = input.rateId ? parseStripeShippingRateId(input.rateId) : null;
+      if (parsedRate) {
+        nextCart = unwrapCart(await selectShippingRateAction(parsedRate));
+      } else if (
         nextCart.needsShipping &&
         !nextCart.shippingRates.some((rate) => rate.selected)
       ) {
-        setErrors({ form: "Select a shipping method." });
-        setSubmitting(false);
-        return;
+        const first = nextCart.shippingRates[0];
+        if (!first) {
+          return {
+            ok: false,
+            message: "No shipping methods are available for this address yet.",
+          };
+        }
+        nextCart = unwrapCart(
+          await selectShippingRateAction({
+            packageId: first.packageId,
+            rateId: first.rateId,
+          }),
+        );
       }
-      const nextSession = unwrapResult(
+      setCart(nextCart);
+      const session = unwrapResult(
         await createCheckoutSessionAction({
           shipping,
-          billing: same ? { ...shipping, email: shipping.email } : billing,
-          billingSameAsShipping: same,
-          paymentKind: paymentKind || undefined,
+          billing,
+          billingSameAsShipping: input.same,
+          paymentKind: input.kind === "mock" ? undefined : input.kind,
           customerNote: buildCustomerNote(isGift, sellerNote),
         }),
       );
-      setCart(nextSession.cart);
-      setSession(nextSession);
+      if (
+        session.paymentKind !== "mock" &&
+        input.kind !== "mock" &&
+        session.paymentKind !== input.kind
+      ) {
+        return {
+          ok: false,
+          message: "Could not start the selected payment method. Try again.",
+        };
+      }
+      setCart(session.cart);
+      return { ok: true, session };
     } catch (error) {
-      const message = userErrorMessage(
-        error,
-        "Could not start checkout. Check your details and try again.",
+      return {
+        ok: false,
+        message: userErrorMessage(
+          error,
+          "Could not start checkout. Check your details and try again.",
+        ),
+      };
+    }
+  }
+
+  function failStart(message: string) {
+    if (message) setErrors((current) => ({ ...current, form: message }));
+  }
+
+  async function quoteWallet(input: {
+    name: string;
+    city: string;
+    state: string;
+    postcode: string;
+    country: string;
+  }): Promise<WalletQuote | null> {
+    const name = splitPersonName(input.name);
+    const base = shippingRef.current;
+    const nextShipping: Address = {
+      ...emptyAddress(),
+      ...base,
+      firstName: name.firstName || base.firstName || "Customer",
+      lastName: name.lastName || base.lastName || "-",
+      address1: base.address1.trim() || "Address",
+      city: input.city,
+      state: input.state,
+      postcode: input.postcode,
+      country: input.country,
+      email: (sameRef.current ? base.email : billingRef.current.email) || base.email,
+    };
+    let priced = unwrapCart(
+      await updateCustomerAction({
+        shipping: nextShipping,
+        billing: { ...nextShipping, email: nextShipping.email },
+      }),
+    );
+    if (priced.needsShipping && !priced.shippingRates.length) return null;
+    if (priced.needsShipping) {
+      const selected =
+        priced.shippingRates.find((rate) => rate.selected) ||
+        priced.shippingRates[0];
+      if (selected && !selected.selected) {
+        priced = unwrapCart(
+          await selectShippingRateAction({
+            packageId: selected.packageId,
+            rateId: selected.rateId,
+          }),
+        );
+      }
+    }
+    setCart(priced);
+    const totalMinor = chargeMinor(priced.totals.total, priced.totals.currency);
+    if (totalMinor < 1) return null;
+    return {
+      totalMinor,
+      rates: priced.shippingRates.map((rate) => ({
+        id: stripeShippingRateId(rate.packageId, rate.rateId),
+        amount: toStripeMinor(rate.price, priced.totals.currency),
+        displayName: rate.name,
+      })),
+    };
+  }
+
+  async function selectWalletRate(rateId: string) {
+    const parsed = parseStripeShippingRateId(rateId);
+    if (!parsed) return null;
+    const next = unwrapCart(await selectShippingRateAction(parsed));
+    setCart(next);
+    const minor = chargeMinor(next.totals.total, next.totals.currency);
+    return minor >= 1 ? minor : null;
+  }
+
+  function payerAddresses(payer: WalletPayer) {
+    const nextShipping = blockToAddress(
+      payer.shipping,
+      payer.email,
+      payer.phone,
+      shippingRef.current,
+    );
+    const nextBilling = payer.billing
+      ? blockToAddress(payer.billing, payer.email, payer.phone, billingRef.current)
+      : {
+          ...nextShipping,
+          email: payer.email || nextShipping.email,
+          phone: payer.phone || nextShipping.phone,
+        };
+    return { shipping: nextShipping, billing: nextBilling, same: !payer.billing };
+  }
+
+  async function syncWallet(payer: WalletPayer) {
+    const addresses = payerAddresses(payer);
+    setShipping(addresses.shipping);
+    setBilling(addresses.billing);
+    setSame(addresses.same);
+    let priced = unwrapCart(
+      await updateCustomerAction({
+        shipping: addresses.shipping,
+        billing: addresses.billing,
+      }),
+    );
+    if (payer.rateId) {
+      const parsed = parseStripeShippingRateId(payer.rateId);
+      if (parsed) priced = unwrapCart(await selectShippingRateAction(parsed));
+    } else if (
+      priced.needsShipping &&
+      !priced.shippingRates.some((rate) => rate.selected) &&
+      priced.shippingRates[0]
+    ) {
+      const first = priced.shippingRates[0];
+      priced = unwrapCart(
+        await selectShippingRateAction({
+          packageId: first.packageId,
+          rateId: first.rateId,
+        }),
       );
-      setSessionError(message);
-      setErrors({ form: message });
+    }
+    setCart(priced);
+    if (priced.needsShipping && !priced.shippingRates.some((rate) => rate.selected)) {
+      return null;
+    }
+    const minor = chargeMinor(priced.totals.total, priced.totals.currency);
+    return minor >= 1 ? minor : null;
+  }
+
+  async function createWalletSession(payer: WalletPayer) {
+    const addresses = payerAddresses(payer);
+    const started = await startCheckout({
+      kind: "stripe",
+      ...addresses,
+      skipValidation: true,
+      rateId: payer.rateId,
+    });
+    if (!started.ok) {
+      failStart(started.message);
+      return null;
+    }
+    return started.session;
+  }
+
+  async function createCardSession() {
+    const started = await startCheckout({
+      kind: "stripe",
+      shipping,
+      billing: billingAddress(),
+      same,
+      skipValidation: true,
+    });
+    if (!started.ok) {
+      failStart(started.message);
+      return null;
+    }
+    return started.session;
+  }
+
+  function finishPaid(result: { orderId: string; orderKey: string; email: string }) {
+    setCart(emptyStoreCart());
+    toast({
+      title: "Order completed",
+      description: "Kindly check your email for the order details and tracking link.",
+    });
+    router.push(
+      `/order/${result.orderId}?key=${encodeURIComponent(result.orderKey)}&email=${encodeURIComponent(result.email)}`,
+    );
+  }
+
+  async function paySeparate(
+    kind: CheckoutPaymentKind | "mock",
+  ): Promise<CheckoutSessionResult | null> {
+    setPaying(true);
+    setErrors((current) => ({ ...current, form: "" }));
+    try {
+      const started = await startCheckout({
+        kind,
+        shipping,
+        billing: billingAddress(),
+        same,
+      });
+      if (!started.ok) {
+        failStart(started.message);
+        return null;
+      }
+      return started.session;
     } finally {
-      setSubmitting(false);
+      setPaying(false);
+    }
+  }
+
+  async function payAfterpay() {
+    const session = await paySeparate("afterpay");
+    if (!session?.redirectUrl) {
+      if (session) {
+        setErrors((current) => ({
+          ...current,
+          form: "Afterpay is not available right now.",
+        }));
+      }
+      return;
+    }
+    window.location.assign(session.redirectUrl);
+  }
+
+  async function payMock() {
+    const session = await paySeparate("mock");
+    if (!session) return;
+    setPaying(true);
+    try {
+      const result = unwrapResult(
+        await completeCheckoutAction({
+          orderId: session.orderId,
+          orderKey: session.orderKey,
+          paymentIntentId: session.clientSecret,
+        }),
+      );
+      finishPaid(result);
+    } catch (error) {
+      setErrors({
+        form: userErrorMessage(error, "Could not complete the development checkout."),
+      });
+    } finally {
+      setPaying(false);
     }
   }
 
   async function chooseRate(packageId: number, rateId: string) {
     try {
       setCart(unwrapCart(await selectShippingRateAction({ packageId, rateId })));
-      setSession(null);
     } catch (error) {
       setErrors({
         form: userErrorMessage(error, "Could not select shipping."),
@@ -284,6 +608,9 @@ export function CheckoutPage() {
     value: country.code,
     label: country.name,
   }));
+  const countryCodes = countries
+    .map((country) => country.code.trim().toUpperCase())
+    .filter((code) => code.length === 2);
   const selectedCountry = countries.find(
     (country) => country.code === shipping.country,
   );
@@ -293,104 +620,192 @@ export function CheckoutPage() {
   }));
   const shippingReady = addressReady(shipping);
   const showRates = cart.needsShipping && cart.shippingRates.length > 0;
+  const minor = chargeMinor(cart.totals.total, cart.totals.currency);
+  const stripeReady =
+    !mockPayment &&
+    Boolean(stripePublishableKey) &&
+    paymentMethods.some((method) => method.kind === "stripe") &&
+    minor >= 1;
+  const severalMethods = paymentMethods.length > 1;
+  const email = (same ? shipping.email : billing.email).trim();
+  const payBilling = billingAddress();
+  const walletRates = cart.shippingRates.map((rate) => ({
+    id: stripeShippingRateId(rate.packageId, rate.rateId),
+    amount: chargeMinor(rate.price, cart.totals.currency),
+    displayName: rate.name,
+  }));
 
-  return (
-    <div className="min-h-full bg-muted/40">
-      <header className="border-b border-border bg-background">
-        <div className="mx-auto grid h-14 w-full max-w-[1240px] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 px-4 sm:h-16 sm:px-6 lg:px-10">
-          {cart.items.length ? (
-            <button
-              type="button"
-              className="inline-flex min-w-0 items-center gap-1 justify-self-start text-sm text-muted-foreground transition-colors hover:text-foreground"
-              onClick={() => setOpen(true)}
-            >
-              <ChevronLeft className="size-4 shrink-0" aria-hidden />
-              <span className="truncate sm:hidden">Cart</span>
-              <span className="hidden truncate sm:inline">Back to cart</span>
-            </button>
-          ) : (
-            <Link
-              href="/products"
-              className="inline-flex min-w-0 items-center gap-1 justify-self-start text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <ChevronLeft className="size-4 shrink-0" aria-hidden />
-              <span className="truncate sm:hidden">Shop</span>
-              <span className="hidden truncate sm:inline">Back to products</span>
-            </Link>
-          )}
-          <Link href="/" aria-label={settings.name} className="justify-self-center">
-            <BrandLogo heightClass="h-6 max-w-[9.5rem] sm:h-8 sm:max-w-none" />
-          </Link>
-          <span aria-hidden />
-        </div>
-      </header>
-      <div className="mx-auto grid w-full max-w-[1240px] items-start gap-x-10 px-4 py-5 sm:px-6 sm:py-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:px-10 lg:py-10">
-      <div className={cn("min-w-0", !cart.items.length && "lg:col-span-2")}>
+  const billingBlock = (
+    <div className="space-y-3">
+    {!mockPayment ? (
+      <label className="flex items-start gap-2.5 text-sm">
+        <input
+          type="checkbox"
+          className="mt-0.5 size-4 shrink-0 accent-accent"
+          checked={same}
+          onChange={(event) => setSame(event.target.checked)}
+        />
+        Use shipping address as billing address
+      </label>
+    ) : null}
+    {!same && !mockPayment ? (
+      <div className="grid grid-cols-2 gap-3">
+        <Field
+          id="billing-email"
+          label="Billing email"
+          type="email"
+          value={billing.email}
+          error={errors.email}
+          onChange={(value) => setBilling({ ...billing, email: value })}
+        />
+        <Field
+          id="billing-phone"
+          label="Billing phone"
+          value={billing.phone}
+          onChange={(value) => setBilling({ ...billing, phone: value })}
+        />
+        <Field
+          id="billing-address"
+          className="col-span-2"
+          label="Billing address"
+          value={billing.address1}
+          onChange={(value) => setBilling({ ...billing, address1: value })}
+        />
+        <Field
+          id="billing-city"
+          label="Billing city"
+          value={billing.city}
+          onChange={(value) => setBilling({ ...billing, city: value })}
+        />
+        <Field
+          id="billing-postcode"
+          label="Billing postal code"
+          value={billing.postcode}
+          onChange={(value) => setBilling({ ...billing, postcode: value })}
+        />
+      </div>
+    ) : null}
+    </div>
+  );
 
-      {!cart.items.length ? (
-        <div className="flex min-h-[62vh] items-center justify-center">
-          <div className="w-full max-w-[440px] rounded-[8px] border border-border bg-card px-8 py-12 text-center shadow-sm">
-            <span className="mx-auto flex size-14 items-center justify-center rounded-full bg-muted text-foreground">
-              <ShoppingBag className="size-6" aria-hidden />
-            </span>
-            <h1 className="font-display mt-6 text-[28px] leading-tight tracking-tight">
-              Your cart is empty
-            </h1>
-            <p className="mx-auto mt-3 max-w-[32ch] text-sm leading-relaxed text-muted-foreground">
-              Add something you like, then come back here to check out.
-            </p>
-            <Link
-              href="/products"
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "mt-8 h-[52px] w-full rounded-[8px] text-sm font-medium tracking-[0.08em] uppercase",
-              )}
-            >
-              Browse products
-            </Link>
-          </div>
-        </div>
-      ) : (
-        <>
-          <button
-            type="button"
-            className="flex w-full items-center justify-between gap-3 rounded-[8px] border border-border bg-card px-3.5 py-3 text-sm lg:hidden"
-            onClick={() => setShowSummary((open) => !open)}
-          >
-            <span className="flex items-center gap-2 font-medium">
-              {showSummary ? "Hide" : "Show"} order summary
-              <ChevronDown
+  const stripeCardShown = paymentKind === "stripe" && stripeReady;
+
+  function stripeCard(wallets: "auto" | "never") {
+    return (
+      <StripeCardCheckout
+        wallets={wallets}
+        amountMinor={minor}
+        billing={payBilling}
+        email={email}
+        disabled={!cart.items.length}
+        payRef={payRef}
+        canPay={validate}
+        onCreate={createCardSession}
+        onPaid={finishPaid}
+        onError={(message) => setErrors({ form: message })}
+      >
+        {billingBlock}
+      </StripeCardCheckout>
+    );
+  }
+
+  const page = (
+    <div className="min-h-screen bg-background lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(320px,42%)]">
+      <div className="min-w-0">
+        {!cart.items.length ? (
+          <div className="flex min-h-screen items-center justify-center px-4">
+            <div className="w-full max-w-[440px] text-center">
+              <Link href="/" aria-label={settings.name} className="inline-flex">
+                <BrandLogo heightClass="h-8" />
+              </Link>
+              <span className="mx-auto mt-8 flex size-14 items-center justify-center rounded-full bg-muted text-foreground">
+                <ShoppingBag className="size-6" aria-hidden />
+              </span>
+              <h1 className="font-display mt-6 text-[28px] leading-tight tracking-tight">
+                Your cart is empty
+              </h1>
+              <p className="mx-auto mt-3 max-w-[32ch] text-sm leading-relaxed text-muted-foreground">
+                Add something you like, then come back here to check out.
+              </p>
+              <Link
+                href="/products"
                 className={cn(
-                  "size-4 transition-transform",
-                  showSummary && "rotate-180",
+                  buttonVariants({ size: "lg" }),
+                  "mt-8 h-12 w-full rounded-md bg-accent text-sm font-medium text-accent-foreground hover:bg-accent/90",
                 )}
-              />
-            </span>
-            <span className="tabular-nums font-medium">
-              {formatPrice(cart.totals.total, settings, cart.totals.currency)}
-            </span>
-          </button>
-          <div className={cn("mt-4 w-full lg:hidden", showSummary ? "block" : "hidden")}>
-            <div className="rounded-[8px] border border-border bg-card p-4 sm:p-5">
-              <OrderSummary cart={cart} />
-              <PromiseCard />
+              >
+                Browse products
+              </Link>
             </div>
           </div>
+        ) : (
+          <div className="mx-auto w-full max-w-[560px] px-4 py-6 sm:px-6 sm:py-10 lg:py-12">
+            <div className="mb-8 flex items-center justify-between gap-3">
+              <Link href="/" aria-label={settings.name}>
+                <BrandLogo heightClass="h-7 max-w-[9rem]" />
+              </Link>
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 text-sm text-accent"
+                onClick={() => setOpen(true)}
+              >
+                <ChevronLeft className="size-4" aria-hidden />
+                Cart
+              </button>
+            </div>
 
-          <section className="min-w-0 pb-8 pt-6 sm:pb-16 sm:pt-8">
+            <button
+              type="button"
+              className="mb-6 flex w-full items-center justify-between gap-3 bg-muted px-4 py-4 text-sm lg:hidden"
+              onClick={() => setShowSummary((open) => !open)}
+            >
+              <span className="flex items-center gap-2 font-medium text-accent">
+                {showSummary ? "Hide" : "Show"} order summary
+                <ChevronDown
+                  className={cn("size-4 transition-transform", showSummary && "rotate-180")}
+                />
+              </span>
+              <span className="font-medium tabular-nums">
+                {formatPrice(cart.totals.total, settings, cart.totals.currency)}
+              </span>
+            </button>
+            {showSummary ? (
+              <div className="mb-8 bg-muted p-4 lg:hidden">
+                <OrderSummary cart={cart} />
+              </div>
+            ) : null}
+
             <form
-              className="mx-auto w-full max-w-[560px] space-y-7 sm:space-y-9 lg:mx-0"
+              className="space-y-8"
               onSubmit={(event) => {
                 event.preventDefault();
-                void proceedToPayment();
+                if (mockPayment) void payMock();
+                else if (paymentKind === "stripe") payRef.current?.();
               }}
             >
+              {stripeReady ? (
+                <ExpressCheckoutRow
+                  needsShipping={cart.needsShipping}
+                  countryCodes={countryCodes}
+                  deliveryCountry={shipping.country}
+                  initialRates={walletRates}
+                  businessName={settings.name}
+                  onQuoteShipping={quoteWallet}
+                  onSelectRate={selectWalletRate}
+                  onSync={syncWallet}
+                  onCreate={createWalletSession}
+                  onPaid={finishPaid}
+                  onError={(message) => setErrors({ form: message })}
+                />
+              ) : null}
+
               <section className="space-y-3">
-                <h2 className="text-base font-semibold">Contact</h2>
+                <h2 className="text-lg font-semibold">Contact</h2>
                 <Field
                   id="email"
                   label="Email"
                   type="email"
+                  autoComplete="email"
                   value={same ? shipping.email : billing.email}
                   error={errors.email}
                   onChange={(value) => {
@@ -401,106 +816,17 @@ export function CheckoutPage() {
               </section>
 
               <section className="space-y-3">
-                <h2 className="text-base font-semibold">Shipping address</h2>
+                <h2 className="text-lg font-semibold">Delivery</h2>
                 <div className="grid min-w-0 grid-cols-2 gap-3">
-                  <Field
-                    id="first-name"
-                    label="First name"
-                    value={shipping.firstName}
-                    error={errors.firstName}
-                    onChange={(value) =>
-                      setShipping({ ...shipping, firstName: value })
-                    }
-                  />
-                  <Field
-                    id="last-name"
-                    label="Last name"
-                    value={shipping.lastName}
-                    error={errors.lastName}
-                    onChange={(value) =>
-                      setShipping({ ...shipping, lastName: value })
-                    }
-                  />
-                  <Field
-                    className="col-span-2"
-                    id="address1"
-                    label="Street address"
-                    value={shipping.address1}
-                    error={errors.address1}
-                    onChange={(value) =>
-                      setShipping({ ...shipping, address1: value })
-                    }
-                    onBlur={() => void refreshRates()}
-                  />
-                  <Field
-                    className="col-span-2"
-                    id="address2"
-                    label="Apartment, suite, etc. (optional)"
-                    value={shipping.address2}
-                    onChange={(value) =>
-                      setShipping({ ...shipping, address2: value })
-                    }
-                    onBlur={() => void refreshRates()}
-                  />
-                  <div className="col-span-2 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    <Field
-                      className="sm:col-span-2 lg:col-span-1"
-                      id="city"
-                      label="City"
-                      value={shipping.city}
-                      error={errors.city}
-                      onChange={(value) =>
-                        setShipping({ ...shipping, city: value })
-                      }
-                      onBlur={() => void refreshRates()}
-                    />
-                    {stateOptions.length ? (
-                      <CheckoutSelect
-                        id="state"
-                        label="State / Province"
-                        value={shipping.state}
-                        options={stateOptions}
-                        onChange={(value) => {
-                          const next = { ...shipping, state: value };
-                          setShipping(next);
-                          void refreshRates(next);
-                        }}
-                      />
-                    ) : (
-                      <Field
-                        id="state"
-                        label="State / Province"
-                        value={shipping.state}
-                        onChange={(value) =>
-                          setShipping({ ...shipping, state: value })
-                        }
-                        onBlur={() => void refreshRates()}
-                      />
-                    )}
-                    <Field
-                      id="postcode"
-                      label="ZIP code"
-                      value={shipping.postcode}
-                      error={errors.postcode}
-                      onChange={(value) =>
-                        setShipping({ ...shipping, postcode: value })
-                      }
-                      onBlur={() => void refreshRates()}
-                    />
-                  </div>
                   {countryOptions.length ? (
                     <CheckoutSelect
                       className="col-span-2"
                       id="country"
-                      label="Select country / region"
+                      label="Country/Region"
                       value={shipping.country}
                       options={countryOptions}
                       onChange={(value) => {
-                        const next = {
-                          ...shipping,
-                          country: value,
-                          state: "",
-                        };
+                        const next = { ...shipping, country: value, state: "" };
                         setShipping(next);
                         void refreshRates(next);
                       }}
@@ -509,35 +835,112 @@ export function CheckoutPage() {
                     <Field
                       className="col-span-2"
                       id="country"
-                      label="Select country / region"
+                      label="Country/Region"
+                      autoComplete="country"
                       value={shipping.country}
                       error={errors.country}
-                      onChange={(value) =>
-                        setShipping({ ...shipping, country: value })
-                      }
+                      onChange={(value) => setShipping({ ...shipping, country: value })}
+                      onBlur={() => void refreshRates()}
+                    />
+                  )}
+                  <Field
+                    id="first-name"
+                    label="First name"
+                    autoComplete="given-name"
+                    value={shipping.firstName}
+                    error={errors.firstName}
+                    onChange={(value) => setShipping({ ...shipping, firstName: value })}
+                  />
+                  <Field
+                    id="last-name"
+                    label="Last name"
+                    autoComplete="family-name"
+                    value={shipping.lastName}
+                    error={errors.lastName}
+                    onChange={(value) => setShipping({ ...shipping, lastName: value })}
+                  />
+                  <Field
+                    className="col-span-2"
+                    id="address1"
+                    label="Address"
+                    autoComplete="address-line1"
+                    value={shipping.address1}
+                    error={errors.address1}
+                    onChange={(value) => setShipping({ ...shipping, address1: value })}
+                    onBlur={() => void refreshRates()}
+                  />
+                  <Field
+                    className="col-span-2"
+                    id="address2"
+                    label="Apartment, suite, etc. (optional)"
+                    autoComplete="address-line2"
+                    value={shipping.address2}
+                    onChange={(value) => setShipping({ ...shipping, address2: value })}
+                    onBlur={() => void refreshRates()}
+                  />
+                  <Field
+                    id="postcode"
+                    label="Postal code"
+                    autoComplete="postal-code"
+                    value={shipping.postcode}
+                    error={errors.postcode}
+                    onChange={(value) => setShipping({ ...shipping, postcode: value })}
+                    onBlur={() => void refreshRates()}
+                  />
+                  <Field
+                    id="city"
+                    label="City"
+                    autoComplete="address-level2"
+                    value={shipping.city}
+                    error={errors.city}
+                    onChange={(value) => setShipping({ ...shipping, city: value })}
+                    onBlur={() => void refreshRates()}
+                  />
+                  {stateOptions.length ? (
+                    <CheckoutSelect
+                      className="col-span-2"
+                      id="state"
+                      label="State / Province"
+                      value={shipping.state}
+                      error={errors.state}
+                      options={stateOptions}
+                      onChange={(value) => {
+                        const next = { ...shipping, state: value };
+                        setShipping(next);
+                        void refreshRates(next);
+                      }}
+                    />
+                  ) : (
+                    <Field
+                      className="col-span-2"
+                      id="state"
+                      label="State / Province"
+                      autoComplete="address-level1"
+                      value={shipping.state}
+                      error={errors.state}
+                      onChange={(value) => setShipping({ ...shipping, state: value })}
                       onBlur={() => void refreshRates()}
                     />
                   )}
                   <Field
                     className="col-span-2"
                     id="phone"
-                    label="Phone"
+                    label="Phone (optional)"
+                    autoComplete="tel"
                     value={shipping.phone}
-                    onChange={(value) =>
-                      setShipping({ ...shipping, phone: value })
-                    }
+                    onChange={(value) => setShipping({ ...shipping, phone: value })}
                   />
                 </div>
                 <label className="flex items-start gap-2.5 pt-1 text-sm">
                   <input
                     type="checkbox"
-                    className="mt-0.5 size-4 shrink-0 rounded border-input accent-primary"
+                    className="mt-0.5 size-4 shrink-0 accent-accent"
                     checked={isGift}
                     onChange={(event) => setIsGift(event.target.checked)}
                   />
                   <span className="flex items-start gap-1.5 leading-snug text-muted-foreground">
-                    <Gift className="size-3.5 text-primary" aria-hidden />
-                    This is a gift - we will skip prices on the packing slip
+                    <Gift className="mt-0.5 size-3.5 text-accent" aria-hidden />
+                    This is a gift. Prices stay off the packing slip.
                   </span>
                 </label>
                 {showNote ? (
@@ -556,45 +959,34 @@ export function CheckoutPage() {
                     + Add a note for the seller
                   </button>
                 )}
-                <label className="flex items-start gap-2.5 text-sm leading-snug text-muted-foreground">
-                  <input
-                    type="checkbox"
-                    className="mt-0.5 size-4 shrink-0 rounded border-input accent-primary"
-                    checked={same}
-                    onChange={(event) => setSame(event.target.checked)}
-                  />
-                  Billing address is the same as shipping
-                </label>
               </section>
 
               <section className="space-y-3">
-                <h2 className="text-base font-semibold">Shipping method</h2>
+                <h2 className="text-lg font-semibold">Shipping method</h2>
                 {!shippingReady ? (
-                  <p className="rounded-[8px] bg-muted px-4 py-5 text-center text-sm text-muted-foreground">
-                    Enter your address to see shipping options.
+                  <p className="rounded-md bg-muted px-4 py-5 text-center text-sm text-muted-foreground">
+                    Enter your shipping address to view available shipping methods.
                   </p>
                 ) : showRates ? (
-                  <div className="overflow-hidden rounded-[8px] border border-border bg-card">
+                  <div className="overflow-hidden rounded-md border border-border bg-background">
                     {cart.shippingRates.map((rate, index) => (
                       <label
                         key={`${rate.packageId}-${rate.rateId}`}
                         className={cn(
-                          "flex items-center justify-between gap-3 px-4 py-3.5 text-sm",
-                          index > 0 && "border-t border-border/70",
-                          rate.selected && "bg-primary/10",
+                          "flex cursor-pointer items-center justify-between gap-3 px-4 py-3.5 text-sm",
+                          index > 0 && "border-t border-border",
+                          rate.selected && "bg-accent/10",
                         )}
                       >
                         <span className="flex items-center gap-3">
                           <span
                             className={cn(
                               "flex size-4 items-center justify-center rounded-full border-2",
-                              rate.selected
-                                ? "border-primary"
-                                : "border-foreground/25",
+                              rate.selected ? "border-accent" : "border-foreground/25",
                             )}
                           >
                             {rate.selected ? (
-                              <span className="size-2 rounded-full bg-primary" />
+                              <span className="size-2 rounded-full bg-accent" />
                             ) : null}
                           </span>
                           <input
@@ -602,25 +994,14 @@ export function CheckoutPage() {
                             name="shipping-rate"
                             className="sr-only"
                             checked={rate.selected}
-                            onChange={() =>
-                              void chooseRate(rate.packageId, rate.rateId)
-                            }
+                            onChange={() => void chooseRate(rate.packageId, rate.rateId)}
                           />
                           {rate.name}
                         </span>
-                        <span
-                          className={cn(
-                            "tabular-nums",
-                            rate.price <= 0 && "font-medium text-primary",
-                          )}
-                        >
+                        <span className={cn("tabular-nums", rate.price <= 0 && "font-medium")}>
                           {rate.price <= 0
-                            ? "FREE"
-                            : formatPrice(
-                                rate.price,
-                                settings,
-                                cart.totals.currency,
-                              )}
+                            ? "Free"
+                            : formatPrice(rate.price, settings, cart.totals.currency)}
                         </span>
                       </label>
                     ))}
@@ -634,247 +1015,204 @@ export function CheckoutPage() {
 
               <section className="space-y-3">
                 <div>
-                  <h2 className="text-base font-semibold">Payment</h2>
+                  <h2 className="text-lg font-semibold">Payment</h2>
                   <p className="mt-1 text-sm text-muted-foreground">
                     All transactions are secure and encrypted.
                   </p>
                 </div>
-                <PaymentMethodPicker
-                  methods={paymentMethods}
-                  value={paymentKind}
-                  onChange={(kind) => {
-                    setPaymentKind(kind);
-                    setSession(null);
-                  }}
-                />
-                {sessionError && !session ? (
-                  <p className="text-sm text-destructive">{sessionError}</p>
-                ) : null}
-                {session && paymentKind !== "afterpay" ? (
-                  <PaymentStep
-                    amount={session.amount}
-                    currency={session.currency}
-                    clientSecret={session.clientSecret}
-                    orderId={session.orderId}
-                    orderKey={session.orderKey}
-                    email={session.email}
-                    shipping={shipping}
-                    billing={
-                      same
-                        ? {
-                            ...shipping,
-                            email: shipping.email || billing.email,
-                            phone: shipping.phone || billing.phone,
-                          }
-                        : billing
-                    }
-                    mockPayment={session.mockPayment}
-                    paymentKind={session.paymentKind}
-                    redirectUrl={session.redirectUrl}
-                    stripePublishableKey={stripePublishableKey}
-                    paypalClientId={paypalClientId}
-                    affirmPublicKey={affirmPublicKey}
-                    affirmEnv={affirmEnv}
-                    onPaid={(result) => {
-                      setCart(emptyStoreCart());
-                      toast({
-                        title: "Order completed",
-                        description:
-                          "Kindly check your email for the order details and tracking link.",
-                      });
-                      router.push(
-                        `/order/${result.orderId}?key=${encodeURIComponent(result.orderKey)}&email=${encodeURIComponent(result.email)}`,
+                {mockPayment ? (
+                  <p className="rounded-md bg-muted px-4 py-4 text-sm">
+                    Development checkout is on. No card will be charged.
+                  </p>
+                ) : !paymentMethods.length ? (
+                  <p className="rounded-md border border-border bg-muted px-4 py-4 text-sm font-medium">
+                    No payment methods are turned on for this store.
+                  </p>
+                ) : severalMethods ? (
+                  <div className="overflow-hidden rounded-md border border-border">
+                    {paymentMethods.map((method, index) => {
+                      const selected = paymentKind === method.kind;
+                      const icons = iconsForCheckoutMethods(
+                        [method],
+                        settings.productPage?.stripeCardBrands,
                       );
-                    }}
-                    onError={(message) => {
-                      setErrors({
-                        form: userErrorMessage(
-                          new Error(message),
-                          "Payment could not be completed. Try again.",
-                        ),
-                      });
-                    }}
-                  />
-                ) : submitting && paymentKind !== "afterpay" ? (
-                  <PaymentFormSkeleton />
+                      return (
+                        <div
+                          key={method.kind}
+                          className={cn(index > 0 && "border-t border-border")}
+                        >
+                          <label
+                            className={cn(
+                              "flex cursor-pointer items-center gap-3 px-4 py-3.5",
+                              selected && "bg-accent/10",
+                            )}
+                          >
+                            <input
+                              type="radio"
+                              name="payment-method"
+                              className="sr-only"
+                              checked={selected}
+                              onChange={() => setPaymentKind(method.kind)}
+                            />
+                            <span
+                              className={cn(
+                                "flex size-4 shrink-0 items-center justify-center rounded-full border-2",
+                                selected ? "border-accent" : "border-foreground/30",
+                              )}
+                              aria-hidden
+                            >
+                              {selected ? (
+                                <span className="size-2 rounded-full bg-accent" />
+                              ) : null}
+                            </span>
+                            <span className="min-w-0 flex-1 text-sm font-medium">
+                              {methodLabel(method.kind)}
+                            </span>
+                            <span className="flex max-w-[46%] shrink-0 flex-wrap justify-end gap-1">
+                              {icons.slice(0, 4).map((icon) => (
+                                <PaymentBrandIcon
+                                  key={icon.slug}
+                                  slug={icon.slug}
+                                  label={icon.label}
+                                />
+                              ))}
+                            </span>
+                          </label>
+                          {selected && method.kind === "stripe" && stripeReady ? (
+                            <div className="border-t border-border bg-background px-4 py-4">
+                              {stripeCard("never")}
+                            </div>
+                          ) : null}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : stripeReady && paymentKind === "stripe" ? (
+                  stripeCard("auto")
+                ) : null}
+                {errors.form ? (
+                  <p className="text-sm text-destructive" role="alert">
+                    {errors.form}
+                  </p>
                 ) : null}
               </section>
 
-              {errors.form ? (
-                <p className="text-sm text-destructive" role="alert">
-                  {errors.form}
-                </p>
-              ) : null}
+              {!mockPayment && !stripeCardShown ? billingBlock : null}
 
-              {paymentKind === "afterpay" ? (
-                <>
-                  <Button
-                    type={session?.redirectUrl ? "button" : "submit"}
-                    size="lg"
-                    className="h-[52px] w-full rounded-[8px] text-sm font-medium tracking-[0.08em] uppercase"
-                    disabled={submitting || !cart.items.length}
-                    onClick={
-                      session?.redirectUrl
-                        ? () => {
-                            window.location.assign(session.redirectUrl!);
-                          }
-                        : undefined
-                    }
-                  >
-                    {submitting ? (
-                      <Loader2 className="size-4 animate-spin" aria-hidden />
-                    ) : (
-                      <Lock className="size-4" aria-hidden />
-                    )}
-                    {session?.redirectUrl
-                      ? "Continue to Afterpay"
-                      : "Proceed to payment"}
-                  </Button>
-                  {submitting ? <PaymentFormSkeleton /> : null}
-                  {session ? (
-                    <AfterpayPayment
-                      amount={session.amount}
-                      currency={session.currency}
-                      redirectUrl={session.redirectUrl}
-                      showAction={false}
-                    />
-                  ) : null}
-                </>
-              ) : !session ? (
+              {mockPayment ? (
                 <Button
                   type="submit"
                   size="lg"
-                  className="h-[52px] w-full rounded-[8px] text-sm font-medium tracking-[0.08em] uppercase"
-                  disabled={
-                    !cart.items.length ||
-                    submitting ||
-                    (!mockPayment && !paymentKind)
-                  }
+                  className="h-12 w-full rounded-md bg-accent text-sm font-medium text-accent-foreground hover:bg-accent/90"
+                  disabled={paying || !cart.items.length}
+                  aria-busy={paying}
                 >
-                  {submitting ? (
-                    <Loader2 className="size-4 animate-spin" aria-hidden />
-                  ) : (
-                    <Lock className="size-4" aria-hidden />
-                  )}
-                  {submitting ? "Preparing payment..." : "Proceed to payment"}
+                  {paying ? <Loader2 className="size-4 animate-spin" aria-hidden /> : null}
+                  Place order (dev)
                 </Button>
+              ) : stripeCardShown ? null : paymentKind === "paypal" ? (
+                <PayPalPayment
+                  amount={cart.totals.total}
+                  currency={cart.totals.currency}
+                  orderId=""
+                  orderKey=""
+                  clientSecret=""
+                  paypalClientId={paypalClientId}
+                  canStart={validate}
+                  prepare={async () => {
+                    const session = await paySeparate("paypal");
+                    if (!session) return null;
+                    return {
+                      orderId: session.orderId,
+                      orderKey: session.orderKey,
+                      paypalOrderId: session.clientSecret,
+                    };
+                  }}
+                  onPaid={finishPaid}
+                  onError={(message) => setErrors({ form: message })}
+                />
+              ) : paymentKind === "affirm" ? (
+                <AffirmPayment
+                  amount={cart.totals.total}
+                  currency={cart.totals.currency}
+                  orderId=""
+                  orderKey=""
+                  email={email}
+                  shipping={shipping}
+                  billing={payBilling}
+                  affirmPublicKey={affirmPublicKey}
+                  affirmEnv={affirmEnv}
+                  prepare={async () => {
+                    const session = await paySeparate("affirm");
+                    if (!session) return null;
+                    return {
+                      orderId: session.orderId,
+                      orderKey: session.orderKey,
+                      amount: session.amount,
+                      currency: session.currency,
+                      email: session.email,
+                    };
+                  }}
+                  onPaid={finishPaid}
+                  onError={(message) => setErrors({ form: message })}
+                />
+              ) : paymentKind === "afterpay" ? (
+                <div className="space-y-3">
+                  <p className="text-sm text-muted-foreground">
+                    You will finish this payment on Afterpay, then come back to confirm the order.
+                  </p>
+                  <Button
+                    type="button"
+                    size="lg"
+                    className="h-12 w-full rounded-md bg-accent text-sm font-medium text-accent-foreground hover:bg-accent/90"
+                    disabled={paying || !cart.items.length}
+                    aria-busy={paying}
+                    onClick={() => void payAfterpay()}
+                  >
+                    {paying ? <Loader2 className="size-4 animate-spin" aria-hidden /> : null}
+                    Continue to Afterpay
+                  </Button>
+                </div>
+              ) : paymentKind === "stripe" ? (
+                <p className="text-sm text-muted-foreground">
+                  Card payment is not available for this total right now.
+                </p>
               ) : null}
+
+              <p className="text-sm text-muted-foreground">
+                <Link href="/terms-of-service" className="text-accent underline">
+                  Terms and policies
+                </Link>
+              </p>
             </form>
-          </section>
-        </>
-      )}
+          </div>
+        )}
       </div>
 
       {cart.items.length ? (
-        <aside className="hidden self-start lg:block">
-          <div className="rounded-[8px] border border-border bg-card p-6 shadow-sm">
+        <aside className="hidden border-border bg-muted lg:block lg:border-l">
+          <div className="sticky top-0 mx-auto w-full max-w-[440px] px-8 py-12">
             <OrderSummary cart={cart} />
-            <PromiseCard />
           </div>
         </aside>
       ) : null}
-      </div>
     </div>
   );
-}
 
-function methodNote(kind: CheckoutPaymentKind) {
-  if (kind === "paypal") return "Approve the payment in PayPal.";
-  if (kind === "affirm") {
-    return "You will confirm an installment plan with Affirm, then return here to finish the order.";
-  }
-  if (kind === "afterpay") {
-    return "You will be redirected to Afterpay to set up your interest-free installments, then brought back to confirm your order.";
-  }
-  return "Card details stay with Stripe.";
-}
-
-function PaymentMethodPicker({
-  methods,
-  value,
-  onChange,
-  readOnly = false,
-}: {
-  methods: CheckoutPaymentMethod[];
-  value: CheckoutPaymentKind | "" | "mock";
-  onChange?: (kind: CheckoutPaymentKind) => void;
-  readOnly?: boolean;
-}) {
-  const { settings } = useStore();
-  if (!methods.length) {
-    return (
-      <p className="rounded-[8px] border border-foreground/15 bg-muted px-4 py-4 text-sm font-medium text-foreground">
-        No payment methods are turned on for this store.
-      </p>
-    );
-  }
   return (
-    <fieldset className="space-y-2">
-      <legend className="sr-only">Pay with</legend>
-      <div className="grid gap-2">
-        {methods.map((method) => {
-          const selected = value === method.kind;
-          const icons = iconsForCheckoutMethods(
-            [method],
-            settings.productPage?.stripeCardBrands,
-          );
-          return (
-            <label
-              key={method.kind}
-              className={cn(
-                "flex items-start gap-3 rounded-[8px] border bg-card px-3.5 py-3 sm:items-center sm:px-4 sm:py-3.5",
-                selected
-                  ? "border-primary bg-primary/10"
-                  : "border-border",
-                readOnly ? "" : "cursor-pointer",
-              )}
-            >
-              <input
-                type="radio"
-                name="payment-method"
-                className="sr-only"
-                checked={selected}
-                disabled={readOnly}
-                onChange={() => onChange?.(method.kind)}
-              />
-              <span
-                className={cn(
-                  "mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full border-2 sm:mt-0",
-                  selected ? "border-primary" : "border-foreground/35",
-                )}
-                aria-hidden
-              >
-                {selected ? (
-                  <span className="size-2 rounded-full bg-primary" />
-                ) : null}
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-sm font-semibold text-foreground">
-                  {method.title}
-                </span>
-                <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
-                  {methodNote(method.kind)}
-                </span>
-              </span>
-              <span className="flex max-w-[42%] shrink-0 flex-wrap justify-end gap-1">
-                {icons.slice(0, 4).map((icon) => (
-                  <PaymentBrandIcon
-                    key={icon.slug}
-                    slug={icon.slug}
-                    label={icon.label}
-                  />
-                ))}
-              </span>
-            </label>
-          );
-        })}
-      </div>
-    </fieldset>
+    <StripeCheckoutProvider
+      enabled={stripeReady}
+      publishableKey={stripePublishableKey}
+      amount={cart.totals.total}
+      currency={cart.totals.currency || "usd"}
+    >
+      {page}
+    </StripeCheckoutProvider>
   );
 }
 
 const fieldShell =
-  "h-12 w-full rounded-[8px] border border-border bg-card px-3.5 text-base text-foreground shadow-none placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 sm:h-[52px] sm:px-4 sm:text-sm";
+  "h-12 w-full rounded-md border border-border bg-background px-3.5 text-sm text-foreground shadow-none outline-none placeholder:text-transparent focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20";
 
 function Field({
   id,
@@ -885,6 +1223,7 @@ function Field({
   type = "text",
   className,
   onBlur,
+  autoComplete,
 }: {
   id: string;
   label: string;
@@ -894,9 +1233,10 @@ function Field({
   type?: string;
   className?: string;
   onBlur?: () => void;
+  autoComplete?: string;
 }) {
   return (
-    <div className={cn("min-w-0 space-y-1", className)}>
+    <div className={cn("relative min-w-0", className)}>
       <Label htmlFor={id} className="sr-only">
         {label}
       </Label>
@@ -905,12 +1245,16 @@ function Field({
         type={type}
         value={value}
         placeholder={label}
+        autoComplete={autoComplete}
         onChange={(event) => onChange(event.target.value)}
         onBlur={onBlur}
         aria-invalid={Boolean(error)}
-        className={fieldShell}
+        className={cn(fieldShell, "peer pt-4")}
       />
-      {error ? <p className="text-xs text-destructive">{error}</p> : null}
+      <span className="pointer-events-none absolute top-1.5 left-3.5 text-[11px] text-muted-foreground peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-1.5 peer-focus:text-[11px]">
+        {label}
+      </span>
+      {error ? <p className="mt-1 text-xs text-destructive">{error}</p> : null}
     </div>
   );
 }
@@ -922,6 +1266,7 @@ function CheckoutSelect({
   onChange,
   options,
   className,
+  error,
 }: {
   id: string;
   label: string;
@@ -929,6 +1274,7 @@ function CheckoutSelect({
   onChange: (value: string) => void;
   options: { value: string; label: string }[];
   className?: string;
+  error?: string;
 }) {
   return (
     <div className={cn("relative min-w-0", className)}>
@@ -939,7 +1285,7 @@ function CheckoutSelect({
         id={id}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className={cn(fieldShell, "appearance-none pr-10 outline-none")}
+        className={cn(fieldShell, "appearance-none pr-10", value && "pt-4")}
       >
         <option value="">{label}</option>
         {options.map((option) => (
@@ -948,10 +1294,16 @@ function CheckoutSelect({
           </option>
         ))}
       </select>
+      {value ? (
+        <span className="pointer-events-none absolute top-1.5 left-3.5 text-[11px] text-muted-foreground">
+          {label}
+        </span>
+      ) : null}
       <ChevronDown
         aria-hidden
         className="pointer-events-none absolute top-1/2 right-3.5 size-4 -translate-y-1/2 text-muted-foreground"
       />
+      {error ? <p className="mt-1 text-xs text-destructive">{error}</p> : null}
     </div>
   );
 }
@@ -964,7 +1316,6 @@ function OrderSummary({ cart }: { cart: StoreCart }) {
   const [showCoupon, setShowCoupon] = useState(false);
   const [qtyBusy, setQtyBusy] = useState("");
   const shippingFree = cart.hasCalculatedShipping && cart.totals.shipping <= 0;
-  const taxReady = cart.hasCalculatedShipping;
 
   async function applyCoupon() {
     if (!coupon.trim()) return;
@@ -1034,22 +1385,16 @@ function OrderSummary({ cart }: { cart: StoreCart }) {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <h2 className="text-base font-semibold">Order summary</h2>
-        <span className="text-sm text-muted-foreground">
-          {cart.itemsCount} {cart.itemsCount === 1 ? "item" : "items"}
-        </span>
-      </div>
-      {shippingFree ? (
-        <p className="mt-4 inline-flex items-center gap-1 rounded-full bg-primary/15 px-2 py-0.5 text-[11px] font-semibold tracking-wide text-foreground">
-          Free shipping
-        </p>
-      ) : null}
-      <ul className="mt-5 space-y-4">
+      <ul className="space-y-4">
         {cart.items.map((item) => (
-          <li key={item.key} className="flex items-start gap-3">
-            <div className="relative size-14 shrink-0 overflow-hidden rounded-[6px] bg-muted">
-              <StoreImage src={item.image} alt="" sizes="56px" />
+          <li key={item.key} className="flex items-start gap-4">
+            <div className="relative size-16 shrink-0">
+              <div className="size-16 overflow-hidden rounded-md border border-border bg-background">
+                <StoreImage src={item.image} alt="" sizes="64px" />
+              </div>
+              <span className="absolute -top-2 -right-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-foreground px-1 text-[11px] font-medium text-background">
+                {item.quantity}
+              </span>
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-medium leading-snug break-words">{item.name}</p>
@@ -1063,9 +1408,6 @@ function OrderSummary({ cart }: { cart: StoreCart }) {
                 >
                   <Minus className="size-3" />
                 </button>
-                <span className="min-w-4 text-center tabular-nums text-foreground">
-                  {item.quantity}
-                </span>
                 <button
                   type="button"
                   className="px-0.5 disabled:opacity-40"
@@ -1085,17 +1427,13 @@ function OrderSummary({ cart }: { cart: StoreCart }) {
                 </button>
               </div>
             </div>
-            <span className="shrink-0 text-sm font-medium tabular-nums">
-              {formatPrice(
-                item.price * item.quantity,
-                settings,
-                cart.totals.currency,
-              )}
+            <span className="shrink-0 text-sm tabular-nums">
+              {formatPrice(item.price * item.quantity, settings, cart.totals.currency)}
             </span>
           </li>
         ))}
       </ul>
-      <div className="mt-5 space-y-2">
+      <div className="mt-5">
         {showCoupon || cart.coupons.length ? (
           <div className="flex gap-2">
             <Input
@@ -1103,12 +1441,12 @@ function OrderSummary({ cart }: { cart: StoreCart }) {
               onChange={(event) => setCoupon(event.target.value)}
               placeholder="Discount code"
               aria-label="Discount code"
-              className={cn(fieldShell, "h-10")}
+              className="h-10 rounded-md border-border bg-background"
             />
             <Button
               type="button"
               variant="outline"
-              className="h-10 rounded-[8px]"
+              className="h-10 rounded-md"
               disabled={couponBusy || !coupon.trim()}
               onClick={() => void applyCoupon()}
             >
@@ -1118,17 +1456,14 @@ function OrderSummary({ cart }: { cart: StoreCart }) {
         ) : (
           <button
             type="button"
-            className="text-sm font-medium text-foreground/80 hover:underline"
+            className="text-sm text-muted-foreground underline-offset-4 hover:underline"
             onClick={() => setShowCoupon(true)}
           >
-            Have a discount code?
+            Discount code
           </button>
         )}
         {cart.coupons.map((entry) => (
-          <div
-            key={entry.code}
-            className="flex items-center justify-between text-sm"
-          >
+          <div key={entry.code} className="mt-2 flex items-center justify-between text-sm">
             <span className="text-muted-foreground">{entry.code}</span>
             <button
               type="button"
@@ -1140,7 +1475,7 @@ function OrderSummary({ cart }: { cart: StoreCart }) {
           </div>
         ))}
       </div>
-      <div className="mt-5 space-y-2.5 border-t border-border pt-4 text-sm">
+      <div className="mt-5 space-y-3 text-sm">
         <div className="flex justify-between">
           <span className="text-muted-foreground">Subtotal</span>
           <span className="tabular-nums">
@@ -1149,99 +1484,40 @@ function OrderSummary({ cart }: { cart: StoreCart }) {
         </div>
         {cart.totals.discount > 0 ? (
           <div className="flex justify-between">
-            <span className="text-muted-foreground">Item savings</span>
-            <span className="tabular-nums font-medium text-primary">
-              -
-              {formatPrice(
-                cart.totals.discount,
-                settings,
-                cart.totals.currency,
-              )}
+            <span className="text-muted-foreground">Discount</span>
+            <span className="tabular-nums">
+              -{formatPrice(cart.totals.discount, settings, cart.totals.currency)}
             </span>
           </div>
         ) : null}
         <div className="flex justify-between">
           <span className="text-muted-foreground">Shipping</span>
-          <span
-            className={cn(
-              "tabular-nums",
-              shippingFree && "font-semibold text-primary",
-            )}
-          >
+          <span className={cn("tabular-nums", !cart.hasCalculatedShipping && "text-muted-foreground")}>
             {!cart.hasCalculatedShipping
-              ? "Enter address"
+              ? "Enter shipping address"
               : shippingFree
-                ? "FREE"
-                : formatPrice(
-                    cart.totals.shipping,
-                    settings,
-                    cart.totals.currency,
-                  )}
+                ? "Free"
+                : formatPrice(cart.totals.shipping, settings, cart.totals.currency)}
           </span>
         </div>
-        <div className="flex justify-between">
-          <span className="text-muted-foreground">Tax</span>
-          <span className="tabular-nums text-muted-foreground">
-            {taxReady && cart.totals.tax > 0
-              ? formatPrice(cart.totals.tax, settings, cart.totals.currency)
-              : "Calculated at next step"}
-          </span>
-        </div>
-        <div className="flex justify-between pt-1 text-base font-semibold">
+        {cart.hasCalculatedShipping && cart.totals.tax > 0 ? (
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">Tax</span>
+            <span className="tabular-nums">
+              {formatPrice(cart.totals.tax, settings, cart.totals.currency)}
+            </span>
+          </div>
+        ) : null}
+        <div className="flex items-baseline justify-between pt-1 text-lg font-semibold">
           <span>Total</span>
           <span className="tabular-nums">
+            <span className="mr-2 text-xs font-normal text-muted-foreground">
+              {(cart.totals.currency || settings.currency || "").toUpperCase()}
+            </span>
             {formatPrice(cart.totals.total, settings, cart.totals.currency)}
           </span>
         </div>
       </div>
-    </div>
-  );
-}
-
-function PromiseCard() {
-  const items = [
-    {
-      icon: ShieldCheck,
-      title: "Returns with a policy",
-      body: "Eligibility, timing, and any fees are in the returns policy. Contact us before sending an item back.",
-    },
-    {
-      icon: Truck,
-      title: "Shipping at checkout",
-      body: "Shipping charges and delivery estimates are shown before you pay.",
-    },
-    {
-      icon: Award,
-      title: "Warranty and support",
-      body: "Tested products, with support if something is not right.",
-    },
-    {
-      icon: Package,
-      title: "Secure checkout",
-      body: "Payments are encrypted. Card details stay with the processor.",
-    },
-  ];
-  return (
-    <div className="mt-6 border-t border-border pt-5">
-      <h3 className="text-base font-semibold">The Lunaavo promise</h3>
-      <p className="mt-1 text-xs text-muted-foreground">
-        Every order, every time.
-      </p>
-      <ul className="mt-4 space-y-3.5">
-        {items.map((item) => (
-          <li key={item.title} className="flex gap-3">
-            <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
-              <item.icon className="size-4" aria-hidden />
-            </span>
-            <span>
-              <span className="block text-sm font-medium">{item.title}</span>
-              <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
-                {item.body}
-              </span>
-            </span>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

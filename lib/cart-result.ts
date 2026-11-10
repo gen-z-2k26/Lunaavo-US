@@ -2,7 +2,7 @@ import type { StoreCart } from "@/lib/types";
 
 export type CartMutation =
   | { ok: true; cart: StoreCart }
-  | { ok: false; message: string };
+  | { ok: false; message: string; catalogStale?: boolean };
 
 const NAMED_ENTITIES: Record<string, string> = {
   amp: "&",

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Heart, ShoppingBag, X } from "lucide-react";
 import {
   Dialog,
@@ -12,7 +13,7 @@ import {
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ProductImageCarousel } from "@/components/ProductImageCarousel";
 import { QuantityPicker } from "@/components/QuantityPicker";
-import { addProductToCart } from "@/lib/add-to-cart";
+import { addProductToCart, isCatalogConflictError } from "@/lib/add-to-cart";
 import { userErrorMessage } from "@/lib/user-error";
 import { useCartStore } from "@/lib/cart-store";
 import { useStore } from "@/lib/store-context";
@@ -31,8 +32,10 @@ export function QuickViewModal({
   onOpenChange: (open: boolean) => void;
 }) {
   const { settings } = useStore();
+  const router = useRouter();
   const setError = useCartStore((state) => state.setError);
   const [active, setActive] = useState<Product | null>(product);
+  const [rejectedId, setRejectedId] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -49,14 +52,20 @@ export function QuickViewModal({
 
   if (!active) return null;
 
+  const inStock = Boolean(active?.inStock) && rejectedId !== active?.id;
+
   async function handleAdd() {
-    if (!active?.inStock || busy) return;
+    if (!active || !inStock || busy) return;
     setBusy(true);
     try {
       await addProductToCart(active, quantity);
       setAdded(true);
       window.setTimeout(() => setAdded(false), 1200);
     } catch (error) {
+      if (isCatalogConflictError(error)) {
+        setRejectedId(active.id);
+        router.refresh();
+      }
       setError(userErrorMessage(error, "Could not add to cart."));
     } finally {
       setBusy(false);
@@ -145,19 +154,19 @@ export function QuickViewModal({
               <div className="flex items-center gap-2.5">
                 <QuantityPicker
                   value={quantity}
-                  disabled={!active.inStock}
+                  disabled={!inStock}
                   onChange={setQuantity}
                 />
 
                 <Button
                   type="button"
                   size="lg"
-                  disabled={!active.inStock || busy}
+                  disabled={!inStock || busy}
                   onClick={() => void handleAdd()}
                   className="flex-1"
                 >
                   <ShoppingBag className="size-4" />
-                  {added ? "Added" : active.inStock ? "Add to cart" : "Unavailable"}
+                  {added ? "Added" : inStock ? "Add to cart" : "Unavailable"}
                 </Button>
 
                 <button

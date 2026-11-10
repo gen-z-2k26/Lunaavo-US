@@ -13,10 +13,20 @@ import {
   updateStoreCartItem,
   updateStoreCustomer,
 } from "@/lib/api/store-api";
+import { isCatalogConflict } from "@/lib/catalog-conflict";
+import { refreshCatalog } from "@/lib/cache-policy";
 import { cartErrorMessage, type CartMutation } from "@/lib/cart-result";
 import type { Address, StoreCart } from "@/lib/types";
 
 function failedCart(error: unknown, fallback: string): CartMutation {
+  if (isCatalogConflict(error)) {
+    refreshCatalog();
+    return {
+      ok: false,
+      message: cartErrorMessage(error, fallback),
+      catalogStale: true,
+    };
+  }
   return { ok: false, message: cartErrorMessage(error, fallback) };
 }
 

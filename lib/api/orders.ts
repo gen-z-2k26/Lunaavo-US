@@ -1,4 +1,6 @@
 import { wooGet, wooPost, wooPut } from "@/lib/api/client";
+import { isCatalogConflict } from "@/lib/catalog-conflict";
+import { refreshCatalog } from "@/lib/cache-policy";
 import { withWooErrorHandling } from "@/lib/api/errors";
 import { toWooAddress } from "@/lib/api/map-cart";
 import { majorTotalsMatch } from "@/lib/money";
@@ -35,29 +37,6 @@ export type WooOrder = {
   line_items?: WooOrderLineItem[];
   meta_data?: Array<{ key?: string; value?: unknown }>;
 };
-
-function storefrontOrigin() {
-  return process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "") || "";
-}
-
-function orderTrackingUrl(order: CreateOrderResult) {
-  const origin = storefrontOrigin();
-  if (!origin || !order.orderId) return "";
-  const params = new URLSearchParams();
-  params.set("order", order.orderId);
-  if (order.orderKey) params.set("key", order.orderKey);
-  if (order.email) params.set("email", order.email);
-  return `${origin}/track-your-order?${params.toString()}`;
-}
-
-function trackingCustomerNote(order: CreateOrderResult) {
-  const trackUrl = orderTrackingUrl(order);
-  const lines = [
-    `Track this order: ${trackUrl || "open Track Your Order on our site"}`,
-    `Order number ${order.orderId}. Order key ${order.orderKey}.`,
-  ];
-  return lines.join(" ");
-}
 
 function lineItemImage(item: WooOrderLineItem) {
   if (typeof item.image === "string") return item.image;
@@ -137,64 +116,83 @@ export async function createPendingOrderFromCart(
   }
 
   return withWooErrorHandling(async () => {
-    const selectedShipping = cart.shippingRates.filter((rate) => rate.selected);
-    const mockPayment = Boolean(options?.mockPayment);
-    const paymentMethod = options?.paymentMethod || "stripe";
-    const paymentMethodTitle =
-      options?.paymentMethodTitle ||
-      (mockPayment
-        ? "Credit card (local skip)"
-        : paymentMethod === "ppcp-gateway" || paymentMethod === "paypal"
-          ? "PayPal"
-          : paymentMethod === "afterpay"
-            ? "Afterpay"
-            : paymentMethod === "affirm"
-              ? "Affirm"
-              : "Credit card (Stripe)");
-    const order = await wooPost<WooOrder>("orders", {
-      payment_method: paymentMethod,
-      payment_method_title: paymentMethodTitle,
-      status: "pending",
-      set_paid: false,
-      customer_note: options?.customerNote?.trim() || undefined,
-      billing: toWooAddress(billing, true),
-      shipping: toWooAddress(shipping, false),
-      line_items: cart.items.map((item) => ({
-        product_id: Number(item.productId),
-        quantity: item.quantity,
-      })),
-      ...(cart.coupons.length
-        ? { coupon_lines: cart.coupons.map((coupon) => ({ code: coupon.code })) }
-        : {}),
-      ...(selectedShipping.length
-        ? {
-            shipping_lines: selectedShipping.map((rate) => ({
-              method_id: rate.methodId,
-              method_title: rate.name,
-              total: rate.price.toFixed(Math.max(0, cart.totals.minorUnit)),
-            })),
-          }
-        : {}),
-      meta_data: [
-        {
-          key: "_created_via_storefront",
-          value: mockPayment ? "next-dev-mock" : `next-${paymentMethod}`,
-        },
-        { key: "_storefront_cart_hash", value: cart.cartHash },
-      ],
-    });
-
-    if (
-      !majorTotalsMatch(order.total, cart.totals.totalMinor, cart.totals.minorUnit)
-    ) {
-      await wooPut(`orders/${order.id}`, { status: "cancelled" }).catch(() => undefined);
-      throw new Error(
-        "Order total changed. Review the updated cart total and try again.",
-      );
+    try {
+      return await createOrderRecord(cart, options);
+    } catch (error) {
+      if (isCatalogConflict(error)) refreshCatalog();
+      throw error;
     }
-
-    return mapWooOrder(order, cart);
   });
+}
+
+async function createOrderRecord(
+  cart: StoreCart,
+  options?: {
+    mockPayment?: boolean;
+    paymentMethod?: string;
+    paymentMethodTitle?: string;
+    customerNote?: string;
+  },
+): Promise<CreateOrderResult> {
+  const billing = cart.billingAddress;
+  const shipping = cart.shippingAddress;
+  const selectedShipping = cart.shippingRates.filter((rate) => rate.selected);
+  const mockPayment = Boolean(options?.mockPayment);
+  const paymentMethod = options?.paymentMethod || "stripe";
+  const paymentMethodTitle =
+    options?.paymentMethodTitle ||
+    (mockPayment
+      ? "Credit card (local skip)"
+      : paymentMethod === "ppcp-gateway" || paymentMethod === "paypal"
+        ? "PayPal"
+        : paymentMethod === "afterpay"
+          ? "Afterpay"
+          : paymentMethod === "affirm"
+            ? "Affirm"
+            : "Credit card (Stripe)");
+  const order = await wooPost<WooOrder>("orders", {
+    payment_method: paymentMethod,
+    payment_method_title: paymentMethodTitle,
+    status: "pending",
+    set_paid: false,
+    customer_note: options?.customerNote?.trim() || undefined,
+    billing: toWooAddress(billing, true),
+    shipping: toWooAddress(shipping, false),
+    line_items: cart.items.map((item) => ({
+      product_id: Number(item.productId),
+      quantity: item.quantity,
+    })),
+    ...(cart.coupons.length
+      ? { coupon_lines: cart.coupons.map((coupon) => ({ code: coupon.code })) }
+      : {}),
+    ...(selectedShipping.length
+      ? {
+          shipping_lines: selectedShipping.map((rate) => ({
+            method_id: rate.methodId,
+            method_title: rate.name,
+            total: rate.price.toFixed(Math.max(0, cart.totals.minorUnit)),
+          })),
+        }
+      : {}),
+    meta_data: [
+      {
+        key: "_created_via_storefront",
+        value: mockPayment ? "next-dev-mock" : `next-${paymentMethod}`,
+      },
+      { key: "_storefront_cart_hash", value: cart.cartHash },
+    ],
+  });
+
+  if (
+    !majorTotalsMatch(order.total, cart.totals.totalMinor, cart.totals.minorUnit)
+  ) {
+    await wooPut(`orders/${order.id}`, { status: "cancelled" }).catch(() => undefined);
+    throw new Error(
+      "Order total changed. Review the updated cart total and try again.",
+    );
+  }
+
+  return mapWooOrder(order, cart);
 }
 
 export async function setOrderCustomerNote(orderId: string, note: string) {
@@ -210,7 +208,8 @@ export async function markOrderPaid(
   transactionId: string,
   options?: { paymentMethod?: string; paymentMethodTitle?: string },
 ): Promise<CreateOrderResult> {
-  return withWooErrorHandling(async () => {
+  try {
+    return await withWooErrorHandling(async () => {
     const existing = await wooGet<WooOrder>(`orders/${orderId}`);
     if (isPaidStatus(existing)) {
       if (
@@ -224,7 +223,6 @@ export async function markOrderPaid(
 
     const mockPayment = transactionId.startsWith("dev_mock_");
     const paymentMethod = options?.paymentMethod || "stripe";
-    const mappedPreview = mapWooOrder(existing);
     const order = await wooPut<WooOrder>(`orders/${orderId}`, {
       payment_method: paymentMethod,
       payment_method_title:
@@ -238,12 +236,15 @@ export async function markOrderPaid(
               : "Credit card (Stripe)"),
       set_paid: true,
       transaction_id: transactionId,
-      customer_note:
-        existing.customer_note?.trim() || trackingCustomerNote(mappedPreview),
     });
 
+    refreshCatalog();
     return mapWooOrder(order);
-  });
+    });
+  } catch (error) {
+    if (isCatalogConflict(error)) refreshCatalog();
+    throw error;
+  }
 }
 
 export async function cancelUnpaidOrder(orderId: string): Promise<void> {
@@ -252,6 +253,7 @@ export async function cancelUnpaidOrder(orderId: string): Promise<void> {
     if (isPaidStatus(existing)) return;
     if (existing.status === "cancelled" || existing.status === "failed") return;
     await wooPut<WooOrder>(`orders/${orderId}`, { status: "cancelled" });
+    refreshCatalog();
   });
 }
 
@@ -261,5 +263,6 @@ export async function failUnpaidOrder(orderId: string): Promise<void> {
     if (isPaidStatus(existing)) return;
     if (existing.status === "cancelled" || existing.status === "failed") return;
     await wooPut<WooOrder>(`orders/${orderId}`, { status: "failed" });
+    refreshCatalog();
   });
 }

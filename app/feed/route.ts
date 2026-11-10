@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
+import { FEED_REVALIDATE_SECONDS } from "@/lib/cache-policy";
 import { feedStoreOrigin, rewriteProductLinks } from "@/lib/ctx-feed";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 900;
 
 function originOf(value: string) {
   try {
@@ -22,7 +23,9 @@ export async function GET() {
 
   let upstream: Response;
   try {
-    upstream = await fetch(feedUrl, { cache: "no-store" });
+    upstream = await fetch(feedUrl, {
+      next: { revalidate: FEED_REVALIDATE_SECONDS },
+    });
   } catch {
     return NextResponse.json(
       { error: "CTX feed could not be fetched." },
@@ -44,7 +47,7 @@ export async function GET() {
     status: 200,
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "public, max-age=900",
+      "Cache-Control": `public, s-maxage=${FEED_REVALIDATE_SECONDS}, stale-while-revalidate=${FEED_REVALIDATE_SECONDS}`,
     },
   });
 }

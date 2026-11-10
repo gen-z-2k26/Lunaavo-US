@@ -10,6 +10,26 @@ export function stripePersonName(address: Address) {
   return `${address.firstName} ${address.lastName}`.trim();
 }
 
+export function splitPersonName(name: string) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return { firstName: "", lastName: "" };
+  if (parts.length === 1) return { firstName: parts[0], lastName: "-" };
+  return { firstName: parts[0], lastName: parts.slice(1).join(" ") };
+}
+
+export function stripeShippingRateId(packageId: number, rateId: string) {
+  return `${packageId}::${rateId}`;
+}
+
+export function parseStripeShippingRateId(id: string) {
+  const index = id.indexOf("::");
+  if (index <= 0) return null;
+  const packageId = Number(id.slice(0, index));
+  const rateId = id.slice(index + 2);
+  if (!Number.isInteger(packageId) || !rateId) return null;
+  return { packageId, rateId };
+}
+
 function stripeCountry(value: string) {
   const raw = value.trim().toUpperCase();
   if (COUNTRY_ALIASES[raw]) return COUNTRY_ALIASES[raw];

@@ -5,7 +5,7 @@ import { VerbatimDocument } from "@/components/VerbatimDocument";
 import { pageContainer } from "@/lib/layout";
 import { discoverBySlug } from "@/lib/discover";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 const PAGE = discoverBySlug("contact-us");
 

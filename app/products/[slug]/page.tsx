@@ -4,6 +4,7 @@ import { ProductDetail } from "@/components/ProductDetail";
 import { JsonLd } from "@/components/JsonLd";
 import {
   getProduct,
+  getProducts,
   getProductPaymentDisplay,
   getProductsByCategory,
   getProductsByIds,
@@ -12,9 +13,21 @@ import {
 } from "@/lib/api";
 import { getBnplPublicConfig } from "@/lib/bnpl-server";
 import { toCardProduct } from "@/lib/catalog-card";
+import { isCatalogSlug } from "@/lib/catalog-slug";
 import type { ProductPaymentDisplay, BnplPublicConfig } from "@/lib/types";
 
 export const revalidate = 60;
+
+export async function generateStaticParams() {
+  try {
+    const products = await getProducts({ perPage: 100, card: true });
+    return products
+      .map((product) => ({ slug: product.slug }))
+      .filter((entry) => isCatalogSlug(entry.slug));
+  } catch {
+    return [];
+  }
+}
 
 function emptyPayment(): ProductPaymentDisplay {
   return {
@@ -43,6 +56,7 @@ export async function generateMetadata({
   params,
 }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
+  if (!isCatalogSlug(slug)) notFound();
   const [settings, product] = await Promise.all([
     getSiteSettings(),
     getProduct(slug),
@@ -90,6 +104,7 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
+  if (!isCatalogSlug(slug)) notFound();
   const [settings, product] = await Promise.all([
     getSiteSettings(),
     getProduct(slug),

@@ -223,7 +223,7 @@ export function AdminDashboard({
             <ProviderCard
               id="stripe"
               title="Stripe"
-              detail="Publishable key and secret key"
+              detail="Publishable key and secret or restricted key"
               status={view.stripe.status}
               enabled={form.stripe.enabled}
               onEnabled={(enabled) =>
@@ -241,7 +241,7 @@ export function AdminDashboard({
               />
               <SecretField
                 id="stripe-sk"
-                label="Secret key"
+                label="Secret or restricted key"
                 hint={view.stripe.secretHint}
                 value={form.stripe.secretKey}
                 onChange={(secretKey) =>

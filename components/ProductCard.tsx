@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { ArrowUpRight, Check, Eye, ShoppingBag } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { formatPrice } from "@/lib/format";
 import { useStore } from "@/lib/store-context";
-import { addProductToCart } from "@/lib/add-to-cart";
+import { addProductToCart, isCatalogConflictError } from "@/lib/add-to-cart";
 import { userErrorMessage } from "@/lib/user-error";
 import { useCartStore } from "@/lib/cart-store";
 import { useMotionEnabled } from "@/lib/use-motion-enabled";
@@ -21,20 +22,27 @@ export function ProductCard({ product }: { product: Product }) {
   const { settings } = useStore();
   const setError = useCartStore((state) => state.setError);
   const { enabled } = useMotionEnabled();
+  const router = useRouter();
   const [added, setAdded] = useState(false);
   const [busy, setBusy] = useState(false);
   const [quickOpen, setQuickOpen] = useState(false);
+  const [rejectedId, setRejectedId] = useState<string | null>(null);
+  const inStock = product.inStock && rejectedId !== product.id;
 
   async function handleAdd(event: React.MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
-    if (!product.inStock || busy) return;
+    if (!inStock || busy) return;
     setBusy(true);
     try {
       await addProductToCart(product, 1);
       setAdded(true);
       window.setTimeout(() => setAdded(false), 1400);
     } catch (error) {
+      if (isCatalogConflictError(error)) {
+        setRejectedId(product.id);
+        router.refresh();
+      }
       setError(userErrorMessage(error, "Could not add to cart."));
     } finally {
       setBusy(false);
@@ -70,7 +78,7 @@ export function ProductCard({ product }: { product: Product }) {
             rounded="rounded-xl"
             className={cn(
               "relative z-[1] aspect-[16/11] pointer-events-none",
-              !product.inStock && "opacity-75 saturate-50",
+              !inStock && "opacity-75 saturate-50",
             )}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
@@ -105,7 +113,7 @@ export function ProductCard({ product }: { product: Product }) {
               {product.category || "\u00a0"}
             </span>
             <span className="text-xs text-muted-foreground">
-              {product.inStock ? "In stock" : "Out of stock"}
+              {inStock ? "In stock" : "Out of stock"}
             </span>
           </div>
 
@@ -135,10 +143,10 @@ export function ProductCard({ product }: { product: Product }) {
             <Button
               type="button"
               size="sm"
-              disabled={!product.inStock || busy}
+              disabled={!inStock || busy}
               onClick={handleAdd}
               aria-label={
-                product.inStock
+                inStock
                   ? `Add ${product.name} to cart`
                   : `${product.name} is out of stock`
               }
@@ -146,9 +154,9 @@ export function ProductCard({ product }: { product: Product }) {
                 "relative z-20",
                 added && "bg-success text-background hover:bg-success",
                 !added &&
-                  product.inStock &&
+                  inStock &&
                   "sm:translate-y-1 sm:opacity-0 group-hover:translate-y-0 group-hover:opacity-100 focus-visible:translate-y-0 focus-visible:opacity-100",
-                !product.inStock &&
+                !inStock &&
                   "sm:opacity-0 group-hover:opacity-100",
               )}
             >
@@ -157,7 +165,7 @@ export function ProductCard({ product }: { product: Product }) {
                   <Check className="size-3.5" />
                   Added
                 </>
-              ) : product.inStock ? (
+              ) : inStock ? (
                 <>
                   <ShoppingBag className="size-3.5" />
                   Add

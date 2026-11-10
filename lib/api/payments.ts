@@ -5,7 +5,7 @@ import { getPaymentAccounts } from "@/lib/payment-config";
 import { isStripeConfigured } from "@/lib/stripe";
 import type { CheckoutPaymentKind, CheckoutPaymentMethod } from "@/lib/types";
 
-const KIND_ORDER: CheckoutPaymentKind[] = ["paypal", "stripe", "affirm", "afterpay"];
+const KIND_ORDER: CheckoutPaymentKind[] = ["stripe", "paypal", "affirm", "afterpay"];
 
 const DEFAULT_TITLE: Record<CheckoutPaymentKind, string> = {
   paypal: "PayPal",

@@ -2,21 +2,12 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Lock } from "lucide-react";
-import {
-  Elements,
-  PaymentElement,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { completeCheckoutAction } from "@/app/actions/checkout";
 import { unwrapResult } from "@/lib/cart-result";
 import { userErrorMessage } from "@/lib/user-error";
 import { formatPrice } from "@/lib/format";
 import { useStore } from "@/lib/store-context";
-import { getStripeJs } from "@/lib/stripe-browser";
-import { stripeBillingDetails } from "@/lib/stripe-address";
 import type {
   Address,
   CheckoutPaymentKind,
@@ -57,16 +48,6 @@ function Unavailable({ children }: { children: string }) {
     <p className="rounded-2xl border border-foreground/15 bg-muted px-4 py-4 text-sm font-medium text-foreground">
       {children}
     </p>
-  );
-}
-
-export function PaymentFormSkeleton() {
-  return (
-    <div className="space-y-3" aria-busy="true" aria-label="Loading payment form">
-      <Skeleton className="h-12 w-full rounded-xl" />
-      <Skeleton className="h-12 w-full rounded-xl" />
-      <Skeleton className="h-12 w-full rounded-xl" />
-    </div>
   );
 }
 
@@ -121,111 +102,8 @@ function MockPaymentForm({
   );
 }
 
-function StripePaymentForm({
-  amount,
-  currency,
-  orderId,
-  orderKey,
-  email,
-  billing,
-  onPaid,
-  onError,
-}: Omit<
-  PaymentStepProps,
-  "clientSecret" | "mockPayment" | "paymentKind" | "shipping"
->) {
-  const stripe = useStripe();
-  const elements = useElements();
-  const { settings } = useStore();
-  const [submitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-    if (!stripe || !elements) return;
-    setSubmitting(true);
-    try {
-      const returnUrl = new URL(
-        `/order/${encodeURIComponent(orderId)}`,
-        window.location.origin,
-      );
-      returnUrl.searchParams.set("key", orderKey);
-      returnUrl.searchParams.set("email", email);
-
-      const billingDetails = stripeBillingDetails(billing, email);
-      const { error, paymentIntent } = await stripe.confirmPayment({
-        elements,
-        confirmParams: {
-          return_url: returnUrl.toString(),
-          receipt_email: email || undefined,
-          payment_method_data: {
-            billing_details: billingDetails,
-          },
-        },
-        redirect: "if_required",
-      });
-
-      if (error) {
-        onError(error.message || "Payment could not be completed.");
-        return;
-      }
-
-      if (paymentIntent?.status === "succeeded") {
-        const result = unwrapResult(
-          await completeCheckoutAction({
-            orderId,
-            orderKey,
-            paymentIntentId: paymentIntent.id,
-          }),
-        );
-        onPaid(result);
-        return;
-      }
-
-      if (paymentIntent?.status === "processing") {
-        onError("Payment is still processing. Check your email for confirmation.");
-        return;
-      }
-
-      onError("Payment was not completed. Try again.");
-    } catch (submitError) {
-      onError(userErrorMessage(submitError, "Payment could not be completed."));
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
-  return (
-    <form className="space-y-4" onSubmit={handleSubmit}>
-      <PaymentElement
-        options={{
-          layout: "tabs",
-          wallets: { applePay: "never", googlePay: "never" },
-          defaultValues: {
-            billingDetails: stripeBillingDetails(billing, email),
-          },
-          fields: {
-            billingDetails: "never",
-          },
-        }}
-      />
-      <Button
-        type="submit"
-        size="lg"
-        className="w-full"
-        disabled={!stripe || !elements || submitting}
-      >
-        {submitting
-          ? "Paying..."
-          : `Pay ${formatPrice(amount, settings, currency)}`}
-      </Button>
-      <SecureNote>
-        Card numbers are encrypted by Stripe and are not stored on this site.
-      </SecureNote>
-    </form>
-  );
-}
-
-function PayPalPayment({
+export function PayPalPayment({
   amount,
   currency,
   orderId,
@@ -234,6 +112,8 @@ function PayPalPayment({
   paypalClientId,
   onPaid,
   onError,
+  prepare,
+  canStart,
 }: Pick<
   PaymentStepProps,
   | "amount"
@@ -244,14 +124,30 @@ function PayPalPayment({
   | "paypalClientId"
   | "onPaid"
   | "onError"
-> & { paypalClientId: string }) {
+> & {
+  paypalClientId: string;
+  prepare?: () => Promise<{
+    orderId: string;
+    orderKey: string;
+    paypalOrderId: string;
+  } | null>;
+  canStart?: () => boolean;
+}) {
   const slot = useRef<HTMLDivElement>(null);
   const onPaidRef = useRef(onPaid);
   const onErrorRef = useRef(onError);
+  const prepareRef = useRef(prepare);
+  const canStartRef = useRef(canStart);
+  const orderRef = useRef({ orderId, orderKey, paypalOrderId: clientSecret });
   const { settings } = useStore();
   const clientId = paypalClientId.trim();
-  onPaidRef.current = onPaid;
-  onErrorRef.current = onError;
+  useEffect(() => {
+    onPaidRef.current = onPaid;
+    onErrorRef.current = onError;
+    prepareRef.current = prepare;
+    canStartRef.current = canStart;
+    orderRef.current = { orderId, orderKey, paypalOrderId: clientSecret };
+  }, [onPaid, onError, prepare, canStart, orderId, orderKey, clientSecret]);
 
   useEffect(() => {
     if (!clientId || !slot.current) return;
@@ -266,6 +162,10 @@ function PayPalPayment({
               onApprove: () => Promise<void>;
               onError: (error: { message?: string }) => void;
               onCancel: () => void;
+              onClick?: (
+                data: unknown,
+                actions: { resolve: () => void; reject: () => void },
+              ) => void;
             }) => { render: (target: HTMLElement) => Promise<void> };
           };
         }
@@ -274,14 +174,36 @@ function PayPalPayment({
       slot.current.replaceChildren();
       void paypal
         .Buttons({
-          createOrder: () => Promise.resolve(clientSecret),
+          onClick: (_data, actions) => {
+            if (canStartRef.current && !canStartRef.current()) {
+              actions.reject();
+              return;
+            }
+            actions.resolve();
+          },
+          createOrder: async () => {
+            if (prepareRef.current) {
+              const next = await prepareRef.current();
+              if (!next?.paypalOrderId) {
+                throw new Error("PayPal could not be started.");
+              }
+              orderRef.current = {
+                orderId: next.orderId,
+                orderKey: next.orderKey,
+                paypalOrderId: next.paypalOrderId,
+              };
+              return next.paypalOrderId;
+            }
+            return orderRef.current.paypalOrderId;
+          },
           onApprove: async () => {
+            const current = orderRef.current;
             try {
               const result = unwrapResult(
                 await completeCheckoutAction({
-                  orderId,
-                  orderKey,
-                  paymentIntentId: clientSecret,
+                  orderId: current.orderId,
+                  orderKey: current.orderKey,
+                  paymentIntentId: current.paypalOrderId,
                   provider: "paypal",
                 }),
               );
@@ -318,8 +240,10 @@ function PayPalPayment({
       if (!cancelled) render();
     };
     document.body.appendChild(script);
+    const node = slot.current;
     return () => {
       cancelled = true;
+      node?.replaceChildren();
     };
   }, [clientId, clientSecret, currency, orderId, orderKey]);
 
@@ -380,18 +304,9 @@ export function AfterpayPayment({
   );
 }
 
-function AffirmPayment({
-  amount,
-  currency,
-  orderId,
-  orderKey,
-  email,
-  shipping,
-  billing,
-  affirmPublicKey,
-  affirmEnv,
-  onPaid,
-  onError,
+export function AffirmPayment({
+  prepare,
+  ...affirmProps
 }: Pick<
   PaymentStepProps,
   | "amount"
@@ -405,7 +320,53 @@ function AffirmPayment({
   | "affirmEnv"
   | "onPaid"
   | "onError"
->) {
+> & {
+  prepare?: () => Promise<{
+    orderId: string;
+    orderKey: string;
+    amount: number;
+    currency: string;
+    email: string;
+  } | null>;
+}) {
+  return <AffirmPaymentForm {...affirmProps} prepare={prepare} />;
+}
+
+function AffirmPaymentForm({
+  amount,
+  currency,
+  orderId,
+  orderKey,
+  email,
+  shipping,
+  billing,
+  affirmPublicKey,
+  affirmEnv,
+  onPaid,
+  onError,
+  prepare,
+}: Pick<
+  PaymentStepProps,
+  | "amount"
+  | "currency"
+  | "orderId"
+  | "orderKey"
+  | "email"
+  | "shipping"
+  | "billing"
+  | "affirmPublicKey"
+  | "affirmEnv"
+  | "onPaid"
+  | "onError"
+> & {
+  prepare?: () => Promise<{
+    orderId: string;
+    orderKey: string;
+    amount: number;
+    currency: string;
+    email: string;
+  } | null>;
+}) {
   const { settings } = useStore();
   const [submitting, setSubmitting] = useState(false);
   const publicKey = affirmPublicKey?.trim() || "";
@@ -417,6 +378,23 @@ function AffirmPayment({
     }
     setSubmitting(true);
     try {
+      let nextOrderId = orderId;
+      let nextOrderKey = orderKey;
+      let nextAmount = amount;
+      let nextCurrency = currency;
+      let nextEmail = email;
+      if (prepare) {
+        const started = await prepare();
+        if (!started) {
+          setSubmitting(false);
+          return;
+        }
+        nextOrderId = started.orderId;
+        nextOrderKey = started.orderKey;
+        nextAmount = started.amount;
+        nextCurrency = started.currency;
+        nextEmail = started.email;
+      }
       await loadAffirm(publicKey, affirmEnv === "live" ? "live" : "sandbox");
       type AffirmApi = {
         checkout: ((payload: unknown) => void) & {
@@ -438,7 +416,7 @@ function AffirmPayment({
           zipcode: shipping.postcode,
           country: shipping.country,
         },
-        email,
+        email: nextEmail,
       };
       affirm.checkout({
         merchant: {
@@ -458,19 +436,19 @@ function AffirmPayment({
             zipcode: billing.postcode,
             country: billing.country,
           },
-          email,
+          email: nextEmail,
         },
         items: [
           {
-            display_name: `Order ${orderId}`,
-            sku: orderId,
-            unit_price: Math.round(amount * 100),
+            display_name: `Order ${nextOrderId}`,
+            sku: nextOrderId,
+            unit_price: Math.round(nextAmount * 100),
             qty: 1,
           },
         ],
-        order_id: orderId,
-        currency: currency.toUpperCase(),
-        total: Math.round(amount * 100),
+        order_id: nextOrderId,
+        currency: nextCurrency.toUpperCase(),
+        total: Math.round(nextAmount * 100),
         metadata: { mode: "modal" },
       });
       affirm.checkout.open({
@@ -482,8 +460,8 @@ function AffirmPayment({
             return;
           }
           void completeCheckoutAction({
-            orderId,
-            orderKey,
+            orderId: nextOrderId,
+            orderKey: nextOrderKey,
             paymentIntentId: token,
             provider: "affirm",
           })
@@ -606,38 +584,5 @@ export function PaymentStep(props: PaymentStepProps) {
     );
   }
 
-  if (props.paymentKind !== "stripe") {
-    return <Unavailable>This payment method is not available.</Unavailable>;
-  }
-
-  if (!props.stripePublishableKey || !props.clientSecret) {
-    return <Unavailable>Card payment is not available right now.</Unavailable>;
-  }
-
-  return (
-    <Elements
-      stripe={getStripeJs(props.stripePublishableKey)}
-      options={{
-        clientSecret: props.clientSecret,
-        appearance: {
-          theme: "stripe",
-          variables: {
-            borderRadius: "12px",
-            fontFamily: "inherit",
-          },
-        },
-      }}
-    >
-      <StripePaymentForm
-        amount={props.amount}
-        currency={props.currency}
-        orderId={props.orderId}
-        orderKey={props.orderKey}
-        email={props.email}
-        billing={props.billing}
-        onPaid={props.onPaid}
-        onError={props.onError}
-      />
-    </Elements>
-  );
+  return <Unavailable>This payment method is not available.</Unavailable>;
 }

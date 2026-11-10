@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getSiteSettings, getSiteUrl } from "@/lib/api";
 
+export const revalidate = 3600;
+
 export default async function robots(): Promise<MetadataRoute.Robots> {
   const settings = await getSiteSettings();
   const base = getSiteUrl(settings) || "http://localhost:3000";

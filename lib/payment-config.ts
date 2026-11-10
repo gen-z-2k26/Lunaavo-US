@@ -224,29 +224,31 @@ function rememberEnvelope(raw: string | null) {
   memory = { raw, at: Date.now() };
 }
 
-async function readEnvelope(): Promise<string | null> {
-  if (!blobTokenReady()) return null;
-  if (memory && Date.now() - memory.at < MEMORY_TTL_MS) return memory.raw;
-  if (!inflight) {
-    inflight = readEnvelopeCached()
-      .then((entry) => {
-        const raw = entry.found ? entry.raw : null;
-        rememberEnvelope(raw);
-        return raw;
-      })
-      .catch(() => {
-        if (memory) {
-          memory = { raw: memory.raw, at: Date.now() };
-          return memory.raw;
-        }
-        rememberEnvelope(null);
-        return null;
-      })
-      .finally(() => {
-        inflight = null;
-      });
+async function loadEnvelope(): Promise<string | null> {
+  try {
+    const entry = await readEnvelopeCached();
+    const raw = entry.found ? entry.raw : null;
+    rememberEnvelope(raw);
+    return raw;
+  } catch {
+    if (memory) {
+      memory = { raw: memory.raw, at: Date.now() };
+      return memory.raw;
+    }
+    rememberEnvelope(null);
+    return null;
   }
-  return inflight;
+}
+
+async function readEnvelope(fresh = false): Promise<string | null> {
+  if (!blobTokenReady()) return null;
+  if (!fresh && memory && Date.now() - memory.at < MEMORY_TTL_MS) return memory.raw;
+  if (!fresh && inflight) return inflight;
+  const task = loadEnvelope().finally(() => {
+    if (inflight === task) inflight = null;
+  });
+  if (!fresh) inflight = task;
+  return task;
 }
 
 function invalidatePaymentConfigCache() {
@@ -261,10 +263,10 @@ function invalidatePaymentConfigCache() {
   }
 }
 
-async function readStored(): Promise<StoredPaymentConfig | null> {
+async function readStored(fresh = false): Promise<StoredPaymentConfig | null> {
   const key = encryptionKey();
   if (!key) return null;
-  const raw = await readEnvelope();
+  const raw = await readEnvelope(fresh);
   if (!raw) return null;
   try {
     return decryptStored(key, raw);
@@ -283,8 +285,10 @@ function normalizeStored(value: Partial<StoredPaymentConfig>): StoredPaymentConf
   };
 }
 
-export async function getPaymentAccounts(): Promise<PaymentAccounts> {
-  const stored = await readStored();
+export async function getPaymentAccounts(options?: {
+  fresh?: boolean;
+}): Promise<PaymentAccounts> {
+  const stored = await readStored(Boolean(options?.fresh));
   if (!stored) return { ...emptyStored(), managed: false };
   return { ...stored, managed: true };
 }
@@ -359,8 +363,12 @@ export function validatePaymentInput(input: PaymentSettingsInput, resolved: Stor
   if (stripePublishable && !stripePublishable.startsWith("pk_")) {
     throw new Error("Stripe publishable key must start with pk_.");
   }
-  if (stripeSecret && !stripeSecret.startsWith("sk_")) {
-    throw new Error("Stripe secret key must start with sk_.");
+  if (
+    stripeSecret &&
+    !stripeSecret.startsWith("sk_") &&
+    !stripeSecret.startsWith("rk_")
+  ) {
+    throw new Error("Stripe secret key must start with sk_ or rk_.");
   }
   if (stripeWebhook && !stripeWebhook.startsWith("whsec_")) {
     throw new Error("Stripe webhook secret must start with whsec_.");

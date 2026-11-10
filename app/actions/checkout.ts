@@ -31,6 +31,7 @@ import {
   stripeAmountMatches,
   toStripeAmount,
 } from "@/lib/stripe";
+import { STRIPE_SEPARATE_CHECKOUT_METHODS } from "@/lib/stripe-amount";
 import { stripeShippingParams } from "@/lib/stripe-address";
 import { publicError, type PublicResult } from "@/lib/cart-result";
 import type {
@@ -56,6 +57,14 @@ type CheckoutOptions = {
   affirmPublicKey: string;
   affirmEnv: "sandbox" | "live";
 };
+
+function providerFromRef(ref: string): CheckoutPaymentKind | null {
+  if (ref.startsWith("paypal:")) return "paypal";
+  if (ref.startsWith("affirm:")) return "affirm";
+  if (ref.startsWith("afterpay:")) return "afterpay";
+  if (ref.startsWith("pi_")) return "stripe";
+  return null;
+}
 
 async function requireStripe() {
   if (!(await isStripeConfigured())) {
@@ -141,33 +150,49 @@ async function createCardPaymentIntent(input: {
     order_key: input.orderKey,
   };
   const shipping = stripeShippingParams(input.shipping);
+  const automatic_payment_methods = {
+    enabled: true,
+    allow_redirects: "always" as const,
+  };
+  const excluded_payment_method_types = [...STRIPE_SEPARATE_CHECKOUT_METHODS];
 
   if (input.existingIntentId?.startsWith("pi_")) {
     try {
       const existing = await stripe.paymentIntents.retrieve(input.existingIntentId);
+      const sameOrder = existing.metadata?.woo_order_id === input.orderId;
+      if (existing.status === "succeeded" && sameOrder) return existing;
       if (
-        existing.status !== "canceled" &&
+        sameOrder &&
         existing.client_secret &&
-        existing.metadata?.woo_order_id === input.orderId
+        existing.automatic_payment_methods?.enabled &&
+        existing.status !== "canceled"
       ) {
-        if (existing.status === "succeeded") return existing;
         return await stripe.paymentIntents.update(existing.id, {
           amount,
           currency,
           metadata,
           receipt_email: input.email || undefined,
           shipping,
+          excluded_payment_method_types,
         });
       }
+      if (existing.status !== "canceled" && existing.status !== "succeeded") {
+        try {
+          await stripe.paymentIntents.cancel(existing.id);
+        } catch {
+          // Already cancelled or no longer cancellable.
+        }
+      }
     } catch {
-      // Create a new card intent below.
+      // Create a new intent below.
     }
   }
 
   return stripe.paymentIntents.create({
     amount,
     currency,
-    allowed_payment_method_types: ["card"],
+    automatic_payment_methods,
+    excluded_payment_method_types,
     metadata,
     receipt_email: input.email || undefined,
     shipping,
@@ -179,12 +204,14 @@ async function createCheckoutSession(
 ): Promise<CheckoutSessionResult> {
   const mockPayment = isMockPaymentEnabled();
   const methods = mockPayment ? [] : await getEnabledCheckoutMethods();
-  const selected =
-    methods.find((method) => method.kind === details.paymentKind) ||
-    methods[0];
+  const selected = details.paymentKind
+    ? methods.find((method) => method.kind === details.paymentKind)
+    : methods[0];
   if (!mockPayment && !selected) {
     throw new Error(
-      "No payment methods are enabled. Turn one on in Admin.",
+      details.paymentKind
+        ? "That payment method is not available."
+        : "No payment methods are enabled. Turn one on in Admin.",
     );
   }
   const paymentKind: CheckoutPaymentKind | "mock" = mockPayment
@@ -229,6 +256,7 @@ async function createCheckoutSession(
       };
     }
     if (!mockPayment && orderOk && paymentKind !== "mock") {
+      const storedKind = providerFromRef(existing.paymentIntentId);
       return beginProviderPayment({
         kind: paymentKind,
         orderId: existing.orderId,
@@ -239,7 +267,8 @@ async function createCheckoutSession(
         shipping: cart.shippingAddress,
         billing,
         cart,
-        existingRef: existing.paymentIntentId,
+        existingRef:
+          storedKind === paymentKind ? existing.paymentIntentId : undefined,
       });
     }
   }
@@ -387,13 +416,27 @@ async function beginProviderPayment(input: {
   if (!intent.client_secret) {
     throw new Error("Could not start Stripe payment.");
   }
+  const accounts = await getPaymentAccounts({ fresh: true });
+  const publishableKey = accounts.stripe.publishableKey.trim();
+  const secretKey = accounts.stripe.secretKey.trim();
+  const secretLive = secretKey.includes("_live_");
+  const publishableLive = publishableKey.includes("_live_");
+  if (!publishableKey.startsWith("pk_") || secretLive !== publishableLive) {
+    throw new Error(
+      "The Stripe publishable key and secret key are not a matching pair. In Admin, use both keys from the same Stripe account.",
+    );
+  }
   await setPendingCheckout({
     orderId: input.orderId,
     orderKey: input.orderKey,
     paymentIntentId: intent.id,
     cartHash: input.cart.cartHash,
   });
-  return { ...base, clientSecret: intent.client_secret };
+  return {
+    ...base,
+    clientSecret: intent.client_secret,
+    stripePublishableKey: publishableKey,
+  };
 }
 
 async function finishPaid(

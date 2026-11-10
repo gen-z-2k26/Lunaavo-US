@@ -1,33 +1,24 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
-import { OrderConfirmation } from "@/components/OrderConfirmation";
+import { OrderFromQuery } from "@/components/OrderFromQuery";
 
 export const metadata: Metadata = {
   title: "Order",
   robots: { index: false, follow: false },
 };
 
-export default async function OrderPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ id: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
-  const { id } = await params;
-  const query = await searchParams;
-  const value = (key: string) => {
-    const raw = query[key];
-    return Array.isArray(raw) ? raw[0] || "" : raw || "";
-  };
+export const revalidate = 3600;
 
+export default function OrderPage() {
   return (
-    <OrderConfirmation
-      orderId={id}
-      orderKey={value("key")}
-      email={value("email")}
-      paymentIntentId={value("payment_intent") || value("orderToken")}
-      redirectStatus={value("redirect_status") || value("status")}
-      provider={value("orderToken") ? "afterpay" : "stripe"}
-    />
+    <Suspense
+      fallback={
+        <p className="py-24 text-center text-sm text-muted-foreground">
+          Loading order...
+        </p>
+      }
+    >
+      <OrderFromQuery />
+    </Suspense>
   );
 }

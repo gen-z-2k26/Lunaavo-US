@@ -22,7 +22,12 @@ import {
   type PaymentProviderId,
   type PaymentSettingsInput,
 } from "@/lib/payment-config";
-import { pingStripe } from "@/lib/stripe";
+import { ensureStripeWalletDomains, pingStripe } from "@/lib/stripe";
+
+async function adminHost() {
+  const headerList = await headers();
+  return headerList.get("x-forwarded-host") || headerList.get("host") || "";
+}
 
 const hits = new Map<string, { count: number; resetAt: number }>();
 
@@ -77,6 +82,13 @@ export async function savePaymentSettingsAction(
   try {
     await requireAdmin();
     await savePaymentSettings(input);
+    if (input.stripe.enabled) {
+      try {
+        await ensureStripeWalletDomains([await adminHost()]);
+      } catch (error) {
+        console.error("Stripe wallet domains could not be checked", error);
+      }
+    }
     return { ok: true, data: await getAdminPaymentView() };
   } catch (error) {
     unstable_rethrow(error);
@@ -112,6 +124,18 @@ export async function testProviderAction(
     await requireAdmin();
     if (provider === "stripe") {
       await pingStripe(draft?.stripe?.secretKey);
+      if (!draft?.stripe?.secretKey) {
+        const domains = await ensureStripeWalletDomains([await adminHost()]);
+        const failed = domains.filter((entry) => entry.status === "failed");
+        if (failed.length) {
+          return {
+            ok: false as const,
+            message: `Connected, but wallet domains could not be registered: ${failed
+              .map((entry) => entry.domain)
+              .join(", ")}.`,
+          };
+        }
+      }
     } else if (provider === "paypal") {
       await pingPayPal(draft?.paypal);
     } else if (provider === "affirm") {

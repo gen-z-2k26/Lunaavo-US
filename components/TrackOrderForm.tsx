@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { lookupGuestOrderAction } from "@/app/actions/orders";
 import { useStore } from "@/lib/store-context";
 import { formatPrice } from "@/lib/format";
@@ -18,15 +19,11 @@ function statusLabel(order: GuestOrder) {
   return status.charAt(0).toUpperCase() + status.slice(1);
 }
 
-export function TrackOrderForm({
-  initialOrderId = "",
-  initialOrderKey = "",
-  initialEmail = "",
-}: {
-  initialOrderId?: string;
-  initialOrderKey?: string;
-  initialEmail?: string;
-}) {
+export function TrackOrderForm() {
+  const searchParams = useSearchParams();
+  const initialOrderId = searchParams.get("order") || searchParams.get("id") || "";
+  const initialOrderKey = searchParams.get("key") || "";
+  const initialEmail = searchParams.get("email") || "";
   const { settings } = useStore();
   const [orderId, setOrderId] = useState(initialOrderId);
   const [orderKey, setOrderKey] = useState(initialOrderKey);

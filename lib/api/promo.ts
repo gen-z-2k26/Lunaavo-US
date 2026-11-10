@@ -1,4 +1,6 @@
+import { unstable_cache } from "next/cache";
 import { wooGet } from "@/lib/api/client";
+import { CONTENT_REVALIDATE_SECONDS } from "@/lib/cache-policy";
 import { formatPrice } from "@/lib/format";
 import type { StoreSettings } from "@/lib/types";
 
@@ -69,26 +71,37 @@ function couponScore(coupon: WooCoupon) {
   return score;
 }
 
+const readPromoSources = unstable_cache(
+  async () => {
+    const [coupons, saleProducts] = await Promise.all([
+      wooGet<WooCoupon[]>("coupons", {
+        per_page: 20,
+        orderby: "date",
+        order: "desc",
+      }),
+      wooGet<Array<{ id?: number }>>("products", {
+        on_sale: true,
+        status: "publish",
+        per_page: 1,
+        _fields: "id",
+      }),
+    ]);
+    return {
+      coupons: coupons ?? [],
+      hasSale: Boolean(saleProducts?.length),
+    };
+  },
+  ["woo-promo-sources"],
+  { revalidate: CONTENT_REVALIDATE_SECONDS },
+);
+
 export async function getLivePromo(settings: StoreSettings): Promise<{
   promoBanner: string;
   promoCoupon: string;
   promoId: string;
 }> {
   const empty = { promoBanner: "", promoCoupon: "", promoId: "" };
-
-  const [coupons, saleProducts] = await Promise.all([
-    wooGet<WooCoupon[]>("coupons", {
-      per_page: 20,
-      orderby: "date",
-      order: "desc",
-    }),
-    wooGet<Array<{ id?: number }>>("products", {
-      on_sale: true,
-      status: "publish",
-      per_page: 1,
-      _fields: "id",
-    }),
-  ]);
+  const { coupons, hasSale } = await readPromoSources();
 
   const live = (coupons ?? [])
     .filter(isUsable)
@@ -108,7 +121,7 @@ export async function getLivePromo(settings: StoreSettings): Promise<{
     };
   }
 
-  if (saleProducts?.length) {
+  if (hasSale) {
     return {
       promoBanner: "Flash sale on now. Shop sale items in the catalog.",
       promoCoupon: "",

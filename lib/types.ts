@@ -499,6 +499,8 @@ export interface CheckoutSessionResult {
   mockPayment?: boolean;
   paymentKind: CheckoutPaymentKind | "mock";
   redirectUrl?: string;
+  /** Publishable key from the same account that created this payment. */
+  stripePublishableKey?: string;
 }
 
 export interface CompleteCheckoutPayload {

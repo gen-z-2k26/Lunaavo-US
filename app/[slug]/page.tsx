@@ -3,18 +3,24 @@ import { notFound } from "next/navigation";
 import { CustomerCarePage } from "@/components/CustomerCarePage";
 import { PolicyPageView } from "@/components/PolicyPageView";
 import { getSiteSettings } from "@/lib/api";
-import { customerCareBySlug } from "@/lib/customer-care";
-import { layoutForTrustSlug, trustBySlug } from "@/lib/trust";
+import { CUSTOMER_CARE_SLUGS, customerCareBySlug } from "@/lib/customer-care";
+import { layoutForTrustSlug, trustBySlug, trustPages } from "@/lib/trust";
 import {
   groupsForPolicy,
   POLICY_PAGES,
   policyBySlug,
 } from "@/lib/policy-pages";
 
-export const revalidate = 60;
+export const revalidate = 3600;
+export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return POLICY_PAGES.map((page) => ({ slug: page.slug }));
+  const slugs = new Set<string>([
+    ...POLICY_PAGES.map((page) => page.slug),
+    ...CUSTOMER_CARE_SLUGS,
+    ...trustPages().map((page) => page.slug),
+  ]);
+  return [...slugs].map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({

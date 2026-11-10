@@ -1,5 +1,9 @@
+import { unstable_cache } from "next/cache";
+import { cache } from "react";
 import site from "@/data/site.json";
 import pageContent from "@/data/pages.json";
+import { CATALOG_TAG, CONTENT_REVALIDATE_SECONDS, STOCK_REVALIDATE_SECONDS } from "@/lib/cache-policy";
+import { isCatalogSlug } from "@/lib/catalog-slug";
 import {
   getWooOrigin,
   isWooConfigured,
@@ -93,8 +97,7 @@ const designSettings: StoreSettings = {
     ]),
   },
 };
-const REVALIDATE_SECONDS = 60;
-const CACHE_TTL_MS = REVALIDATE_SECONDS * 1000;
+const CACHE_TTL_MS = STOCK_REVALIDATE_SECONDS * 1000;
 
 const PRODUCT_FIELDS = [
   "id",
@@ -207,7 +210,7 @@ async function fetchWpSiteInfo(): Promise<{
       "https://",
     );
     const response = await fetch(`${wpOrigin}/wp-json`, {
-      next: { revalidate: REVALIDATE_SECONDS, tags: ["wp-site"] },
+      next: { revalidate: CONTENT_REVALIDATE_SECONDS, tags: ["wp-site"] },
       headers: { Accept: "application/json" },
       signal: AbortSignal.timeout(WOO_TIMEOUT_MS),
     });
@@ -232,7 +235,7 @@ async function fetchStoreMoney(): Promise<WooStoreMoney | null> {
   if (!origin) return null;
   try {
     const response = await fetch(`${origin}/wp-json/wc/store/v1/cart`, {
-      next: { revalidate: REVALIDATE_SECONDS, tags: ["woo-money"] },
+      next: { revalidate: CONTENT_REVALIDATE_SECONDS, tags: ["woo-money"] },
       headers: { Accept: "application/json" },
       signal: AbortSignal.timeout(WOO_TIMEOUT_MS),
     });
@@ -249,11 +252,86 @@ async function fetchStoreMoney(): Promise<WooStoreMoney | null> {
   }
 }
 
+type WooParams = Record<string, string | number | boolean>;
+
+const readSettingsGroup = unstable_cache(
+  async (group: string) =>
+    wooGet<Array<{ id?: string; value?: string }>>(`settings/${group}`),
+  ["woo-settings-group"],
+  { revalidate: CONTENT_REVALIDATE_SECONDS },
+);
+
+const readProducts = unstable_cache(
+  async (paramsKey: string) => {
+    const params = JSON.parse(paramsKey) as WooParams;
+    const data = await wooGet<WooProduct[]>("products", params);
+    return data.map(mapWooProduct);
+  },
+  ["woo-products"],
+  { revalidate: STOCK_REVALIDATE_SECONDS, tags: [CATALOG_TAG] },
+);
+
+const readProductBySlug = unstable_cache(
+  async (slug: string) => {
+    const data = await wooGet<WooProduct[]>("products", {
+      slug,
+      _fields: PRODUCT_FIELDS,
+    });
+    const [product] = data;
+    return product ? mapWooProduct(product) : null;
+  },
+  ["woo-product-by-slug"],
+  { revalidate: STOCK_REVALIDATE_SECONDS, tags: [CATALOG_TAG] },
+);
+
+const readCategories = unstable_cache(
+  async () => {
+    const data = await wooGet<Parameters<typeof mapWooCategory>[0][]>(
+      "products/categories",
+      {
+        per_page: 100,
+        hide_empty: true,
+        orderby: "count",
+        order: "desc",
+      },
+    );
+    return data.map(mapWooCategory);
+  },
+  ["woo-categories"],
+  { revalidate: STOCK_REVALIDATE_SECONDS, tags: [CATALOG_TAG] },
+);
+
+async function readCatalog<T>(
+  label: string,
+  fallback: T,
+  action: () => Promise<T>,
+): Promise<T> {
+  try {
+    return await action();
+  } catch (error) {
+    return softWooCall(async () => {
+      throw error;
+    }, fallback, label);
+  }
+}
+
+const getProductsOnce = cache((paramsKey: string) =>
+  readCatalog("getProducts", [] as Product[], () => readProducts(paramsKey)),
+);
+
+const getProductOnce = cache((slug: string) =>
+  readCatalog(
+    `getProduct(${slug})`,
+    null as Product | null,
+    () => readProductBySlug(slug),
+  ),
+);
+
 /**
  * Design tokens and UI chrome come from Next (data/site.json).
  * Currency, symbol, and catalog identity overlay from WooCommerce.
  */
-export async function getSiteSettings(): Promise<StoreSettings> {
+export const getSiteSettings = cache(async function getSiteSettings(): Promise<StoreSettings> {
   if (!isWooConfigured() || isWooUnreachable()) {
     return designSettings;
   }
@@ -263,15 +341,13 @@ export async function getSiteSettings(): Promise<StoreSettings> {
       fetchWpSiteInfo(),
       cachedSoftWooCall(
         "settings/general",
-        () =>
-          wooGet<Array<{ id?: string; value?: string }>>("settings/general"),
+        () => readSettingsGroup("general"),
         [],
         "settings/general",
       ),
       cachedSoftWooCall(
         "settings/email",
-        () =>
-          wooGet<Array<{ id?: string; value?: string }>>("settings/email"),
+        () => readSettingsGroup("email"),
         [],
         "settings/email",
       ),
@@ -303,7 +379,7 @@ export async function getSiteSettings(): Promise<StoreSettings> {
     console.warn("[storefront] store identity fetch failed:", error);
     return designSettings;
   }
-}
+});
 
 /** @deprecated Use getSiteSettings. */
 export async function getStoreSettings(): Promise<StoreSettings> {
@@ -323,7 +399,7 @@ export async function getProducts(options?: {
     return [];
   }
 
-  const params: Record<string, string | number | boolean> = {
+  const params: WooParams = {
     per_page: options?.perPage ?? 100,
     page: options?.page ?? 1,
     status: "publish",
@@ -341,17 +417,7 @@ export async function getProducts(options?: {
     params.per_page = options.include.length;
   }
 
-  const cacheKey = `products:${JSON.stringify(params)}`;
-
-  return cachedSoftWooCall(
-    cacheKey,
-    async () => {
-      const data = await wooGet<WooProduct[]>("products", params);
-      return data.map(mapWooProduct);
-    },
-    [],
-    "getProducts",
-  );
+  return getProductsOnce(JSON.stringify(params));
 }
 
 export async function getProductsByIds(ids: number[]): Promise<Product[]> {
@@ -409,30 +475,14 @@ export async function getProductsByCategory(
   return [];
 }
 
-export async function getCategoryRecords(): Promise<Category[]> {
+export const getCategoryRecords = cache(async function getCategoryRecords(): Promise<Category[]> {
   if (!isWooConfigured()) {
     return [];
   }
 
   const [rawCategories, allProducts] = await Promise.all([
-    cachedSoftWooCall(
-      "categories:all",
-      async () => {
-        const data = await wooGet<Parameters<typeof mapWooCategory>[0][]>(
-          "products/categories",
-          {
-            per_page: 100,
-            hide_empty: true,
-            orderby: "count",
-            order: "desc",
-          },
-        );
-        return data.map(mapWooCategory);
-      },
-      [],
-      "getCategoryRecords",
-    ),
-    getProducts({ perPage: 100 }),
+    readCatalog("getCategoryRecords", [] as Category[], () => readCategories()),
+    getProducts({ perPage: 100, card: true }),
   ]);
 
   return rawCategories.map((category) => {
@@ -454,7 +504,7 @@ export async function getCategoryRecords(): Promise<Category[]> {
       imageAlt: sampleProduct.imageAlts[0] || category.name,
     };
   });
-}
+});
 
 function parentCategories(all: Category[]): Category[] {
   return all
@@ -503,23 +553,11 @@ export async function getCategories(): Promise<string[]> {
 }
 
 export async function getProduct(slug: string): Promise<Product | null> {
-  if (!isWooConfigured()) {
+  if (!isWooConfigured() || !isCatalogSlug(slug)) {
     return null;
   }
 
-  return cachedSoftWooCall(
-    `product:slug:${slug}`,
-    async () => {
-      const data = await wooGet<WooProduct[]>("products", {
-        slug,
-        _fields: PRODUCT_FIELDS,
-      });
-      const [product] = data;
-      return product ? mapWooProduct(product) : null;
-    },
-    null,
-    `getProduct(${slug})`,
-  );
+  return getProductOnce(slug);
 }
 
 export async function getCountries(): Promise<CountryOption[]> {

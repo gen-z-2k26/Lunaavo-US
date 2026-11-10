@@ -1,20 +1,37 @@
 "use client";
 
 import { addItemToCartAction, shopNowAction } from "@/app/actions/cart";
-import { unwrapCart } from "@/lib/cart-result";
 import { useCartStore } from "@/lib/cart-store";
 import { toast } from "@/lib/toast-store";
 import { userErrorMessage } from "@/lib/user-error";
 import type { Product } from "@/lib/types";
 
+export class CatalogConflictError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "CatalogConflictError";
+  }
+}
+
+export function isCatalogConflictError(error: unknown) {
+  return error instanceof Error && error.name === "CatalogConflictError";
+}
+
+function rejectCart(result: { ok: false; message: string; catalogStale?: boolean }) {
+  const error = result.catalogStale
+    ? new CatalogConflictError(result.message)
+    : new Error(result.message);
+  return error;
+}
+
 export async function addProductToCart(product: Product, quantity = 1) {
   try {
-    const cart = unwrapCart(
-      await addItemToCartAction({
-        id: Number(product.id),
-        quantity,
-      }),
-    );
+    const result = await addItemToCartAction({
+      id: Number(product.id),
+      quantity,
+    });
+    if (!result.ok) throw rejectCart(result);
+    const cart = result.cart;
     useCartStore.getState().setCart(cart, { open: true, bump: true });
     toast({
       title: "Added to cart",
@@ -38,13 +55,13 @@ export async function shopNowToCheckout(
   emptyCart = false,
 ) {
   try {
-    const cart = unwrapCart(
-      await shopNowAction({
-        id: Number(product.id),
-        quantity,
-        emptyCart,
-      }),
-    );
+    const result = await shopNowAction({
+      id: Number(product.id),
+      quantity,
+      emptyCart,
+    });
+    if (!result.ok) throw rejectCart(result);
+    const cart = result.cart;
     useCartStore.getState().setCart(cart, { open: false, bump: true });
     return cart;
   } catch (error) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { Product } from "@/lib/types";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SelectField } from "@/components/SelectField";
@@ -142,5 +142,25 @@ export function ProductsCatalog({
 
       <ProductGrid products={visible} />
     </div>
+  );
+}
+
+export function ProductsCatalogWithQuery({
+  products,
+  initialCategory = "all",
+  syncCategoryUrl = false,
+}: {
+  products: Product[];
+  initialCategory?: string;
+  syncCategoryUrl?: boolean;
+}) {
+  const searchParams = useSearchParams();
+  return (
+    <ProductsCatalog
+      products={products}
+      initialQuery={searchParams.get("q") ?? ""}
+      initialCategory={initialCategory}
+      syncCategoryUrl={syncCategoryUrl}
+    />
   );
 }
