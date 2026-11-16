@@ -8,6 +8,34 @@ import { get, put } from "@vercel/blob";
 
 export type PaymentMode = "sandbox" | "live";
 export type PaymentProviderId = "stripe" | "paypal" | "affirm" | "afterpay";
+
+export const DEFAULT_GATEWAY_ORDER: PaymentProviderId[] = [
+  "stripe",
+  "paypal",
+  "affirm",
+  "afterpay",
+];
+
+export function normalizeGatewayOrder(value: unknown): PaymentProviderId[] {
+  const allowed = new Set<string>(DEFAULT_GATEWAY_ORDER);
+  const seen = new Set<PaymentProviderId>();
+  const next: PaymentProviderId[] = [];
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      if (typeof item !== "string" || !allowed.has(item) || seen.has(item as PaymentProviderId)) {
+        continue;
+      }
+      const id = item as PaymentProviderId;
+      seen.add(id);
+      next.push(id);
+    }
+  }
+  for (const id of DEFAULT_GATEWAY_ORDER) {
+    if (!seen.has(id)) next.push(id);
+  }
+  return next;
+}
+
 export type ProviderStatus = "live" | "sandbox" | "off" | "needs_keys";
 
 type StripeSecrets = {
@@ -41,6 +69,7 @@ type AfterpaySecrets = {
 };
 
 type StoredPaymentConfig = {
+  order: PaymentProviderId[];
   stripe: StripeSecrets;
   paypal: PaypalSecrets;
   affirm: AffirmSecrets;
@@ -54,6 +83,7 @@ export type AdminPaymentView = {
   blobReady: boolean;
   managed: boolean;
   liveCount: number;
+  order: PaymentProviderId[];
   stripe: {
     enabled: boolean;
     publishableKey: string;
@@ -87,6 +117,7 @@ export type AdminPaymentView = {
 };
 
 export type PaymentSettingsInput = {
+  order: PaymentProviderId[];
   stripe: {
     enabled: boolean;
     publishableKey: string;
@@ -148,6 +179,7 @@ function blobTokenReady() {
 
 function emptyStored(): StoredPaymentConfig {
   return {
+    order: [...DEFAULT_GATEWAY_ORDER],
     stripe: { enabled: false, publishableKey: "", secretKey: "", webhookSecret: "" },
     paypal: { enabled: false, mode: "sandbox", clientId: "", clientSecret: "" },
     affirm: { enabled: false, mode: "sandbox", publicKey: "", privateKey: "" },
@@ -281,6 +313,7 @@ async function readStored(fresh = false): Promise<StoredPaymentConfig | null> {
 function normalizeStored(value: Partial<StoredPaymentConfig>): StoredPaymentConfig {
   const base = emptyStored();
   return {
+    order: normalizeGatewayOrder(value.order),
     stripe: { ...base.stripe, ...value.stripe },
     paypal: { ...base.paypal, ...value.paypal },
     affirm: { ...base.affirm, ...value.affirm },
@@ -314,6 +347,7 @@ export async function getAdminPaymentView(): Promise<AdminPaymentView> {
     blobReady: blobTokenReady(),
     managed: accounts.managed,
     liveCount: statuses.filter((status) => status === "live" || status === "sandbox").length,
+    order: accounts.order,
     stripe: {
       enabled: accounts.stripe.enabled,
       publishableKey: accounts.stripe.publishableKey,
@@ -379,6 +413,7 @@ export function validatePaymentInput(input: PaymentSettingsInput, resolved: Stor
   assertPair("Stripe", stripePublishable, stripeSecret, "_live_");
   const mode = (value: string): PaymentMode => (value === "live" ? "live" : "sandbox");
   return {
+    order: normalizeGatewayOrder(input.order),
     stripe: {
       enabled: input.stripe.enabled,
       publishableKey: stripePublishable,
@@ -427,6 +462,7 @@ export async function clearProviderSecrets(provider: PaymentProviderId) {
   const current = await getPaymentAccounts({ fresh: true });
   const next: StoredPaymentConfig = current.managed
     ? {
+        order: [...current.order],
         stripe: { ...current.stripe },
         paypal: { ...current.paypal },
         affirm: { ...current.affirm },
