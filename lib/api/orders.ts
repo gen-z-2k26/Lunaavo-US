@@ -1,6 +1,6 @@
 import { wooGet, wooPost, wooPut } from "@/lib/api/client";
 import { isCatalogConflict } from "@/lib/catalog-conflict";
-import { refreshCatalog } from "@/lib/cache-policy";
+import { refreshProductsById } from "@/lib/api/catalog-refresh";
 import { withWooErrorHandling } from "@/lib/api/errors";
 import { toWooAddress } from "@/lib/api/map-cart";
 import { majorTotalsMatch } from "@/lib/money";
@@ -119,7 +119,9 @@ export async function createPendingOrderFromCart(
     try {
       return await createOrderRecord(cart, options);
     } catch (error) {
-      if (isCatalogConflict(error)) refreshCatalog();
+      if (isCatalogConflict(error)) {
+        await refreshProductsById(cart.items.map((item) => item.productId));
+      }
       throw error;
     }
   });
@@ -238,11 +240,18 @@ export async function markOrderPaid(
       transaction_id: transactionId,
     });
 
-    refreshCatalog();
+    await refreshProductsById(
+      (order.line_items || []).map((item) => item.product_id),
+    );
     return mapWooOrder(order);
     });
   } catch (error) {
-    if (isCatalogConflict(error)) refreshCatalog();
+    if (isCatalogConflict(error)) {
+      const order = await wooGet<WooOrder>(`orders/${orderId}`).catch(() => null);
+      await refreshProductsById(
+        (order?.line_items || []).map((item) => item.product_id),
+      );
+    }
     throw error;
   }
 }
@@ -253,7 +262,9 @@ export async function cancelUnpaidOrder(orderId: string): Promise<void> {
     if (isPaidStatus(existing)) return;
     if (existing.status === "cancelled" || existing.status === "failed") return;
     await wooPut<WooOrder>(`orders/${orderId}`, { status: "cancelled" });
-    refreshCatalog();
+    await refreshProductsById(
+      (existing.line_items || []).map((item) => item.product_id),
+    );
   });
 }
 
@@ -263,6 +274,8 @@ export async function failUnpaidOrder(orderId: string): Promise<void> {
     if (isPaidStatus(existing)) return;
     if (existing.status === "cancelled" || existing.status === "failed") return;
     await wooPut<WooOrder>(`orders/${orderId}`, { status: "failed" });
-    refreshCatalog();
+    await refreshProductsById(
+      (existing.line_items || []).map((item) => item.product_id),
+    );
   });
 }

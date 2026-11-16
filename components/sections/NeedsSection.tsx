@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/IntentLink";
 import { ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { pageContainer, sectionStackClass, sectionYClass } from "@/lib/layout";
